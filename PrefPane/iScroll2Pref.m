@@ -59,22 +59,21 @@
 - (void)mainViewDidLoad
 {
 	_buttons = [[NSDictionary alloc] initWithObjectsAndKeys:
-		_VEnable, @kTrackpadScroll,
-		_HEnable, @kTrackpadHorizScroll,
-		_CEnable, @kTrackpadCircScroll,
-		_CInvert, @kTrackpadCircScrollInvert,
-		_HInvert, @kTrackpadHorizScrollInvert,
-		_VInvert, @kTrackpadVertScrollInvert,
+		_VEnable, @kTrackpadVScroll,
+		_HEnable, @kTrackpadHScroll,
+		_CEnable, @kTrackpadCScroll,
+		_CInvert, @kTrackpadCScrollInvert,
+		_HInvert, @kTrackpadHScrollInvert,
+		_VInvert, @kTrackpadVScrollInvert,
 		_ignoreWeakerAxis, @kTrackpadScrollIgnoreWeakAxis,
 		0];
 	_sliders = [[NSDictionary alloc] initWithObjectsAndKeys:
-		_CResetTime, @kTrackpadCircScrollMaxDelay,
-		_CScale, @kTrackpadCircScrollScale,
-		_CThresh, @kTrackpadCircScrollThreshold,
-		_HScale, @kTrackpadHorizScrollScale,
-		_HThresh, @kTrackpadHorizScrollThreshold,
-		_VScale, @kTrackpadVertScrollScale,
-		_VThresh, @kTrackpadVertScrollThreshold,
+		_CScale, @kTrackpadCScrollScale,
+		_CThresh, @kTrackpadCScrollThreshold,
+		_HScale, @kTrackpadHScrollScale,
+		_HThresh, @kTrackpadHScrollThreshold,
+		_VScale, @kTrackpadVScrollScale,
+		_VThresh, @kTrackpadVScrollThreshold,
 		_minDelay, @kTrackpadScrollMinDelay,
 		0];
 	_popupbuttons = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -83,24 +82,23 @@
 		_twoFingerClickMapTo, @kTrackpadTwoFingerClickMapTo,
 		0];
 	_defaults = [[NSDictionary alloc] initWithObjectsAndKeys:
-		[NSNumber numberWithInt: kTrackpadScrollDefault], @kTrackpadScroll,
-		[NSNumber numberWithInt: kTrackpadVertScrollThresholdDefault], @kTrackpadVertScrollThreshold,
-		[NSNumber numberWithInt: kTrackpadVertScrollScaleDefault], @kTrackpadVertScrollScale,
-		[NSNumber numberWithInt: kTrackpadVertScrollInvertDefault], @kTrackpadVertScrollInvert,
-		[NSNumber numberWithInt: kTrackpadHorizScrollDefault], @kTrackpadHorizScroll,
-		[NSNumber numberWithInt: kTrackpadHorizScrollThresholdDefault], @kTrackpadHorizScrollThreshold,
-		[NSNumber numberWithInt: kTrackpadHorizScrollScaleDefault], @kTrackpadHorizScrollScale,
-		[NSNumber numberWithInt: kTrackpadHorizScrollInvertDefault], @kTrackpadHorizScrollInvert,
-		[NSNumber numberWithInt: kTrackpadCircScrollDefault], @kTrackpadCircScroll,
-		[NSNumber numberWithInt: kTrackpadCircScrollThresholdDefault], @kTrackpadCircScrollThreshold,
-		[NSNumber numberWithInt: kTrackpadCircScrollScaleDefault], @kTrackpadCircScrollScale,
-		[NSNumber numberWithInt: kTrackpadCircScrollInvertDefault], @kTrackpadCircScrollInvert,
+		[NSNumber numberWithInt: kTrackpadVScrollDefault], @kTrackpadVScroll,
+		[NSNumber numberWithInt: kTrackpadVScrollThresholdDefault], @kTrackpadVScrollThreshold,
+		[NSNumber numberWithInt: kTrackpadVScrollScaleDefault], @kTrackpadVScrollScale,
+		[NSNumber numberWithInt: kTrackpadVScrollInvertDefault], @kTrackpadVScrollInvert,
+		[NSNumber numberWithInt: kTrackpadHScrollDefault], @kTrackpadHScroll,
+		[NSNumber numberWithInt: kTrackpadHScrollThresholdDefault], @kTrackpadHScrollThreshold,
+		[NSNumber numberWithInt: kTrackpadHScrollScaleDefault], @kTrackpadHScrollScale,
+		[NSNumber numberWithInt: kTrackpadHScrollInvertDefault], @kTrackpadHScrollInvert,
+		[NSNumber numberWithInt: kTrackpadCScrollDefault], @kTrackpadCScroll,
+		[NSNumber numberWithInt: kTrackpadCScrollThresholdDefault], @kTrackpadCScrollThreshold,
+		[NSNumber numberWithInt: kTrackpadCScrollScaleDefault], @kTrackpadCScrollScale,
+		[NSNumber numberWithInt: kTrackpadCScrollInvertDefault], @kTrackpadCScrollInvert,
 		[NSNumber numberWithInt: kTrackpadScrollIgnoreWeakAxisDefault], @kTrackpadScrollIgnoreWeakAxis,
 		[NSNumber numberWithInt: kTrackpadClickMapToDefault], @kTrackpadClickMapTo,
 		[NSNumber numberWithInt: kTrackpadTapMapToDefault], @kTrackpadTapMapTo,
 		[NSNumber numberWithInt: kTrackpadTwoFingerClickMapToDefault], @kTrackpadTwoFingerClickMapTo,
 		[NSNumber numberWithInt: kTrackpadScrollMinDelayDefault], @kTrackpadScrollMinDelay,
-		[NSNumber numberWithInt: kTrackpadCircScrollMaxDelayDefault], @kTrackpadCircScrollMaxDelay,
 		0];
 	[_version setStringValue:[NSString stringWithFormat:@"Version %@", [[[self bundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]]];
 }
@@ -122,7 +120,9 @@
 		{
 			if([_buttons objectForKey:key] == sender)
 			{
-				parameters = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:[sender state] == NSOnState ? 1 : 0], key, 0];
+				parameters = [[NSDictionary alloc] initWithObjectsAndKeys:
+					[NSNumber numberWithInt:[sender state] == NSOnState ? 1 : 0], key,
+					0];
 				break;
 			}
 		}
@@ -134,7 +134,9 @@
 		{
 			if([_sliders objectForKey:key] == sender)
 			{
-				parameters = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:[sender intValue]], key, 0];
+				parameters = [[NSDictionary alloc] initWithObjectsAndKeys:
+					[NSNumber numberWithInt:[sender tag] ? (int)([sender maxValue] + [sender minValue]) - [sender intValue] : [sender intValue]], key,
+					0];
 				break;
 			}
 		}
@@ -146,7 +148,9 @@
 		{
 			if([_popupbuttons objectForKey:key] == sender)
 			{
-				parameters = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:[sender indexOfSelectedItem]], key, 0];
+				parameters = [[NSDictionary alloc] initWithObjectsAndKeys:
+					[NSNumber numberWithInt:[sender indexOfSelectedItem]], key,
+					0];
 				break;
 			}
 		}
@@ -156,14 +160,6 @@
 		applySettingsToHIDSystem((CFDictionaryRef)parameters);
 		[parameters release];
 	}
-}
-
-- (IBAction)showWarning:(id)sender
-{
-	[self loadSettings];
-	NSRunAlertPanel(@"Please use the Keyboard & Mouse preference pane to make this change.", 
-		@"Apple's Keyboard & Mouse preference pane assumes it is the only place where this settings can be changed, "
-		@"and will overwrite any changes made elsewhere.", @"OK", nil, nil);
 }
 
 @end

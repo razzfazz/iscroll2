@@ -16,7 +16,6 @@
     IBOutlet NSButton		*_HEnable;
     IBOutlet NSButton		*_VEnable;
     IBOutlet NSButton		*_CInvert;
-    IBOutlet NSSlider		*_CResetTime;
     IBOutlet NSSlider		*_CScale;
     IBOutlet NSSlider		*_CThresh;
     IBOutlet NSPopUpButton	*_tapMapTo;
@@ -39,6 +38,5 @@
 
 - (void)mainViewDidLoad;
 - (IBAction)saveSettings:(id)sender;
-- (IBAction)showWarning:(id)sender;
 
 @end

@@ -24,7 +24,7 @@ then
     echo "ERROR: Incompatible operating system version detected."
     exit $[(3<<5)+16]
 fi
-echo "Darwin version `sysctl -n kern.osrelease` detected."
+echo "Darwin version `$sysctl -n kern.osrelease` detected."
 
 echo "Checking if trackpad driver is loaded..."
 if ! ($kextstat | grep com.apple.driver.AppleADBMouse > /dev/null || \

@@ -24,7 +24,7 @@ do
 	if [ -e $f ]
 	then
     		echo "Removing $f..."
-		if ! echo "sudo rm -R $f"
+		if ! sudo rm -R $f
 		then
         		echo "ERROR: Unable to remove $f. Please remove manually."
 		 fi

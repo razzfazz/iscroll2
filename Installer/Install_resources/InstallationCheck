@@ -9,7 +9,8 @@ fi
 echo "Darwin version `sysctl -n kern.osrelease` detected."
 echo "Checking if trackpad driver is loaded..."
 if ! (kextstat | grep com.apple.driver.AppleADBMouse > /dev/null || \
-    kextstat | grep name.razzfazz.iScroll > /dev/null)
+    kextstat | grep name.razzfazz.iScroll2 > /dev/null || \
+    kextstat | grep name.razzfazz.driver.iScroll2 > /dev/null)
 then 
     echo "ERROR: No compatible trackpad driver loaded!"
     exit $[(3<<5)+17]

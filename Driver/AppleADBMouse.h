@@ -159,8 +159,10 @@ public:
 	virtual IOService * probe(IOService * provider, SInt32 * score);
 	virtual bool start(IOService * provider);
 	virtual void packet(UInt8 adbCommand, IOByteCount length, UInt8 * data);
-	virtual void packetW(UInt8 adbCommand, IOByteCount length, UInt8 * data);
-	virtual void packetWP(UInt8 adbCommand, IOByteCount length, UInt8 * data);
+// modified dub:
+//	virtual void packetW(UInt8 adbCommand, IOByteCount length, UInt8 * data);
+//	virtual void packetWP(UInt8 adbCommand, IOByteCount length, UInt8 * data);
+// end modifications
 	virtual OSData * copyAccelerationTable();
 	virtual void _check_usb_mouse(IOService * service, bool added); 
 	virtual void free();

@@ -347,9 +347,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>852B0B1707D782FA000D2AD7</string>
+				<string>8534D75707D79D020085B46D</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>852B0B1807D782FA000D2AD7</string>
+				<string>8534D75807D79D020085B46D</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -377,7 +377,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>8557FC9307B6CC340091B459</string>
 		<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Driver/iScroll2Driver.pbproj</string>
 	</array>
 	<key>WindowString</key>

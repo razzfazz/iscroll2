@@ -282,7 +282,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>InfoPlist.strings</string>
+								<string>AppleADBMouse.cpp</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -290,20 +290,20 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>InfoPlist.strings</string>
+										<string>AppleADBMouse.cpp</string>
 										<key>bookmark</key>
-										<string>855530DD07E6E236008FF3AE</string>
+										<string>855530EE07E6E548008FF3AE</string>
 										<key>history</key>
 										<array>
 											<string>85098BCB07E23FDB00AB4CD5</string>
+											<string>855530EC07E6E548008FF3AE</string>
 											<string>855530DA07E6E236008FF3AE</string>
-											<string>855530DB07E6E236008FF3AE</string>
 										</array>
 										<key>prevStack</key>
 										<array>
 											<string>85098BB607E23A2600AB4CD5</string>
 											<string>85098BCC07E23FDB00AB4CD5</string>
-											<string>855530DC07E6E236008FF3AE</string>
+											<string>855530ED07E6E548008FF3AE</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -363,9 +363,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>855530D607E6E1C5008FF3AE</string>
+				<string>855530EF07E6E548008FF3AE</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>855530D707E6E1C5008FF3AE</string>
+				<string>855530F007E6E548008FF3AE</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>

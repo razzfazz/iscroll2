@@ -350,9 +350,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>8545A14307D4FA13006EB707</string>
+				<string>85F73B3107D5030C00D96DAD</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>8545A14407D4FA13006EB707</string>
+				<string>85F73B3207D5030C00D96DAD</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -380,7 +380,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>8509A53A07C01729002A3DD9</string>
 		<string>/Users/dub/Documents/Source Code/Mac/iScroll2/PrefPane/iScroll2Pref.xcode</string>
 	</array>
 	<key>WindowString</key>

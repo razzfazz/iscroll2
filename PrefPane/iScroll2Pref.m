@@ -36,12 +36,14 @@
 	control = [_sliders keyEnumerator];
 	while(key = [control nextObject])
 	{
+		NSSlider *slider;
 		value = [parameters objectForKey:key];
 		if(![value isKindOfClass:[NSNumber class]])
 		{
 			value = [_defaults objectForKey:key];
 		}
-		[(NSSlider *)[_sliders objectForKey:key] setIntValue:[(NSNumber *)value intValue]];
+		slider = (NSSlider *)[_sliders objectForKey:key];
+		[slider setIntValue:[slider tag] == 1 ? (int)([slider maxValue] + [slider minValue]) - [(NSNumber *)value intValue] : [(NSNumber *)value intValue]];
 	}
 	control = [_popupbuttons keyEnumerator];
 	while(key = [control nextObject])
@@ -135,7 +137,7 @@
 			if([_sliders objectForKey:key] == sender)
 			{
 				parameters = [[NSDictionary alloc] initWithObjectsAndKeys:
-					[NSNumber numberWithInt:[sender tag] ? (int)([sender maxValue] + [sender minValue]) - [sender intValue] : [sender intValue]], key,
+					[NSNumber numberWithInt:[sender tag] == 1 ? (int)([sender maxValue] + [sender minValue]) - [sender intValue] : [sender intValue]], key,
 					0];
 				break;
 			}

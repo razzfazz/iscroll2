@@ -14,30 +14,23 @@ prefuperms="rwX"
 prefgperms="rwX"
 prefoperms="rX"
 
-if [ ! -d "pkgroot/Contents/$kextpath" ]
-then
-	mkdir -p "pkgroot/Contents/$kextpath"
-fi
+rm -R pkgroot
+
+mkdir -p "pkgroot/Contents/$kextpath"
 cp -R ../Driver/build/$kextname "pkgroot/Contents/$kextpath"
 chown -R $kextowner "pkgroot/Contents/`echo $kextpath | cut -d / -f 1`"
 chmod -R u=$kextuperms "pkgroot/Contents/`echo $kextpath | cut -d / -f 1`"
 chmod -R g=$kextgperms "pkgroot/Contents/`echo $kextpath | cut -d / -f 1`"
 chmod -R o=$kextoperms "pkgroot/Contents/`echo $kextpath | cut -d / -f 1`"
 
-if [ ! -d "pkgroot/Contents/$prefpath" ]
-then
-	mkdir -p "pkgroot/Contents/$prefpath"
-fi
+mkdir -p "pkgroot/Contents/$prefpath"
 cp -R ../PrefPane/build/$prefname "pkgroot/Contents/$prefpath"
 chown -R $prefowner "pkgroot/Contents/`echo $prefpath | cut -d / -f 1`"
 chmod -R u=$prefuperms "pkgroot/Contents/`echo $prefpath | cut -d / -f 1`"
 chmod -R g=$prefgperms "pkgroot/Contents/`echo $prefpath | cut -d / -f 1`"
 chmod -R o=$prefoperms "pkgroot/Contents/`echo $prefpath | cut -d / -f 1`"
 
-if [ ! -d "pkgroot/Resources" ]
-then
-       mkdir -p "pkgroot/Resources"
-fi
+mkdir -p "pkgroot/Resources"
 cp -R Install_resources/* pkgroot/Resources
 rm -R `find pkgroot/Resources -name CVS`
 cp ../Website/index.html pkgroot/Resources/ReadMe.html

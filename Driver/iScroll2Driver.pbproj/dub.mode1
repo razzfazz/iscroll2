@@ -247,6 +247,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>5</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -266,7 +268,7 @@
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>110 190 690 397 0 0 1280 832 </string>
+						<string>110 185 690 397 0 0 1280 1002 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -301,7 +303,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {481, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>110 190 690 397 0 0 1280 832 </string>
+								<string>110 185 690 397 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -323,7 +325,7 @@
 								<key>Frame</key>
 								<string>{{0, 7}, {481, 348}}</string>
 								<key>RubberWindowFrame</key>
-								<string>110 190 690 397 0 0 1280 832 </string>
+								<string>110 185 690 397 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -347,9 +349,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>85F1F71007D3E10000B6DA85</string>
+				<string>8517D9F407D4FC5D00A16CF3</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>85F1F71107D3E10000B6DA85</string>
+				<string>8517D9F507D4FC5D00A16CF3</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -380,7 +382,7 @@
 		<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Driver/iScroll2Driver.pbproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>110 190 690 397 0 0 1280 832 </string>
+	<string>110 185 690 397 0 0 1280 1002 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>
@@ -469,7 +471,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>8557FC9307B6CC340091B459</string>
-				<string>85D4B93B07D271EC0044F2AC</string>
+				<string>8545A14807D4FA13006EB707</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -480,7 +482,7 @@
 			<key>WindowToolGUID</key>
 			<string>8557FC9307B6CC340091B459</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

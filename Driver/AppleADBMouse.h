@@ -38,6 +38,8 @@
  *  4 Oct  1999 decesare  Revised for Type 4 support and sub-classed drivers.
  *  7 Feb  2005 dub       Added two-finger scrolling.
  *  9 Feb  2005 dub       Code cleanup, some improvements.
+ * 27 Feb  2005 dub       Added click remapping.
+ *  1 Mar  2005 dub       Lots of maintenance for two-finger scrolling.
  */
 
 #include <IOKit/adb/IOADBDevice.h>
@@ -100,6 +102,7 @@ private:
 	// modified dub:
 	short			_oldScrollX;
 	short			_oldScrollY;
+	bool			_enableScroll;
 	bool			_enableScrollX;
 	UInt16			_scrollThreshX;
 	UInt16			_scrollScaleX;
@@ -116,7 +119,6 @@ private:
 	UInt8			_tapMapTo;
 	UInt8			_twoFingerClickMapTo;
 	AbsoluteTime	_scrollMinDelayAB;
-	AbsoluteTime	_scrollMaxRotDelayAB;
     AbsoluteTime	_lastScrollTimeAB;
 	bool			_stickyRotating;
 	bool			_scrollDominantAxisOnly;

@@ -1,19 +1,16 @@
 #!/bin/sh
 
-sysctl="`which sysctl`"
-if [ -z "$sysctl" ]
+if ! sysctl="`which sysctl`"
 then
      sysctl="/usr/sbin/sysctl"
 fi
 
-ioreg="`which ioreg`"
-if [ -z "$ioreg" ]
+if ! ioreg="`which ioreg`"
 then
      ioreg="/usr/sbin/ioreg"
 fi
 
-kextstat="`which kextstat`"
-if [ -z "$kextstat" ]
+if ! kextstat="`which kextstat`"
 then
      kextstat="/usr/sbin/kextstat"
 fi

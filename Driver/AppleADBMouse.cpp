@@ -794,10 +794,12 @@ void iScroll2::packet(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
 		dy |= ((data[2 + cnt] >> 4) & 7) << (7 + (cnt * 3));
 		dx |= ((data[2 + cnt])      & 7) << (7 + (cnt * 3));
 		
-		if ((deviceNumButtons > (cnt + 2)) && ((data[2 + cnt] & 0x80) == 0))
-			buttonState |= 4 << (cnt * 2);
-		if ((deviceNumButtons > (cnt + 2 + 1)) && ((data[2 + cnt] & 0x08) == 0))
-			buttonState |= 4 << (cnt * 2 + 1);
+// modified dub:
+//		if ((deviceNumButtons > (cnt + 2)) && ((data[2 + cnt] & 0x80) == 0))
+//			buttonState |= 4 << (cnt * 2);
+//		if ((deviceNumButtons > (cnt + 2 + 1)) && ((data[2 + cnt] & 0x08) == 0))
+//			buttonState |= 4 << (cnt * 2 + 1);
+// end modifications
 	}
 	
 	if (dy & (0x40 << (numExtraBytes * 3)))

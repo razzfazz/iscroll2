@@ -25,7 +25,7 @@ echo "Checking OS version..."
 if [ "`$sysctl -n kern.osrelease | cut -d "." -f 1`" != "7" ]
 then
     echo "ERROR: Incompatible operating system version detected."
-    exit $[(3<<5)+16]
+    exit 112
 fi
 echo "Darwin version `$sysctl -n kern.osrelease` detected."
 
@@ -34,13 +34,13 @@ if kextstat | grep com.ragingmenace.driver.SideTrack > /dev/null
 then
     echo "ERROR: SideTrack seems to be installed on your machine."
     echo "iScroll2 is not compatible with SideTrack."
-    exit $[(3<<5)+17]
+    exit 113
 fi
 if kextstat | grep uk.org.outpost.driver.OutpostADBMouse > /dev/null
 then
     echo "ERROR: FingaMIDI seems to be installed on your machine."
     echo "iScroll2 is not compatible with FingaMIDI."
-    exit $[(3<<5)+18]
+    exit 114
 fi
 echo "No other known alternative drivers detected."
 
@@ -50,7 +50,7 @@ if ! ($kextstat | grep com.apple.driver.AppleADBMouse > /dev/null || \
     $kextstat | grep name.razzfazz.driver.iScroll2 > /dev/null)
 then 
     echo "ERROR: No compatible trackpad driver loaded!"
-    exit $[(3<<5)+19]
+    exit 115
 fi
 echo "Apple trackpad driver is loaded."
 
@@ -58,7 +58,7 @@ echo "Checking if trackpad supports W-Enhanced mode..."
 if ! $ioreg -n AppleADBMouseType4 | grep "W Enhanced Trackpad" > /dev/null
 then
     echo "ERROR: Trackpad does not seem to support W-Enhanced mode."
-    exit $[(3<<5)+20]
+    exit 116
 fi
 echo "Trackpad seems to support W-Enhanced mode."
 

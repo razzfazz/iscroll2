@@ -55,7 +55,8 @@ fi
 echo "Apple trackpad driver is loaded."
 
 echo "Checking if trackpad supports W-Enhanced mode..."
-if ! $ioreg -n AppleADBMouseType4 | grep "W Enhanced Trackpad" > /dev/null
+if ! ($ioreg -n AppleADBMouseType4 | grep "W Enhanced Trackpad" > /dev/null || \
+    $ioreg -n iScroll2 | grep "W Enhanced Trackpad" > /dev/null)
 then
     echo "ERROR: Trackpad does not seem to support W-Enhanced mode."
     exit 116

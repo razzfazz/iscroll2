@@ -27,7 +27,7 @@
 	while(key = [control nextObject])
 	{
 		value = [parameters objectForKey:key];
-		if(![value isMemberOfClass:[NSNumber class]])
+		if(![value isKindOfClass:[NSNumber class]])
 		{
 			value = [_defaults objectForKey:key];
 		}
@@ -37,7 +37,7 @@
 	while(key = [control nextObject])
 	{
 		value = [parameters objectForKey:key];
-		if(![value isMemberOfClass:[NSNumber class]])
+		if(![value isKindOfClass:[NSNumber class]])
 		{
 			value = [_defaults objectForKey:key];
 		}
@@ -47,7 +47,7 @@
 	while(key = [control nextObject])
 	{
 		value = [parameters objectForKey:key];
-		if(![value isMemberOfClass:[NSNumber class]])
+		if(![value isKindOfClass:[NSNumber class]])
 		{
 			value = [_defaults objectForKey:key];
 		}

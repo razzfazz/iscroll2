@@ -1,0 +1,18 @@
+#!/bin/sh
+
+daemonpath="/usr/local/bin"
+daemonname="iScroll2Daemon"
+daemonpidfile="/var/run/${daemonname}.pid"
+
+case "$1" in
+    start)
+        echo "Starting iScroll2..."
+        "${daemonpath}/${daemonname}"
+        ConsoleMessage -s "iScroll2"
+        exit;
+    ;;
+    stop)
+        kill $(cat "${daemonpidfile}")
+    ;;
+esac
+

@@ -82,7 +82,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 132515881;
+			PBXPerProjectTemplateStateSaveDate = 132571342;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -259,14 +259,16 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 132515881;
+			PBXWorkspaceStateSaveDate = 132571342;
 		};
 		perUserProjectItems = {
 			85098BB607E23A2600AB4CD5 = 85098BB607E23A2600AB4CD5;
 			85098BCB07E23FDB00AB4CD5 = 85098BCB07E23FDB00AB4CD5;
 			85098BCC07E23FDB00AB4CD5 = 85098BCC07E23FDB00AB4CD5;
-			855530A807E60863008FF3AE = 855530A807E60863008FF3AE;
-			855530B407E60ACD008FF3AE = 855530B407E60ACD008FF3AE;
+			855530DA07E6E236008FF3AE = 855530DA07E6E236008FF3AE;
+			855530DB07E6E236008FF3AE = 855530DB07E6E236008FF3AE;
+			855530DC07E6E236008FF3AE = 855530DC07E6E236008FF3AE;
+			855530DD07E6E236008FF3AE = 855530DD07E6E236008FF3AE;
 		};
 		sourceControlManager = 8557FC8C07B6CBC30091B459;
 		userBuildSettings = {
@@ -277,10 +279,10 @@
 	};
 	089C167EFE841241C02AAC07 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {800, 428}}";
+			sepNavIntBoundsRect = "{{0, 0}, {800, 144}}";
 			sepNavSelRange = "{155, 0}";
-			sepNavVisRect = "{{0, 0}, {711, 428}}";
-			sepNavWindowFrame = "{{61, 421}, {750, 534}}";
+			sepNavVisRect = "{{0, 0}, {440, 144}}";
+			sepNavWindowFrame = "{{199, 125}, {750, 534}}";
 		};
 	};
 	1A224C3EFF42367911CA2CB7 = {
@@ -296,7 +298,7 @@
 			sepNavIntBoundsRect = "{{0, 0}, {956, 24695}}";
 			sepNavSelRange = "{19759, 0}";
 			sepNavVisRect = "{{0, 10416}, {440, 144}}";
-			sepNavWindowFrame = "{{15, 463}, {750, 534}}";
+			sepNavWindowFrame = "{{176, 146}, {750, 534}}";
 		};
 	};
 	85098BB607E23A2600AB4CD5 = {
@@ -337,17 +339,7 @@
 			sepNavWindowFrame = "{{268, 232}, {750, 534}}";
 		};
 	};
-	855530A807E60863008FF3AE = {
-		fRef = 1A224C3FFF42367911CA2CB7;
-		isa = PBXTextBookmark;
-		name = "AppleADBMouse.cpp: 756";
-		rLen = 0;
-		rLoc = 19759;
-		rType = 0;
-		vrLen = 422;
-		vrLoc = 19296;
-	};
-	855530B407E60ACD008FF3AE = {
+	855530DA07E6E236008FF3AE = {
 		fRef = 1A224C3FFF42367911CA2CB7;
 		isa = PBXTextBookmark;
 		name = "AppleADBMouse.cpp: 756";
@@ -356,6 +348,31 @@
 		rType = 0;
 		vrLen = 422;
 		vrLoc = 19335;
+	};
+	855530DB07E6E236008FF3AE = {
+		fRef = 089C167EFE841241C02AAC07;
+		isa = PBXBookmark;
+		name = "InfoPlist.strings (English)";
+	};
+	855530DC07E6E236008FF3AE = {
+		fRef = 1A224C3FFF42367911CA2CB7;
+		isa = PBXTextBookmark;
+		name = "AppleADBMouse.cpp: 756";
+		rLen = 0;
+		rLoc = 19759;
+		rType = 0;
+		vrLen = 422;
+		vrLoc = 19335;
+	};
+	855530DD07E6E236008FF3AE = {
+		fRef = 089C167EFE841241C02AAC07;
+		isa = PBXTextBookmark;
+		name = "English: 5";
+		rLen = 0;
+		rLoc = 155;
+		rType = 0;
+		vrLen = 355;
+		vrLoc = 0;
 	};
 	8557FC8C07B6CBC30091B459 = {
 		fallbackIsa = XCSourceControlManager;

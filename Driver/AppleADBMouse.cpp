@@ -1300,10 +1300,14 @@ bool iScroll2::enableEnhancedMode()
             return FALSE;
         if (adbdata[6] != 0x0D)
         {
-            IOLog("iScroll2 deviceClass = %d (non-Extended Mode)\n", adbdata[6]);
+// modified dub:
+            IOLog("%s: deviceClass = 0x%x (non-Extended Mode)\n", getName(), adbdata[6]);
+// end modifications
             return FALSE;
         }
-        IOLog("iScroll2 deviceClass = %d (Extended Mode, Scrolling supported)\n", adbdata[6]);
+// modified dub:
+        IOLog("%s: deviceClass = 0x%x (Extended Mode, Scrolling supported)\n", getName(), adbdata[6]);
+// end modifications
 		
         // Set ADB Extended Features to default values.
         adbdata[0] = 0x19;  //MSB=Use Soft click (gesture).  7 bits for DownTime.

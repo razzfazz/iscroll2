@@ -266,7 +266,7 @@
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>110 141 690 397 0 0 1280 1002 </string>
+						<string>110 115 690 397 0 0 1280 832 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -282,7 +282,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>AppleADBMouse.cpp</string>
+								<string>InfoPlist.strings</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -290,18 +290,20 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>AppleADBMouse.cpp</string>
+										<string>InfoPlist.strings</string>
 										<key>bookmark</key>
-										<string>855530B407E60ACD008FF3AE</string>
+										<string>855530DD07E6E236008FF3AE</string>
 										<key>history</key>
 										<array>
 											<string>85098BCB07E23FDB00AB4CD5</string>
-											<string>855530A807E60863008FF3AE</string>
+											<string>855530DA07E6E236008FF3AE</string>
+											<string>855530DB07E6E236008FF3AE</string>
 										</array>
 										<key>prevStack</key>
 										<array>
 											<string>85098BB607E23A2600AB4CD5</string>
 											<string>85098BCC07E23FDB00AB4CD5</string>
+											<string>855530DC07E6E236008FF3AE</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -315,7 +317,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {481, 176}}</string>
 								<key>RubberWindowFrame</key>
-								<string>110 141 690 397 0 0 1280 1002 </string>
+								<string>110 115 690 397 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -337,7 +339,7 @@
 								<key>Frame</key>
 								<string>{{0, 183}, {481, 172}}</string>
 								<key>RubberWindowFrame</key>
-								<string>110 141 690 397 0 0 1280 1002 </string>
+								<string>110 115 690 397 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -361,9 +363,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>855530AA07E60863008FF3AE</string>
+				<string>855530D607E6E1C5008FF3AE</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>855530AB07E60863008FF3AE</string>
+				<string>855530D707E6E1C5008FF3AE</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -394,7 +396,7 @@
 		<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Driver/iScroll2Driver.pbproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>110 141 690 397 0 0 1280 1002 </string>
+	<string>110 115 690 397 0 0 1280 832 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>

@@ -13,6 +13,8 @@
 @interface iScroll2Pref : NSPreferencePane 
 {
     IBOutlet NSButton		*_CEnable;
+    IBOutlet NSButton		*_HEnable;
+    IBOutlet NSButton		*_VEnable;
     IBOutlet NSButton		*_CInvert;
     IBOutlet NSSlider		*_CResetTime;
     IBOutlet NSSlider		*_CScale;
@@ -37,5 +39,6 @@
 
 - (void)mainViewDidLoad;
 - (IBAction)saveSettings:(id)sender;
+- (IBAction)showWarning:(id)sender;
 
 @end

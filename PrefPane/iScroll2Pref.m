@@ -59,6 +59,8 @@
 - (void)mainViewDidLoad
 {
 	_buttons = [[NSDictionary alloc] initWithObjectsAndKeys:
+		_VEnable, @kTrackpadScroll,
+		_HEnable, @kTrackpadHorizScroll,
 		_CEnable, @kTrackpadCircScroll,
 		_CInvert, @kTrackpadCircScrollInvert,
 		_HInvert, @kTrackpadHorizScrollInvert,
@@ -154,6 +156,14 @@
 		applySettingsToHIDSystem((CFDictionaryRef)parameters);
 		[parameters release];
 	}
+}
+
+- (IBAction)showWarning:(id)sender
+{
+	[self loadSettings];
+	NSRunAlertPanel(@"Please use the Keyboard & Mouse preference pane to make this change.", 
+		@"Apple's Keyboard & Mouse preference pane assumes it is the only place where this settings can be changed, "
+		@"and will overwrite any changes made elsewhere.", @"OK", nil, nil);
 }
 
 @end

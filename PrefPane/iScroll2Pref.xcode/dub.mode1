@@ -350,9 +350,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>8548A45707D32D4300132807</string>
+				<string>85F1F70207D3D7F500B6DA85</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>8548A45807D32D4300132807</string>
+				<string>85F1F70307D3D7F500B6DA85</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -380,6 +380,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>8509A53A07C01729002A3DD9</string>
 		<string>/Users/dub/Documents/Source Code/Mac/iScroll2/PrefPane/iScroll2Pref.xcode</string>
 	</array>
 	<key>WindowString</key>
@@ -423,7 +424,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {500, 215}}</string>
 								<key>RubberWindowFrame</key>
-								<string>135 299 500 500 0 0 1280 1002 </string>
+								<string>135 206 500 500 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -449,7 +450,7 @@
 								<key>Frame</key>
 								<string>{{0, 222}, {500, 236}}</string>
 								<key>RubberWindowFrame</key>
-								<string>135 299 500 500 0 0 1280 1002 </string>
+								<string>135 206 500 500 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXBuildResultsModule</string>
@@ -472,14 +473,14 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>8509A53A07C01729002A3DD9</string>
-				<string>85D4B95207D283010044F2AC</string>
+				<string>85F1F71F07D3E31700B6DA85</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.build</string>
 			<key>WindowString</key>
-			<string>135 299 500 500 0 0 1280 1002 </string>
+			<string>135 206 500 500 0 0 1280 832 </string>
 			<key>WindowToolGUID</key>
 			<string>8509A53A07C01729002A3DD9</string>
 			<key>WindowToolIsVisible</key>

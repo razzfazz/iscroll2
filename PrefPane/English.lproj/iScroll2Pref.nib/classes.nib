@@ -13,7 +13,7 @@
             SUPERCLASS = NSObject; 
         }, 
         {
-            ACTIONS = {saveSettings = id; }; 
+            ACTIONS = {saveSettings = id; showWarning = id; }; 
             CLASS = iScroll2Pref; 
             LANGUAGE = ObjC; 
             OUTLETS = {
@@ -22,9 +22,11 @@
                 "_CResetTime" = NSSlider; 
                 "_CScale" = NSSlider; 
                 "_CThresh" = NSSlider; 
+                "_HEnable" = NSButton; 
                 "_HInvert" = NSButton; 
                 "_HScale" = NSSlider; 
                 "_HThresh" = NSSlider; 
+                "_VEnable" = NSButton; 
                 "_VInvert" = NSButton; 
                 "_VScale" = NSSlider; 
                 "_VThresh" = NSSlider; 

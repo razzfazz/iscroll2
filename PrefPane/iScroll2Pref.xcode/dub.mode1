@@ -270,7 +270,7 @@
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>558 211 690 397 0 0 1280 832 </string>
+						<string>558 281 690 397 0 0 1280 1002 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -305,7 +305,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {481, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>558 211 690 397 0 0 1280 832 </string>
+								<string>558 281 690 397 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -327,7 +327,7 @@
 								<key>Frame</key>
 								<string>{{0, 7}, {481, 348}}</string>
 								<key>RubberWindowFrame</key>
-								<string>558 211 690 397 0 0 1280 832 </string>
+								<string>558 281 690 397 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -351,9 +351,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>8581D5F507D60B7B000A3DD6</string>
+				<string>8534D74F07D79BEC0085B46D</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>8581D5F607D60B7B000A3DD6</string>
+				<string>8534D75007D79BEC0085B46D</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -384,7 +384,7 @@
 		<string>/Users/dub/Documents/Source Code/Mac/iScroll2/PrefPane/iScroll2Pref.xcode</string>
 	</array>
 	<key>WindowString</key>
-	<string>558 211 690 397 0 0 1280 832 </string>
+	<string>558 281 690 397 0 0 1280 1002 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>

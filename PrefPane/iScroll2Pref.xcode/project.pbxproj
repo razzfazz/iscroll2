@@ -125,6 +125,7 @@
 		};
 		08FB77AFFE84173DC02AAC07 = {
 			children = (
+				85C9C02807E4B872001CEF1A,
 				85B0DDD607C7644500FD7DBC,
 				85B0DDD707C7644500FD7DBC,
 				F506C03C013D9D7901CA16C8,
@@ -290,6 +291,20 @@
 			settings = {
 			};
 		};
+		85C9C02807E4B872001CEF1A = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = preferences.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		85C9C02907E4B872001CEF1A = {
+			fileRef = 85C9C02807E4B872001CEF1A;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		85FA19FF07C6A8E000C16F52 = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -361,6 +376,7 @@
 				8D202CEA0486D31800D8A456,
 				8D202CEB0486D31800D8A456,
 				85B0DDD807C7644500FD7DBC,
+				85C9C02907E4B872001CEF1A,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,113 +12,102 @@
 
 #import "ioregistry.h"
 #import "../Driver/ioregkeys.h"
-#import "../Driver/defaults.h"
+#import "preferences.h"
 
 @implementation iScroll2Pref
 
-- (void)loadSettings
+- (void)getSettings
 {
-	NSDictionary * parameters;
+	NSDictionary * settings;
+	settings = (NSDictionary *)getHIDSystemParameters();
+	[_current setDictionary:[settings objectForKey:@kiScroll2SettingsKey]];
+	[settings release];
+}
+
+- (void)displaySettings
+{
 	NSObject * key;
-	NSObject * value;
+	NSObject * object;
 	NSEnumerator * control;
-	parameters = (NSDictionary *)getHIDSystemParameters();
 	control = [_buttons keyEnumerator];
 	while(key = [control nextObject])
 	{
-		value = [parameters objectForKey:key];
-		if(![value isKindOfClass:[NSNumber class]])
-		{
-			value = [_defaults objectForKey:key];
-		}
-		[(NSButton *)[_buttons objectForKey:key] setState:[(NSNumber *)value intValue] == 0 ? NSOffState : NSOnState];
+		object = [_current objectForKey:key];
+		[(NSButton *)[_buttons objectForKey:key] setState:[(NSNumber *)object boolValue] ? NSOnState : NSOffState];
 	}
 	control = [_sliders keyEnumerator];
 	while(key = [control nextObject])
 	{
 		NSSlider *slider;
-		value = [parameters objectForKey:key];
-		if(![value isKindOfClass:[NSNumber class]])
-		{
-			value = [_defaults objectForKey:key];
-		}
+		object = [_current objectForKey:key];
 		slider = (NSSlider *)[_sliders objectForKey:key];
-		[slider setIntValue:[slider tag] == 1 ? (int)([slider maxValue] + [slider minValue]) - [(NSNumber *)value intValue] : [(NSNumber *)value intValue]];
+		[slider setIntValue:[slider tag] == 1 ? (int)([slider maxValue] + [slider minValue]) - [(NSNumber *)object intValue] : [(NSNumber *)object intValue]];
 	}
 	control = [_popupbuttons keyEnumerator];
 	while(key = [control nextObject])
 	{
-		value = [parameters objectForKey:key];
-		if(![value isKindOfClass:[NSNumber class]])
-		{
-			value = [_defaults objectForKey:key];
-		}
-		[(NSPopUpButton *)[_popupbuttons objectForKey:key] selectItemAtIndex:[(NSNumber *)value intValue]];
+		object = [_current objectForKey:key];
+		[(NSPopUpButton *)[_popupbuttons objectForKey:key] selectItemAtIndex:[(NSNumber *)object intValue]];
 	}
-	[parameters release];
+}
+
+- (void)applySettings
+{
+	NSDictionary * settings;
+	settings = [[NSDictionary alloc] initWithObjectsAndKeys:_current, @kiScroll2SettingsKey, 0];
+	applySettingsToHIDSystem((CFDictionaryRef)settings);
+	[settings release];
+ 	CFPreferencesSetValue((CFStringRef)@kCurrentParametersKey, (CFDictionaryRef)_current, 
+		(CFStringRef)@kDriverAppID, kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+	CFPreferencesSynchronize((CFStringRef)@kDriverAppID,
+		kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
 }
 
 - (void)mainViewDidLoad
 {
 	NSDictionary * localizedInfoDict;
 	_buttons = [[NSDictionary alloc] initWithObjectsAndKeys:
-		_VEnable, @kTrackpadVScroll,
-		_HEnable, @kTrackpadHScroll,
-		_CEnable, @kTrackpadCScroll,
-		_CInvert, @kTrackpadCScrollInvert,
-		_HInvert, @kTrackpadHScrollInvert,
-		_VInvert, @kTrackpadVScrollInvert,
-		_ignoreWeakerAxis, @kTrackpadScrollIgnoreWeakAxis,
+		_VEnable, @kTrackpadVScrollKey,
+		_HEnable, @kTrackpadHScrollKey,
+		_CEnable, @kTrackpadCScrollKey,
+		_CInvert, @kTrackpadCScrollInvertKey,
+		_HInvert, @kTrackpadHScrollInvertKey,
+		_VInvert, @kTrackpadVScrollInvertKey,
+		_ignoreWeakerAxis, @kTrackpadScrollIgnoreWeakAxisKey,
 		0];
 	_sliders = [[NSDictionary alloc] initWithObjectsAndKeys:
-		_CScale, @kTrackpadCScrollScale,
-		_CThresh, @kTrackpadCScrollThreshold,
-		_HScale, @kTrackpadHScrollScale,
-		_HThresh, @kTrackpadHScrollThreshold,
-		_VScale, @kTrackpadVScrollScale,
-		_VThresh, @kTrackpadVScrollThreshold,
-		_minDelay, @kTrackpadScrollMinDelay,
+		_CScale, @kTrackpadCScrollScaleKey,
+		_CThresh, @kTrackpadCScrollThresholdKey,
+		_HScale, @kTrackpadHScrollScaleKey,
+		_HThresh, @kTrackpadHScrollThresholdKey,
+		_VScale, @kTrackpadVScrollScaleKey,
+		_VThresh, @kTrackpadVScrollThresholdKey,
+		_minDelay, @kTrackpadScrollMinDelayKey,
 		0];
 	_popupbuttons = [[NSDictionary alloc] initWithObjectsAndKeys:
-		_clickMapTo, @kTrackpadClickMapTo,
-		_tapMapTo, @kTrackpadTapMapTo,
-		_twoFingerClickMapTo, @kTrackpadTwoFingerClickMapTo,
+		_clickMapTo, @kTrackpadClickMapToKey,
+		_tapMapTo, @kTrackpadTapMapToKey,
+		_twoFingerClickMapTo, @kTrackpadTwoFingerClickMapToKey,
 		0];
-	_defaults = [[NSDictionary alloc] initWithObjectsAndKeys:
-		[NSNumber numberWithInt: kTrackpadVScrollDefault], @kTrackpadVScroll,
-		[NSNumber numberWithInt: kTrackpadVScrollThresholdDefault], @kTrackpadVScrollThreshold,
-		[NSNumber numberWithInt: kTrackpadVScrollScaleDefault], @kTrackpadVScrollScale,
-		[NSNumber numberWithInt: kTrackpadVScrollInvertDefault], @kTrackpadVScrollInvert,
-		[NSNumber numberWithInt: kTrackpadHScrollDefault], @kTrackpadHScroll,
-		[NSNumber numberWithInt: kTrackpadHScrollThresholdDefault], @kTrackpadHScrollThreshold,
-		[NSNumber numberWithInt: kTrackpadHScrollScaleDefault], @kTrackpadHScrollScale,
-		[NSNumber numberWithInt: kTrackpadHScrollInvertDefault], @kTrackpadHScrollInvert,
-		[NSNumber numberWithInt: kTrackpadCScrollDefault], @kTrackpadCScroll,
-		[NSNumber numberWithInt: kTrackpadCScrollThresholdDefault], @kTrackpadCScrollThreshold,
-		[NSNumber numberWithInt: kTrackpadCScrollScaleDefault], @kTrackpadCScrollScale,
-		[NSNumber numberWithInt: kTrackpadCScrollInvertDefault], @kTrackpadCScrollInvert,
-		[NSNumber numberWithInt: kTrackpadScrollIgnoreWeakAxisDefault], @kTrackpadScrollIgnoreWeakAxis,
-		[NSNumber numberWithInt: kTrackpadClickMapToDefault], @kTrackpadClickMapTo,
-		[NSNumber numberWithInt: kTrackpadTapMapToDefault], @kTrackpadTapMapTo,
-		[NSNumber numberWithInt: kTrackpadTwoFingerClickMapToDefault], @kTrackpadTwoFingerClickMapTo,
-		[NSNumber numberWithInt: kTrackpadScrollMinDelayDefault], @kTrackpadScrollMinDelay,
-		0];
+	_current = [[NSMutableDictionary alloc] init];
 	[_version setStringValue:[NSString stringWithFormat:@"Version %@", [[[self bundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]]];
-	localizedInfoDict = [[self bundle] localizedInfoDictionary];
+	localizedInfoDict = [[[self bundle] localizedInfoDictionary] retain];
 	[_name setStringValue:[localizedInfoDict objectForKey:(NSString *)kCFBundleNameKey]];
 	[_copyright setStringValue:[localizedInfoDict objectForKey:(NSString *)@"NSHumanReadableCopyright"]];
+	[localizedInfoDict release];
 }
 
 - (void)willSelect
 {
-	[self loadSettings];
+	[self getSettings];
+	[self displaySettings];
 }
 
-- (IBAction)saveSettings:(id)sender
+- (IBAction)changeSetting:(id)sender
 {
 	NSEnumerator * control;
-	NSDictionary * parameters = nil;
-	NSObject * key;
+	NSObject * key = nil;
+	NSObject * object = nil;
 	if([sender isMemberOfClass:[NSButton class]])
 	{
 		control = [_buttons keyEnumerator];
@@ -126,9 +115,7 @@
 		{
 			if([_buttons objectForKey:key] == sender)
 			{
-				parameters = [[NSDictionary alloc] initWithObjectsAndKeys:
-					[NSNumber numberWithInt:[sender state] == NSOnState ? 1 : 0], key,
-					0];
+				object = [NSNumber numberWithBool:[sender state] == NSOnState];
 				break;
 			}
 		}
@@ -140,9 +127,7 @@
 		{
 			if([_sliders objectForKey:key] == sender)
 			{
-				parameters = [[NSDictionary alloc] initWithObjectsAndKeys:
-					[NSNumber numberWithInt:[sender tag] == 1 ? (int)([sender maxValue] + [sender minValue]) - [sender intValue] : [sender intValue]], key,
-					0];
+				object = [NSNumber numberWithInt:[sender tag] == 1 ? (int)([sender maxValue] + [sender minValue]) - [sender intValue] : [sender intValue]];
 				break;
 			}
 		}
@@ -165,24 +150,27 @@
 		{
 			if([_popupbuttons objectForKey:key] == sender)
 			{
-				parameters = [[NSDictionary alloc] initWithObjectsAndKeys:
-					[NSNumber numberWithInt:[sender indexOfSelectedItem]], key,
-					0];
+				object = [NSNumber numberWithInt:[sender indexOfSelectedItem]];
 				break;
 			}
 		}
 	}
-	if(parameters != nil)
+	if(object != nil)
 	{
-		applySettingsToHIDSystem((CFDictionaryRef)parameters);
-		[parameters release];
+		[_current setObject:object forKey:key];
+		[self applySettings];
 	}
 }
 
-- (IBAction)loadDefaults:(id)sender
+- (IBAction)loadDefaultSettings:(id)sender
 {
-	applySettingsToHIDSystem((CFDictionaryRef)_defaults);
-	[self loadSettings];
+	NSDictionary * defaults;
+	defaults = (NSDictionary *)CFPreferencesCopyValue((CFStringRef)@kDefaultParametersKey, 
+		(CFStringRef)@kDriverAppID, kCFPreferencesAnyUser, kCFPreferencesCurrentHost);
+	[_current setDictionary:defaults];
+	[defaults release];
+	[self displaySettings];
+	[self applySettings];
 }
 
 @end

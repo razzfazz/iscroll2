@@ -35,11 +35,14 @@
 	NSDictionary			*_buttons;
 	NSDictionary			*_sliders;
 	NSDictionary			*_popupbuttons;
-	NSDictionary			*_defaults;
+	NSMutableDictionary		*_current;
 }
 
+- (void)getSettings;
+- (void)displaySettings;
+- (void)applySettings;
 - (void)mainViewDidLoad;
-- (IBAction)saveSettings:(id)sender;
-- (IBAction)loadDefaults:(id)sender;
+- (IBAction)changeSetting:(id)sender;
+- (IBAction)loadDefaultSettings:(id)sender;
 
 @end

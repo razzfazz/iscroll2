@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" 
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>DefaultParameters</key>
+	<dict>
+		<key>TrackpadHScroll</key>
+		<true/>
+		<key>TrackpadHScrollThreshold</key>
+		<integer>4</integer>
+		<key>TrackpadHScrollScale</key>
+		<integer>4</integer>
+		<key>TrackpadHScrollInvert</key>
+		<false/>
+		<key>TrackpadVScroll</key>
+		<true/>
+		<key>TrackpadVScrollThreshold</key>
+		<integer>2</integer>
+		<key>TrackpadVScrollScale</key>
+		<integer>2</integer>
+		<key>TrackpadVScrollInvert</key>
+		<false/>
+		<key>TrackpadCScroll</key>
+		<false/>
+		<key>TrackpadCScrollThreshold</key>
+		<integer>8</integer>
+		<key>TrackpadCScrollScale</key>
+		<integer>2</integer>
+		<key>TrackpadCScrollInvert</key>
+		<false/>
+		<key>TrackpadScrollIgnoreWeakAxis</key>
+		<false/>
+		<key>TrackpadClickMapTo</key>
+		<integer>0</integer>
+		<key>TrackpadTapMapTo</key>
+		<integer>0</integer>
+		<key>TrackpadTwoFingerClickMapTo</key>
+		<integer>1</integer>
+		<key>TrackpadScrollMinDelay</key>
+		<integer>20</integer>
+	</dict>
+</dict>
+</plist>
+

@@ -692,7 +692,7 @@ void iScroll2::packet(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
 // end modifications
 		if ((data[2] & 0x80) == 0)
 		{
-			IOLog("%s: OutZone detected!\n", getName());
+//			IOLog("%s: OutZone detected!\n", getName());
 			if (_zonenomove)
 				outzone = true;
 		}
@@ -754,7 +754,6 @@ void iScroll2::packet(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
 	{
 		buttonState |= has2fingers ? (1 << _twoFingerClickMapTo) : (1 << _clickMapTo);
 	}
-
 //	if ((deviceNumButtons > 1) && ((data[1] & 0x80) == 0))
 	if ((data[1] & 0x80) == 0)
 // end modifications
@@ -785,16 +784,15 @@ void iScroll2::packet(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
 			}
 			//This is new for WEnhanced trackpads: ANYTHING in center of pad is ALWAYS accepted.
 			//  That means even when typing.... this differs from old behavior 
+			if (!outzone)
+			{
 // modifed dub:
-//			if ( !outzone)
-//			{
 //				buttonState |= 1;  // EB .. this could come first
-//				buttonState |= (1 << _tapMapTo);  // EB .. this could come first
+				buttonState |= (1 << _tapMapTo);  // EB .. this could come first
 // end modifications
-//			}
+			}
 			if (CMP_ABSOLUTETIME( &_zonepeckingtimeAB, &_keyboardTimeAB) != 0)
 			{
-				IOLog("%s: _zonepeckingTimeAB != _keyboardTimeAB.\n", getName());
 				buttonState = 0;
 			}
 		}
@@ -834,7 +832,7 @@ void iScroll2::packet(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
 		
 // modified dub:
 //		if ((has2fingers) || (outzone && palm))
-		if ((!_enableScroll && has2fingers) || (/*outzone &&*/ palm))
+		if ((!_enableScroll && has2fingers) || (outzone && palm))
 // end modifications
 		
 		{
@@ -860,12 +858,8 @@ void iScroll2::packet(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
 		// center of pad will always be allowed.
 		if (( !outzone) && (_pADBKeyboard))
 		{	    
-// modified dub:
-//			_keyboardTimeAB.hi = 0;
-//			_keyboardTimeAB.lo = 0;
-			_zonepeckingtimeAB.hi = 0;
-			_zonepeckingtimeAB.lo = 0;
-// end modifications
+			_keyboardTimeAB.hi = 0;
+			_keyboardTimeAB.lo = 0;
 			_pADBKeyboard->callPlatformFunction(_gettime, false, (void *)&_zonepeckingtimeAB, 0, 0, 0);
 		} else
 			if (_pADBKeyboard)

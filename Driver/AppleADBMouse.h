@@ -98,8 +98,8 @@ private:
 		_zonenoaction, _zonepecknomove, _ignorezone, _isWEnhanced, _usePantherSettings;
 	
 	// modified dub:
-	short			_oldScrollX, _oldScrollY;
-	bool			_enableScrolling;
+	short			_oldScrollX;
+	short			_oldScrollY;
 	bool			_enableScrollX;
 	UInt16			_scrollThreshX;
 	UInt16			_scrollScaleX;
@@ -112,11 +112,18 @@ private:
 	UInt16			_scrollThreshRot;
 	UInt16			_scrollScaleRot;
 	bool			_scrollInvertRot;
-	bool			_scrollDominantAxisOnly;
-	UInt16			_twoFingerModClick;
+	UInt8			_clickMapTo;
+	UInt8			_tapMapTo;
+	UInt8			_twoFingerClickMapTo;
 	AbsoluteTime	_scrollMinDelayAB;
 	AbsoluteTime	_scrollMaxRotDelayAB;
     AbsoluteTime	_lastScrollTimeAB;
+	bool			_stickyRotating;
+	bool			_scrollDominantAxisOnly;
+	UInt8			_oldButtonState;
+	short			_scrollX;
+	short			_scrollY;
+	short			_scrollRot;
 	// end modifications
 	
     UInt8		_WThreshold;

@@ -15,7 +15,6 @@
 #define kTrackpadHorizScrollThresholdDefault	4
 #define kTrackpadHorizScrollScaleDefault		4
 #define kTrackpadHorizScrollInvertDefault		0
-#define kTrackpadVertScrollDefault				1
 #define kTrackpadVertScrollThresholdDefault		2
 #define kTrackpadVertScrollScaleDefault			2
 #define kTrackpadVertScrollInvertDefault		0
@@ -23,8 +22,10 @@
 #define kTrackpadCircScrollThresholdDefault		20
 #define kTrackpadCircScrollScaleDefault			2
 #define kTrackpadCircScrollInvertDefault		0
-#define kTrackpadScrollDominantAxisOnlyDefault	0
-#define kTrackpadTwoFingerModClickDefault		1
+#define kTrackpadScrollIgnoreWeakAxisDefault	0
+#define kTrackpadClickMapToDefault				0
+#define kTrackpadTapMapToDefault				0
+#define kTrackpadTwoFingerClickMapToDefault		1
 #define kTrackpadScrollMinDelayDefault			20
 #define kTrackpadCircScrollMaxDelayDefault		250
 

@@ -71,6 +71,12 @@ my_sgn(int x)
 #ifndef kIOHIDVirtualHIDevice
 #define kIOHIDVirtualHIDevice                   "HIDVirtualDevice"
 #endif
+#ifndef kIOHIDScrollAccelerationTypeKey
+#define kIOHIDScrollAccelerationTypeKey			"HIDScrollAccelerationType"
+#endif
+#ifndef kIOHIDTrackpadScrollAccelerationType
+#define kIOHIDTrackpadScrollAccelerationType	"HIDTrackpadScrollAcceleration"
+#endif
 // end modifications
 
 static bool add_usb_mouse(OSObject *, void *, IOService * );
@@ -350,12 +356,19 @@ bool AppleADBMouseType4::start(IOService * provider)
 			_jitterdelta = 16;  // pixels;
 		}
 		setProperty(kIOHIDPointerAccelerationTypeKey, kIOHIDTrackpadAccelerationType); 
-		
+
+// modified dub:
+		setProperty(kIOHIDScrollAccelerationTypeKey, kIOHIDTrackpadScrollAccelerationType);
+// end modifications
+
 		//This is the only way to find out if we have new trackpad with W info passed in relative mode
 		if (_buttonCount == 4)
 		{
-			_buttonCount = 2;	//Assume Apple trackpads will always have 
+// modified dub:
+//			_buttonCount = 2;	//Assume Apple trackpads will always have 
 								//only 1 button and 1 gesture click
+			_buttonCount = 3;
+// end modifications
 			setProperty("W Enhanced Trackpad", (unsigned long long)true, sizeof(Clicking)*8);
 			_isWEnhanced = true;
 			_usePantherSettings = false;
@@ -394,6 +407,9 @@ void AppleADBMouseType4::free( void )
     }
     _ignoreTrackpad = false;
     _sticky2finger = false;
+// modified dub:
+	_stickyRotating = false;
+// end modifications
     _zonepeckingtimeAB = _keyboardTimeAB;  //unsticks trackpad when sleeping
     
     if (_gettime)
@@ -609,10 +625,13 @@ void AppleADBMouseType4::packetW(UInt8 /*adbCommand*/, IOByteCount length, UInt8
 	dy = data[0] & 0x7f;
 	dx = data[1] & 0x7f;
 	
-	if ((data[0] & 0x80) == 0) 
-	{
-		buttonState |= 1;
-	}
+// modified dub:
+// do this later on
+//	if ((data[0] & 0x80) == 0) 
+//	{
+//		buttonState |= 1;
+//	}
+// end modifications
 	
 	//Here we check for inadvertent palm presses and outside-zone clicks.  In theory I 
 	//  should check for gesture clicks when outzone below is true, but the
@@ -633,7 +652,7 @@ void AppleADBMouseType4::packetW(UInt8 /*adbCommand*/, IOByteCount length, UInt8
 		if ((data[3] & 0x80) == 0)
 		{
 			// modified dub:
-			if (_2fingernoaction || _enableScrolling)
+			if (_2fingernoaction || _enableScrollX || _enableScrollY || _enableScrollRot)
 			// end modifications
 			{
 			
@@ -647,7 +666,8 @@ void AppleADBMouseType4::packetW(UInt8 /*adbCommand*/, IOByteCount length, UInt8
 		if ((data[3] & 0x08) != 0)
 		{
 			//All fingers are off the trackpad now, so clear sticky bit
-			_sticky2finger = false;	  
+			_sticky2finger = false;
+			_stickyRotating = false;
 		}
 		//Fake a 2 finger contact if sticky bit is still on.  But calculate time delta first.
 		if (_sticky2finger)
@@ -673,6 +693,13 @@ void AppleADBMouseType4::packetW(UInt8 /*adbCommand*/, IOByteCount length, UInt8
 		data[3] |= 0x88;	//Assume Apple trackpads will never have multiple buttons for ADB
 	}
 	
+// modified dub:
+	if ((data[0] & 0x80) == 0) 
+	{
+		buttonState |= has2fingers ? (1 << _twoFingerClickMapTo) : (1 << _clickMapTo);
+	}
+// end modifications
+
 	if ((deviceNumButtons > 1) && ((data[1] & 0x80) == 0))
 	{
 		//if(typeTrackpad)
@@ -688,7 +715,10 @@ void AppleADBMouseType4::packetW(UInt8 /*adbCommand*/, IOByteCount length, UInt8
 			if ( CMP_ABSOLUTETIME(&now, &_jitterclicktimeAB) == 1)	    
 				//if (nowtime64 - keytime64 > _jitterclicktime64)
 			{
-				buttonState |= 1;
+// modified dub:
+//				buttonState |= 1;
+				buttonState |= (1 << _tapMapTo);
+// end modifications
 				//This part automatically takes care of narrow objects along outside zones.
 				//It is accepted if no recent typing, it is filtered if recent typing
 				//The rejection is taken care of by code below, not here
@@ -697,7 +727,10 @@ void AppleADBMouseType4::packetW(UInt8 /*adbCommand*/, IOByteCount length, UInt8
 			//  That means even when typing.... this differs from old behavior 
 			if ( !outzone)
 			{
-				buttonState |= 1;  // EB .. this could come first
+// modifed dub:
+//				buttonState |= 1;  // EB .. this could come first
+				buttonState |= (1 << _tapMapTo);  // EB .. this could come first
+// end modifications
 			}
 			if (CMP_ABSOLUTETIME( &_zonepeckingtimeAB, &_keyboardTimeAB) != 0)
 			{
@@ -705,7 +738,10 @@ void AppleADBMouseType4::packetW(UInt8 /*adbCommand*/, IOByteCount length, UInt8
 			}
 		}
 		else
-			buttonState |= 1;
+// modified dub:
+//			buttonState |= 1;
+			buttonState |= (1 << _tapMapTo);
+// end modifications
     }
 	}
 	
@@ -734,7 +770,7 @@ void AppleADBMouseType4::packetW(UInt8 /*adbCommand*/, IOByteCount length, UInt8
     {
 		
 		// modified dub:
-		if ((!_enableScrolling && has2fingers) || (outzone && palm))
+		if ((!(_enableScrollX || _enableScrollY || _enableScrollRot) && has2fingers) || (outzone && palm))
 		// end modifications
 		
 		{
@@ -805,60 +841,65 @@ void AppleADBMouseType4::packetW(UInt8 /*adbCommand*/, IOByteCount length, UInt8
 	// modified dub:
 	if(has2fingers)
 	{
-		if(_twoFingerModClick && (buttonState & 1))
+		bool skipLinear = false;
+		AbsoluteTime sub_now = now;
+		short angleSquared;
+		bool withhold;
+		SUB_ABSOLUTETIME(&sub_now, &_scrollMinDelayAB);
+		withhold = CMP_ABSOLUTETIME(&sub_now, &_lastScrollTimeAB) == -1;
+		if(_enableScrollRot)
 		{
-			dispatchRelativePointerEvent(dx, dy, (buttonState ^ 1) | (1 << _twoFingerModClick), now);
-		}
-		else if(_enableScrolling)
-		{
-			AbsoluteTime sub_now = now;
-			SUB_ABSOLUTETIME(&sub_now, &_scrollMinDelayAB);
-			if(CMP_ABSOLUTETIME(&sub_now, &_lastScrollTimeAB) == -1) return;
-			if(_scrollThreshX && (my_abs(dx) < _scrollThreshX)) dx = 0;
-			if(_scrollThreshY && (my_abs(dy) < _scrollThreshY)) dy = 0;
-			if(dx || dy)
+			sub_now = now;
+			SUB_ABSOLUTETIME(&sub_now, &_scrollMaxRotDelayAB);
+			if(CMP_ABSOLUTETIME(&sub_now, &_lastScrollTimeAB) == +1)
 			{
-				short rotate;
-				AbsoluteTime sub_now = now;
-				SUB_ABSOLUTETIME(&sub_now, &_scrollMaxRotDelayAB);
-				if(CMP_ABSOLUTETIME(&sub_now, &_lastScrollTimeAB) == +1)
+				_oldScrollX = 0;
+				_oldScrollY = 0;
+				_stickyRotating = false;
+			}
+			angleSquared = _oldScrollY * dx - _oldScrollX * dy;
+			angleSquared = 100 * my_sgn(angleSquared) * (angleSquared * angleSquared) / ((_oldScrollX * _oldScrollX + _oldScrollY * _oldScrollY) * (dx * dx + dy * dy));
+			if(_stickyRotating || (my_abs(angleSquared) > _scrollThreshRot))
+			{
+				_scrollRot += my_sgn(_scrollScaleRot ? -angleSquared : angleSquared) * (my_abs(dx) + my_abs(dy)) / _scrollScaleRot;
+				if(_scrollRot && !withhold)
 				{
-					_oldScrollX = 0;
-					_oldScrollY = 0;
+					dispatchScrollWheelEvent(_scrollRot, 0, 0, now);
+					_oldScrollX = dx;
+					_oldScrollY = dy;
+					_scrollRot = 0;
+					_lastScrollTimeAB = now;
 				}
-				rotate = _oldScrollY * dx - _oldScrollX * dy;
-				rotate = 100 * my_sgn(rotate) * (rotate * rotate) / ((_oldScrollX * _oldScrollX + _oldScrollY * _oldScrollY) * (dx * dx + dy * dy));
-				if(_enableScrollRot && (my_abs(rotate) > _scrollThreshRot))
-				{
-					rotate = my_sgn(rotate) * (my_abs(dx) + my_abs(dy)) / _scrollScaleRot;
-					if(rotate) dispatchScrollWheelEvent((_scrollInvertRot ? -rotate : rotate), 0, 0, now);
-				}
-				else
-				{
-					short scrollX, scrollY;
-					if(_scrollDominantAxisOnly)
-					{
-						if(my_abs(dx) > my_abs(dy))
-						{
-							dy = 0;
-						}
-						else
-						{
-							dx = 0;
-						}
-					}
-					scrollX = _enableScrollX ? -dx / _scrollScaleX : 0;
-					scrollY = _enableScrollY ? -dy / _scrollScaleY : 0;
-					if(scrollX || scrollY) dispatchScrollWheelEvent((_scrollInvertY ? -scrollY : scrollY), (_scrollInvertX ? -scrollX : scrollX), 0, now);
-				}
+				skipLinear = true;
+			}
+		}
+		if(!skipLinear && (_enableScrollX || _enableScrollY))
+		{
+			if((my_abs(dx) < _scrollThreshX) || _scrollDominantAxisOnly && (my_abs(dy) > my_abs(dx))) dx = 0;
+			if((my_abs(dy) < _scrollThreshY) || _scrollDominantAxisOnly && (my_abs(dx) > my_abs(dy))) dy = 0;
+			_scrollX += _enableScrollX ? (_scrollInvertY ? dx : -dx) / _scrollScaleX : 0;
+			_scrollY += _enableScrollY ? (_scrollInvertX ? dy : -dy) / _scrollScaleY : 0;
+			if((_scrollX || _scrollY) && !withhold)
+			{
+				dispatchScrollWheelEvent(_scrollY, _scrollX, 0, now);
 				_oldScrollX = dx;
 				_oldScrollY = dy;
+				_scrollX = 0;
+				_scrollY = 0;
 				_lastScrollTimeAB = now;
 			}
 		}
+		if(buttonState != _oldButtonState)
+		{
+			dispatchRelativePointerEvent(0, 0, buttonState, now);
+			_oldButtonState = buttonState;
+		}
 	}
 	else
+	{
 		dispatchRelativePointerEvent(dx, dy, buttonState, now);
+		_oldButtonState = buttonState;
+	}
 	// end modifications
 	
 }
@@ -1354,15 +1395,15 @@ bool AppleADBMouseType4::enableEnhancedMode()
 // modified dub:
 		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadScroll))) 
 		{
-			_enableScrolling = (bool) plistnum->unsigned8BitValue();
+			_enableScrollY = (bool)plistnum->unsigned8BitValue();
 		}
 		else
 		{
-			_enableScrolling = (bool)kTrackpadScrollDefault;
+			_enableScrollY = (bool)kTrackpadScrollDefault;
 		}
 		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadHorizScroll))) 
 		{
-			_enableScrollX = (bool) plistnum->unsigned8BitValue();
+			_enableScrollX = (bool)plistnum->unsigned8BitValue();
 		}
 		else
 		{
@@ -1392,14 +1433,6 @@ bool AppleADBMouseType4::enableEnhancedMode()
 		{
 			_scrollInvertX = (bool)kTrackpadHorizScrollInvertDefault;
 		}
-		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadVertScroll))) 
-		{
-			_enableScrollY = (bool) plistnum->unsigned8BitValue();
-		}
-		else
-		{
-			_enableScrollY = (bool)kTrackpadVertScrollDefault;
-		}
 		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadVertScrollThreshold))) 
 		{
 			_scrollThreshY = plistnum->unsigned16BitValue();
@@ -1426,7 +1459,7 @@ bool AppleADBMouseType4::enableEnhancedMode()
 		}
 		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadCircScroll))) 
 		{
-			_enableScrollRot = (bool) plistnum->unsigned8BitValue();
+			_enableScrollRot = (bool)plistnum->unsigned8BitValue();
 		}
 		else
 		{
@@ -1456,21 +1489,37 @@ bool AppleADBMouseType4::enableEnhancedMode()
 		{
 			_scrollInvertRot = (bool)kTrackpadCircScrollInvertDefault;
 		}
-		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadScrollDominantAxisOnly))) 
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadScrollIgnoreWeakAxis))) 
 		{
-			_scrollDominantAxisOnly = (bool) plistnum->unsigned8BitValue();
+			_scrollDominantAxisOnly = (bool)plistnum->unsigned8BitValue();
 		}
 		else
 		{
-			_scrollDominantAxisOnly = (bool)kTrackpadScrollDominantAxisOnlyDefault;
+			_scrollDominantAxisOnly = (bool)kTrackpadScrollIgnoreWeakAxisDefault;
 		}
-		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadTwoFingerModClick))) 
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadClickMapTo))) 
 		{
-			_twoFingerModClick = (bool) plistnum->unsigned8BitValue();
+			_clickMapTo = plistnum->unsigned8BitValue();
 		}
 		else
 		{
-			_twoFingerModClick = kTrackpadTwoFingerModClickDefault;
+			_clickMapTo = kTrackpadClickMapToDefault;
+		}
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadTapMapTo))) 
+		{
+			_tapMapTo = plistnum->unsigned8BitValue();
+		}
+		else
+		{
+			_tapMapTo = kTrackpadTapMapToDefault;
+		}
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadTwoFingerClickMapTo))) 
+		{
+			_twoFingerClickMapTo = plistnum->unsigned8BitValue();
+		}
+		else
+		{
+			_twoFingerClickMapTo = kTrackpadTwoFingerClickMapToDefault;
 		}
 		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadScrollMinDelay))) 
 		{
@@ -1683,8 +1732,8 @@ IOReturn AppleADBMouseType4::setParamProperties( OSDictionary * dict )
 // modified dub:
 		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadScroll))) 
 		{
-			_enableScrolling = (bool) datan->unsigned8BitValue();
-			setProperty(kTrackpadScroll, _enableScrolling, sizeof(UInt8)*8);
+			_enableScrollY = (bool) datan->unsigned8BitValue();
+			setProperty(kTrackpadScroll, _enableScrollY, sizeof(UInt8)*8);
 		}
 		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadHorizScroll))) 
 		{
@@ -1705,11 +1754,6 @@ IOReturn AppleADBMouseType4::setParamProperties( OSDictionary * dict )
 		{
 			_scrollInvertX = (bool) datan->unsigned8BitValue();
 			setProperty(kTrackpadHorizScrollInvert, _scrollInvertX, sizeof(UInt8)*8);
-		}
-		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadVertScroll))) 
-		{
-			_enableScrollY = (bool) datan->unsigned8BitValue();
-			setProperty(kTrackpadVertScroll, _enableScrollY, sizeof(UInt8)*8);
 		}
 		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadVertScrollThreshold))) 
 		{
@@ -1746,15 +1790,28 @@ IOReturn AppleADBMouseType4::setParamProperties( OSDictionary * dict )
 			_scrollInvertRot = (bool) datan->unsigned8BitValue();
 			setProperty(kTrackpadCircScrollInvert, _scrollInvertRot, sizeof(UInt8)*8);
 		}
-		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadScrollDominantAxisOnly))) 
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadScrollIgnoreWeakAxis))) 
 		{
 			_scrollDominantAxisOnly = (bool) datan->unsigned8BitValue();
-			setProperty(kTrackpadScrollDominantAxisOnly, _scrollDominantAxisOnly, sizeof(UInt8)*8);
+			setProperty(kTrackpadScrollIgnoreWeakAxis, _scrollDominantAxisOnly, sizeof(UInt8)*8);
 		}
-		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadTwoFingerModClick))) 
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadClickMapTo))) 
 		{
-			_twoFingerModClick = datan->unsigned8BitValue();
-			setProperty(kTrackpadTwoFingerModClick, _twoFingerModClick, sizeof(UInt8)*8);
+			_clickMapTo = datan->unsigned8BitValue();
+			setProperty(kTrackpadClickMapTo, _clickMapTo, sizeof(UInt8)*8);
+			IOLog("ClickMapTo=%d\n", _clickMapTo);
+		}
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadTapMapTo))) 
+		{
+			_tapMapTo = datan->unsigned8BitValue();
+			setProperty(kTrackpadTapMapTo, _tapMapTo, sizeof(UInt8)*8);
+			IOLog("TapMapTo=%d\n", _tapMapTo);
+		}
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadTwoFingerClickMapTo))) 
+		{
+			_twoFingerClickMapTo = datan->unsigned8BitValue();
+			setProperty(kTrackpadTwoFingerClickMapTo, _twoFingerClickMapTo, sizeof(UInt8)*8);
+			IOLog("TwoFingerClickMapTo=%d\n", _twoFingerClickMapTo);
 		}
 		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadScrollMinDelay))) 
 		{

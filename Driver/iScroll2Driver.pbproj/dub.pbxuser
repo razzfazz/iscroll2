@@ -82,7 +82,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 130951739;
+			PBXPerProjectTemplateStateSaveDate = 131239905;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -259,7 +259,7 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 130951739;
+			PBXWorkspaceStateSaveDate = 131239905;
 		};
 		sourceControlManager = 8557FC8C07B6CBC30091B459;
 		userBuildSettings = {
@@ -271,33 +271,33 @@
 	089C167EFE841241C02AAC07 = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {800, 428}}";
-			sepNavSelRange = "{153, 0}";
+			sepNavSelRange = "{150, 3}";
 			sepNavVisRect = "{{0, 0}, {711, 428}}";
-			sepNavWindowFrame = "{{84, 230}, {750, 534}}";
+			sepNavWindowFrame = "{{222, 274}, {750, 534}}";
 		};
 	};
 	1A224C3EFF42367911CA2CB7 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {711, 2169}}";
-			sepNavSelRange = "{3268, 0}";
-			sepNavVisRect = "{{0, 1291}, {711, 428}}";
-			sepNavWindowFrame = "{{84, 400}, {750, 534}}";
+			sepNavIntBoundsRect = "{{0, 0}, {711, 2267}}";
+			sepNavSelRange = "{4012, 0}";
+			sepNavVisRect = "{{0, 1487}, {711, 428}}";
+			sepNavWindowFrame = "{{268, 232}, {750, 534}}";
 		};
 	};
 	1A224C3FFF42367911CA2CB7 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {956, 25171}}";
-			sepNavSelRange = "{37995, 0}";
-			sepNavVisRect = "{{0, 19407}, {711, 428}}";
-			sepNavWindowFrame = "{{498, 22}, {750, 534}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1028, 25969}}";
+			sepNavSelRange = "{24898, 0}";
+			sepNavVisRect = "{{0, 10509}, {711, 428}}";
+			sepNavWindowFrame = "{{429, 85}, {750, 534}}";
 		};
 	};
 	85104D8F07BD612C009915A7 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {711, 434}}";
-			sepNavSelRange = "{210, 1037}";
+			sepNavIntBoundsRect = "{{0, 0}, {711, 448}}";
+			sepNavSelRange = "{1082, 0}";
 			sepNavVisRect = "{{0, 6}, {711, 428}}";
-			sepNavWindowFrame = "{{452, 64}, {750, 534}}";
+			sepNavWindowFrame = "{{199, 295}, {750, 534}}";
 		};
 	};
 	8557FC8C07B6CBC30091B459 = {
@@ -324,10 +324,10 @@
 	};
 	85B0E0EC07C9388800FD7DBC = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {711, 434}}";
-			sepNavSelRange = "{208, 751}";
+			sepNavIntBoundsRect = "{{0, 0}, {711, 448}}";
+			sepNavSelRange = "{828, 17}";
 			sepNavVisRect = "{{0, 6}, {711, 428}}";
-			sepNavWindowFrame = "{{583, 465}, {750, 534}}";
+			sepNavWindowFrame = "{{176, 316}, {750, 534}}";
 		};
 	};
 }

@@ -1,18 +1,19 @@
 #!/bin/sh
 
-kextname=iScroll2.kext
-kextdir=/System/Library/Extensions
-prefname=iScroll2.prefPane
-prefdir=/Library/PreferencePanes
+kextname="iScroll2.kext"
+kextdir="/System/Library/Extensions"
+prefname="iScroll2.prefPane"
+prefdir="/Library/PreferencePanes"
 
-if [ -e $kextdir/$kextname ]
+if [ -e "$kextdir/$kextname" ]
 then
     echo "Removing old version of $kextname."
-    rm -R $kextdir/$kextname
+    rm -R "$kextdir/$kextname"
 fi
 
-if [ -e $prefdir/$prefname ]
+if [ -e "$prefdir/$prefname" ]
 then
     echo "Removing old version of $prefname."
-    rm -R $prefdir/$prefname
+    rm -R "$prefdir/$prefname"
 fi
+exit 0

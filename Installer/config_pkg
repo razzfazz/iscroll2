@@ -1,0 +1,14 @@
+#!/bin/sh
+
+kextpath="System/Library/Extensions"
+kextname="iScroll2.kext"
+prefpath="Library/PreferencePanes"
+prefname="iScroll2.prefPane"
+
+sudo chown -R root:wheel "Package_contents/$kextpath/$kextname"
+sudo chmod -R u=rwX "Package_contents/$kextpath/$kextname"
+sudo chmod -R go=rX "Package_contents/$kextpath/$kextname"
+
+sudo chown -R root:wheel "Package_contents/$prefpath/$prefname"
+sudo chmod -R u=rwX "Package_contents/$prefpath/$prefname"
+sudo chmod -R go=rX "Package_contents/$prefpath/$prefname"

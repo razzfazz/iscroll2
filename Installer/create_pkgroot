@@ -1,39 +1,111 @@
 #!/bin/sh
 
-kextpath="System/Library/Extensions"
+kextpath="Contents/System/Library/Extensions"
+kextsrcpath="../Driver/build"
 kextname="iScroll2.kext"
+kextsrcname="$kextname"
 kextowner="root:wheel"
 kextuperms="rwX"
 kextgperms="rX"
 kextoperms="rX"
 
-prefpath="Library/PreferencePanes"
+libpath="Contents/Library"
+libowner="root:admin"
+libuperms="rwX"
+libgperms="rwX"
+liboperms="rX"
+
+prefpath="$libpath/PreferencePanes"
+prefsrcpath="../PrefPane/build"
 prefname="iScroll2.prefPane"
+prefsrcname="$prefname"
 prefowner="root:admin"
 prefuperms="rwX"
 prefgperms="rwX"
 prefoperms="rX"
+
+defpath="$libpath/Preferences"
+defsrcpath="../PrefPane"
+defname="name.razzfazz.driver.iScroll2.plist"
+defsrcname="$defname"
+defowner="root:admin"
+defuperms="rwX"
+defgperms="rwX"
+defoperms="rX"
+
+startuppath="$libpath/StartupItems"
+startupsrcpath="../StartupItem"
+startupname="iScroll2"
+startupsrcname="$startupname"
+startupowner="root:admin"
+startupuperms="rwX"
+startupgperms="rwX"
+startupoperms="rX"
+
+daemonpath="Contents/usr/local/bin"
+daemonsrcpath="../Daemon/build"
+daemonname="iScroll2Daemon"
+daemonsrcname="$daemonname"
+daemonowner="root:admin"
+daemonuperms="rwX"
+daemongperms="rwX"
+daemonoperms="rX"
+
+resourcepath="Resources"
+resourcesrcpath="Install_resources"
+
+readmepath="$resourcepath"
+readmesrcpath="../Website"
+readmename="ReadMe.html"
+readmesrcname="index.html"
 
 if [ -e pkgroot ]
 then
 	rm -R pkgroot
 fi
 
-mkdir -p "pkgroot/Contents/$kextpath"
-cp -R ../Driver/build/$kextname "pkgroot/Contents/$kextpath"
-chown -R $kextowner "pkgroot/Contents/`echo $kextpath | cut -d / -f 1`"
-chmod -R u=$kextuperms "pkgroot/Contents/`echo $kextpath | cut -d / -f 1`"
-chmod -R g=$kextgperms "pkgroot/Contents/`echo $kextpath | cut -d / -f 1`"
-chmod -R o=$kextoperms "pkgroot/Contents/`echo $kextpath | cut -d / -f 1`"
+mkdir -p "pkgroot/$kextpath"
+cp -R "$kextsrcpath/$kextsrcname" "pkgroot/$kextpath/$kextname"
+chown -R $kextowner "pkgroot/`echo $kextpath | cut -d / -f 1`"
+chmod -R u=$kextuperms "pkgroot/`echo $kextpath | cut -d / -f 1`"
+chmod -R g=$kextgperms "pkgroot/`echo $kextpath | cut -d / -f 1`"
+chmod -R o=$kextoperms "pkgroot/`echo $kextpath | cut -d / -f 1`"
 
-mkdir -p "pkgroot/Contents/$prefpath"
-cp -R ../PrefPane/build/$prefname "pkgroot/Contents/$prefpath"
-chown -R $prefowner "pkgroot/Contents/`echo $prefpath | cut -d / -f 1`"
-chmod -R u=$prefuperms "pkgroot/Contents/`echo $prefpath | cut -d / -f 1`"
-chmod -R g=$prefgperms "pkgroot/Contents/`echo $prefpath | cut -d / -f 1`"
-chmod -R o=$prefoperms "pkgroot/Contents/`echo $prefpath | cut -d / -f 1`"
+mkdir -p "pkgroot/$libpath"
+chown -R $libowner "pkgroot/$libpath"
+chmod -R u=$prefuperms "pkgroot/$libpath"
+chmod -R g=$prefgperms "pkgroot/$libpath"
+chmod -R o=$prefoperms "pkgroot/$libpath"
 
-mkdir -p "pkgroot/Resources"
-cp -R Install_resources/* pkgroot/Resources
-rm -R `find pkgroot/Resources -name CVS`
-cp ../Website/index.html pkgroot/Resources/ReadMe.html
+mkdir -p "pkgroot/$prefpath"
+cp -R "$prefsrcpath/$prefsrcname" "pkgroot/$prefpath/$prefname"
+chown -R $prefowner "pkgroot/$prefpath"
+chmod -R u=$prefuperms "pkgroot/$prefpath"
+chmod -R g=$prefgperms "pkgroot/$prefpath"
+chmod -R o=$prefoperms "pkgroot/$prefpath"
+
+mkdir -p "pkgroot/$defpath"
+cp -R "$defsrcpath/$defsrcname" "pkgroot/$defpath/$defname"
+chown -R $defowner "pkgroot/$defpath"
+chmod -R u=$defuperms "pkgroot/$defpath"
+chmod -R g=$defgperms "pkgroot/$defpath"
+chmod -R o=$defoperms "pkgroot/$defpath"
+
+mkdir -p "pkgroot/$startuppath"
+cp -R "$startupsrcpath/$startupsrcname" "pkgroot/$startuppath/$startupname"
+chown -R $startupowner "pkgroot/$startuppath"
+chmod -R u=$startupuperms "pkgroot/$startuppath"
+chmod -R g=$startupgperms "pkgroot/$startuppath"
+chmod -R o=$startupoperms "pkgroot/$startuppath"
+
+mkdir -p "pkgroot/$daemonpath"
+cp -R "$daemonsrcpath/$daemonsrcname" "pkgroot/$daemonpath/$daemonname"
+chown -R $daemonowner "pkgroot/$daemonpath"
+chmod -R u=$daemonuperms "pkgroot/$daemonpath"
+chmod -R g=$daemongperms "pkgroot/$daemonpath"
+chmod -R o=$daemonoperms "pkgroot/$daemonpath"
+
+mkdir -p "pkgroot/$resourcepath"
+cp -R "$resourcesrcpath"/* "pkgroot/$resourcepath"
+rm -R `find "pkgroot/$resourcepath" -name CVS`
+cp "$readmesrcpath/$readmesrcname" "pkgroot/$readmepath/$readmename"

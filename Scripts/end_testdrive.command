@@ -1,7 +1,7 @@
 #!/bin/sh
 
 origbundleid="com.apple.driver.AppleADBMouse"
-modbundleid="name.razzfazz.iScroll2"
+modbundleid="name.razzfazz.driver.iScroll2"
 
 clear
 echo

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 modkext="iScroll2.kext"
-modbundleif="name.razzfazz.iScroll2"
+modbundleid="name.razzfazz.driver.iScroll2"
 origbundleid="com.apple.driver.AppleADBMouse"
 extdir="/System/Library/Extensions"
 

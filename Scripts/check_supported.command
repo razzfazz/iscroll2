@@ -3,7 +3,9 @@
 clear
 echo
 echo "Checking if your trackpad supports two-finger scrolling..."
-if ! kextstat | grep com.apple.driver.AppleADBMouse > /dev/null
+if ! (kextstat | grep com.apple.driver.AppleADBMouse > /dev/null || \
+    kextstat | grep name.razzfazz.iScroll2 > /dev/null || \
+    kextstat | grep name.razzfazz.driver.iScroll2 > /dev/null)
 then 
     echo "Apple trackpad driver not loaded."
     echo "Your machine does not seem to have a compatible trackpad, or is using an alternative driver already."

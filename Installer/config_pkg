@@ -2,15 +2,40 @@
 
 kextpath="System/Library/Extensions"
 kextname="iScroll2.kext"
+kextowner="root:wheel"
+kextuperms="rwX"
+kextgperms="rX"
+kextoperms="rX"
+
 prefpath="Library/PreferencePanes"
 prefname="iScroll2.prefPane"
+prefowner="root:admin"
+prefuperms="rwX"
+prefgperms="rwX"
+prefoperms="rX"
 
-sudo cp -R ../Driver/build/$kextname "Package_contents/$kextpath/$kextname"
-sudo chown -R root:wheel "Package_contents/$kextpath/$kextname"
-sudo chmod -R u=rwX "Package_contents/$kextpath/$kextname"
-sudo chmod -R go=rX "Package_contents/$kextpath/$kextname"
+if [ ! -d "Package_contents/$kextpath" ]
+then
+	mkdir -p "Package_contents/$kextpath"
+fi
+if [ ! -e "Package_contents/$kextpath/$kextname" ]
+then
+	cp -R ../Driver/build/$kextname "Package_contents/$kextpath"
+fi
+chown -R $kextowner "Package_contents/`echo $kextpath | cut -d / -f 1`"
+chmod -R u=$kextuperms "Package_contents/`echo $kextpath | cut -d / -f 1`"
+chmod -R g=$kextgperms "Package_contents/`echo $kextpath | cut -d / -f 1`"
+chmod -R o=$kextoperms "Package_contents/`echo $kextpath | cut -d / -f 1`"
 
-sudo cp -R ../PrefPane/build/$prefname "Package_contents/$prefpath/$prefname"
-sudo chown -R root:wheel "Package_contents/$prefpath/$prefname"
-sudo chmod -R u=rwX "Package_contents/$prefpath/$prefname"
-sudo chmod -R go=rX "Package_contents/$prefpath/$prefname"
+if [ ! -d "Package_contents/$prefpath" ]
+then
+	mkdir -p "Package_contents/$prefpath"
+fi
+if [ -e "Package_contents/$prefpath/$prefname" ]
+then
+	cp -R ../PrefPane/build/$prefname "Package_contents/$prefpath"
+fi
+chown -R $prefowner "Package_contents/`echo $prefpath | cut -d / -f 1`"
+chmod -R u=$prefuperms "Package_contents/`echo $prefpath | cut -d / -f 1`"
+chmod -R g=$prefgperms "Package_contents/`echo $prefpath | cut -d / -f 1`"
+chmod -R o=$prefoperms "Package_contents/`echo $prefpath | cut -d / -f 1`"

@@ -47,6 +47,13 @@
 			);
 			hasScannedForEncodings = 1;
 			isa = PBXProject;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				zh_TW,
+			);
 			mainGroup = 089C166AFE841209C02AAC07;
 			projectDirPath = "";
 			targets = (
@@ -100,6 +107,9 @@
 			children = (
 				089C167EFE841241C02AAC07,
 				8545504C07D5D900009B1526,
+				85EA57F807E5828200B27FD3,
+				85EA57F907E5828A00B27FD3,
+				85EA57FA07E5829000B27FD3,
 			);
 			isa = PBXVariantGroup;
 			name = InfoPlist.strings;
@@ -304,6 +314,54 @@
 			isa = PBXBuildFile;
 			settings = {
 			};
+		};
+		85EA57F807E5828200B27FD3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.strings;
+			name = German;
+			path = German.lproj/InfoPlist.strings;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		85EA57F907E5828A00B27FD3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.strings;
+			name = Japanese;
+			path = Japanese.lproj/InfoPlist.strings;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		85EA57FA07E5829000B27FD3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.strings;
+			name = zh_TW;
+			path = zh_TW.lproj/InfoPlist.strings;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		85EA57FB07E582A500B27FD3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.nib;
+			name = Japanese;
+			path = Japanese.lproj/iScroll2Pref.nib;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		85EA57FC07E582AC00B27FD3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.nib;
+			name = German;
+			path = German.lproj/iScroll2Pref.nib;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		85EA57FD07E582B100B27FD3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.nib;
+			name = zh_TW;
+			path = zh_TW.lproj/iScroll2Pref.nib;
+			refType = 4;
+			sourceTree = "<group>";
 		};
 		85FA19FF07C6A8E000C16F52 = {
 			isa = PBXFileReference;
@@ -527,6 +585,9 @@
 			children = (
 				F506C043013D9D8C01CA16C8,
 				8545504907D5D812009B1526,
+				85EA57FB07E582A500B27FD3,
+				85EA57FC07E582AC00B27FD3,
+				85EA57FD07E582B100B27FD3,
 			);
 			isa = PBXVariantGroup;
 			name = iScroll2Pref.nib;

@@ -319,6 +319,10 @@ bool iScroll2::start(IOService * provider)
 // end modifications
 	OSNumber 	*dpi;
 	
+// mopdified dub:
+	IOLog("%s: starting up driver.\n", getName());
+// end modifications
+	
 	typeTrackpad = FALSE;
 	
 	if (adbDevice->setHandlerID(4) != kIOReturnSuccess) return false;
@@ -352,9 +356,11 @@ bool iScroll2::start(IOService * provider)
 		t.tv_nsec = 0;
 // modified dub:
 //		typeTrackpad = TRUE;
-// end modifications
-		enableEnhancedMode();
+//		enableEnhancedMode();
+		if(!enableEnhancedMode()) IOLog("%s: enableEnhancedMode failed.\n", getName());
 		_pADBKeyboard = waitForService(serviceMatching("AppleADBKeyboard"), &t);
+		if(!_pADBKeyboard) IOLog("%s: Error waiting for AppleADBKeyboard.\n", getName());
+// end modifications
 		datan = OSDynamicCast( OSNumber, getProperty("Trackpad Jitter Milliseconds"));
 		if (datan)
 		{
@@ -675,11 +681,13 @@ void iScroll2::packet(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
 	//  trackpad never picks up on that.  Can't make gesture clicks using edge of
 	//  my palm either.
 	//if(_isWEnhanced)  //This also implies typeTrackpad == true
-	// modified dub:
-	//{
-	// end modifications
+	{
+// modified dub:
+		// it appears this never actually gets set by the trackpad?
+// end modifications
 		if ((data[2] & 0x80) == 0)
 		{
+			IOLog("%s: OutZone detected!\n", getName());
 			if (_zonenomove)
 				outzone = true;
 		}
@@ -728,9 +736,7 @@ void iScroll2::packet(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
 			{
 				_sticky2finger = false;  //Make it more efficient
 			}
-		// modified dub:
-		//}
-		// end modifications
+		}
 		
 		//Apple trackpads should not have more than two buttons.  Non-Apple trackpads
 		// should never match the "tpad" signature anyways.
@@ -743,12 +749,16 @@ void iScroll2::packet(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
 	{
 		buttonState |= has2fingers ? (1 << _twoFingerClickMapTo) : (1 << _clickMapTo);
 	}
-// end modifications
 
-	if ((deviceNumButtons > 1) && ((data[1] & 0x80) == 0))
+//	if ((deviceNumButtons > 1) && ((data[1] & 0x80) == 0))
+	if ((data[1] & 0x80) == 0)
+// end modifications
 	{
 		//if(typeTrackpad)
     {
+// modified dub:
+		if(has2fingers) IOLog("%s: Two-finger tap detected.\n", getName());
+// end modifications
 		if ((_jitterclick) && (_pADBKeyboard))
 		{
 			_keyboardTimeAB.hi = 0;
@@ -770,15 +780,16 @@ void iScroll2::packet(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
 			}
 			//This is new for WEnhanced trackpads: ANYTHING in center of pad is ALWAYS accepted.
 			//  That means even when typing.... this differs from old behavior 
-			if ( !outzone)
-			{
 // modifed dub:
+//			if ( !outzone)
+//			{
 //				buttonState |= 1;  // EB .. this could come first
-				buttonState |= (1 << _tapMapTo);  // EB .. this could come first
+//				buttonState |= (1 << _tapMapTo);  // EB .. this could come first
 // end modifications
-			}
+//			}
 			if (CMP_ABSOLUTETIME( &_zonepeckingtimeAB, &_keyboardTimeAB) != 0)
 			{
+				IOLog("%s: _zonepeckingTimeAB != _keyboardTimeAB.\n", getName());
 				buttonState = 0;
 			}
 		}
@@ -816,9 +827,10 @@ void iScroll2::packet(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
     if (_jittermove) 
     {
 		
-		// modified dub:
-		if ((!_enableScroll && has2fingers) || (outzone && palm))
-		// end modifications
+// modified dub:
+//		if ((has2fingers) || (outzone && palm))
+		if ((!_enableScroll && has2fingers) || (/*outzone &&*/ palm))
+// end modifications
 		
 		{
 			if (!buttonState)
@@ -843,8 +855,12 @@ void iScroll2::packet(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
 		// center of pad will always be allowed.
 		if (( !outzone) && (_pADBKeyboard))
 		{	    
-			_keyboardTimeAB.hi = 0;
-			_keyboardTimeAB.lo = 0;
+// modified dub:
+//			_keyboardTimeAB.hi = 0;
+//			_keyboardTimeAB.lo = 0;
+			_zonepeckingtimeAB.hi = 0;
+			_zonepeckingtimeAB.lo = 0;
+// end modifications
 			_pADBKeyboard->callPlatformFunction(_gettime, false, (void *)&_zonepeckingtimeAB, 0, 0, 0);
 		} else
 			if (_pADBKeyboard)
@@ -1273,7 +1289,7 @@ bool iScroll2::enableEnhancedMode()
     IOByteCount adblength = 8;
     OSNumber 	*plistnum;
     
-    //IOLog("enableEnhancedMode called.\n");
+    IOLog("%s: enableEnhancedMode called.\n", getName());
     adbDevice->readRegister(1, adbdata, &adblength);
 	
     if((adbdata[6] != 0x0D))
@@ -1583,7 +1599,10 @@ bool iScroll2::enableEnhancedMode()
 		return TRUE;
     }
 	
-    return FALSE;
+// modified dub:
+//    return FALSE;
+	return TRUE;
+// end modifications
 }
 
 // ****************************************************************************
@@ -1599,6 +1618,7 @@ IOReturn iScroll2::setParamProperties( OSDictionary * dict )
     UInt16	settrue = 0;
 	
 // modified dub:
+	IOLog("%s: setParamProperties called with %d dictionary entries.\n", getName(), dict->getCount());
 //	if (typeTrackpad == TRUE) 
 //    {  
 // end modifications

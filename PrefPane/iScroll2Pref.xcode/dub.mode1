@@ -204,6 +204,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -242,16 +244,11 @@
 								<string>089C166AFE841209C02AAC07</string>
 								<string>08FB77AFFE84173DC02AAC07</string>
 								<string>089C167CFE841241C02AAC07</string>
-								<string>089C167DFE841241C02AAC07</string>
-								<string>F506C042013D9D8C01CA16C8</string>
-								<string>089C1671FE841209C02AAC07</string>
-								<string>1058C7ACFEA557BF11CA2CBB</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>17</integer>
 									<integer>8</integer>
 									<integer>0</integer>
 								</array>
@@ -315,8 +312,6 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -353,9 +348,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>85EA57FE07E582D200B27FD3</string>
+				<string>85EA582D07E584BF00B27FD3</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>85EA57FF07E582D200B27FD3</string>
+				<string>85EA582E07E584BF00B27FD3</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>

@@ -43,6 +43,7 @@
 
 #include "AppleADBMouse.h"
 #include "ioregkeys.h"
+#include "defaults.h"
 #include <IOKit/hidsystem/IOHIDTypes.h>
 #include <IOKit/hidsystem/IOHIDParameter.h>
 #include <IOKit/IOLib.h>
@@ -597,7 +598,6 @@ void AppleADBMouseType4::packetW(UInt8 /*adbCommand*/, IOByteCount length, UInt8
 	bool			palm = false, outzone = false, has2fingers = false;
 	UInt32          buttonState = 0;
 	AbsoluteTime	now;
-	bool			scrolling = _enableScrollX || _enableScrollY || _enableScrollRot;
 	
 	if (_usePantherSettings)
 	{
@@ -633,7 +633,7 @@ void AppleADBMouseType4::packetW(UInt8 /*adbCommand*/, IOByteCount length, UInt8
 		if ((data[3] & 0x80) == 0)
 		{
 			// modified dub:
-			if (_2fingernoaction || scrolling)
+			if (_2fingernoaction || _enableScrolling)
 			// end modifications
 			{
 			
@@ -734,7 +734,7 @@ void AppleADBMouseType4::packetW(UInt8 /*adbCommand*/, IOByteCount length, UInt8
     {
 		
 		// modified dub:
-		if ((!scrolling && has2fingers) || (outzone && palm))
+		if ((!_enableScrolling && has2fingers) || (outzone && palm))
 		// end modifications
 		
 		{
@@ -803,52 +803,58 @@ void AppleADBMouseType4::packetW(UInt8 /*adbCommand*/, IOByteCount length, UInt8
     } //jittermove
 	
 	// modified dub:
-	if(scrolling && has2fingers)
+	if(has2fingers)
 	{
-		AbsoluteTime sub_now = now;
-		SUB_ABSOLUTETIME(&sub_now, &_scrollMinDelayAB);
-		if(CMP_ABSOLUTETIME(&sub_now, &_lastScrollTimeAB) == -1) return;
-		if(_scrollThreshX && (my_abs(dx) < _scrollThreshX)) dx = 0;
-		if(_scrollThreshY && (my_abs(dy) < _scrollThreshY)) dy = 0;
-		if(_scrollRightClick && (buttonState & 1)) dispatchRelativePointerEvent(0, 0, 2, now);
-		if(dx || dy)
+		if(_twoFingerModClick && (buttonState & 1))
 		{
-			short rotate;
+			dispatchRelativePointerEvent(dx, dy, (buttonState ^ 1) | (1 << _twoFingerModClick), now);
+		}
+		else if(_enableScrolling)
+		{
 			AbsoluteTime sub_now = now;
-			SUB_ABSOLUTETIME(&sub_now, &_scrollMaxRotDelayAB);
-			if(CMP_ABSOLUTETIME(&sub_now, &_lastScrollTimeAB) == +1)
+			SUB_ABSOLUTETIME(&sub_now, &_scrollMinDelayAB);
+			if(CMP_ABSOLUTETIME(&sub_now, &_lastScrollTimeAB) == -1) return;
+			if(_scrollThreshX && (my_abs(dx) < _scrollThreshX)) dx = 0;
+			if(_scrollThreshY && (my_abs(dy) < _scrollThreshY)) dy = 0;
+			if(dx || dy)
 			{
-				_oldScrollX = 0;
-				_oldScrollY = 0;
-			}
-			rotate = _oldScrollY * dx - _oldScrollX * dy;
-			rotate = 100 * my_sgn(rotate) * (rotate * rotate) / ((_oldScrollX * _oldScrollX + _oldScrollY * _oldScrollY) * (dx * dx + dy * dy));
-			if(_enableScrollRot && (my_abs(rotate) > _scrollThreshRot))
-			{
-				rotate = my_sgn(rotate) * (my_abs(dx) + my_abs(dy)) / _scrollScaleRot;
-				if(rotate) dispatchScrollWheelEvent((_scrollInvertRot ? -rotate : rotate), 0, 0, now);
-			}
-			else
-			{
-				short scrollX, scrollY;
-				if(_scrollDominantAxisOnly)
+				short rotate;
+				AbsoluteTime sub_now = now;
+				SUB_ABSOLUTETIME(&sub_now, &_scrollMaxRotDelayAB);
+				if(CMP_ABSOLUTETIME(&sub_now, &_lastScrollTimeAB) == +1)
 				{
-					if(my_abs(dx) > my_abs(dy))
-					{
-						dy = 0;
-					}
-					else
-					{
-						dx = 0;
-					}
+					_oldScrollX = 0;
+					_oldScrollY = 0;
 				}
-				scrollX = _enableScrollX ? -dx / _scrollScaleX : 0;
-				scrollY = _enableScrollY ? -dy / _scrollScaleY : 0;
-				if(scrollX || scrollY) dispatchScrollWheelEvent((_scrollInvertY ? -scrollY : scrollY), (_scrollInvertX ? -scrollX : scrollX), 0, now);
+				rotate = _oldScrollY * dx - _oldScrollX * dy;
+				rotate = 100 * my_sgn(rotate) * (rotate * rotate) / ((_oldScrollX * _oldScrollX + _oldScrollY * _oldScrollY) * (dx * dx + dy * dy));
+				if(_enableScrollRot && (my_abs(rotate) > _scrollThreshRot))
+				{
+					rotate = my_sgn(rotate) * (my_abs(dx) + my_abs(dy)) / _scrollScaleRot;
+					if(rotate) dispatchScrollWheelEvent((_scrollInvertRot ? -rotate : rotate), 0, 0, now);
+				}
+				else
+				{
+					short scrollX, scrollY;
+					if(_scrollDominantAxisOnly)
+					{
+						if(my_abs(dx) > my_abs(dy))
+						{
+							dy = 0;
+						}
+						else
+						{
+							dx = 0;
+						}
+					}
+					scrollX = _enableScrollX ? -dx / _scrollScaleX : 0;
+					scrollY = _enableScrollY ? -dy / _scrollScaleY : 0;
+					if(scrollX || scrollY) dispatchScrollWheelEvent((_scrollInvertY ? -scrollY : scrollY), (_scrollInvertX ? -scrollX : scrollX), 0, now);
+				}
+				_oldScrollX = dx;
+				_oldScrollY = dy;
+				_lastScrollTimeAB = now;
 			}
-			_oldScrollX = dx;
-			_oldScrollY = dy;
-			_lastScrollTimeAB = now;
 		}
 	}
 	else
@@ -1346,69 +1352,141 @@ bool AppleADBMouseType4::enableEnhancedMode()
 		nanoseconds_to_absolutetime(0, &_zonepeckingtimeAB);
 		
 // modified dub:
-		if (plistnum = OSDynamicCast(OSNumber, getProperty(kEnableScrollX))) 
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadScroll))) 
+		{
+			_enableScrolling = (bool) plistnum->unsigned8BitValue();
+		}
+		else
+		{
+			_enableScrolling = (bool)kTrackpadScrollDefault;
+		}
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadHorizScroll))) 
 		{
 			_enableScrollX = (bool) plistnum->unsigned8BitValue();
 		}
-		if (plistnum = OSDynamicCast(OSNumber, getProperty(kScrollThresholdX))) 
+		else
+		{
+			_enableScrollX = (bool)kTrackpadHorizScrollDefault;
+		}
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadHorizScrollThreshold))) 
 		{
 			_scrollThreshX = plistnum->unsigned16BitValue();
 		}
-		if (plistnum = OSDynamicCast(OSNumber, getProperty(kScrollScaleX))) 
+		else
+		{
+			_scrollThreshX =  kTrackpadHorizScrollThresholdDefault;
+		}
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadHorizScrollScale))) 
 		{
 			_scrollScaleX = plistnum->unsigned16BitValue();
 		}
-		if (plistnum = OSDynamicCast(OSNumber, getProperty(kScrollInvertX))) 
+		else
+		{
+			_scrollScaleX = kTrackpadHorizScrollScaleDefault;
+		}
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadHorizScrollInvert))) 
 		{
 			_scrollInvertX = plistnum->unsigned8BitValue();
 		}
-		if (plistnum = OSDynamicCast(OSNumber, getProperty(kEnableScrollY))) 
+		else
+		{
+			_scrollInvertX = (bool)kTrackpadHorizScrollInvertDefault;
+		}
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadVertScroll))) 
 		{
 			_enableScrollY = (bool) plistnum->unsigned8BitValue();
 		}
-		if (plistnum = OSDynamicCast(OSNumber, getProperty(kScrollThresholdY))) 
+		else
+		{
+			_enableScrollY = (bool)kTrackpadVertScrollDefault;
+		}
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadVertScrollThreshold))) 
 		{
 			_scrollThreshY = plistnum->unsigned16BitValue();
 		}
-		if (plistnum = OSDynamicCast(OSNumber, getProperty(kScrollScaleY))) 
+		else
+		{
+			_scrollThreshY = kTrackpadVertScrollThresholdDefault;
+		}
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadVertScrollScale))) 
 		{
 			_scrollScaleY = plistnum->unsigned16BitValue();
 		}
-		if (plistnum = OSDynamicCast(OSNumber, getProperty(kScrollInvertY))) 
+		else
+		{
+			_scrollScaleY = kTrackpadVertScrollScaleDefault;
+		}
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadVertScrollInvert))) 
 		{
 			_scrollInvertY = plistnum->unsigned8BitValue();
 		}
-		if (plistnum = OSDynamicCast(OSNumber, getProperty(kEnableScrollRot))) 
+		else
+		{
+			_scrollInvertY = (bool)kTrackpadVertScrollInvertDefault;
+		}
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadCircScroll))) 
 		{
 			_enableScrollRot = (bool) plistnum->unsigned8BitValue();
 		}
-		if (plistnum = OSDynamicCast(OSNumber, getProperty(kScrollThresholdRot))) 
+		else
+		{
+			_enableScrollRot = (bool)kTrackpadCircScrollDefault;
+		}
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadCircScrollThreshold))) 
 		{
 			_scrollThreshRot = plistnum->unsigned16BitValue();
 		}
-		if (plistnum = OSDynamicCast(OSNumber, getProperty(kScrollScaleRot))) 
+		else
+		{
+			_scrollThreshRot = kTrackpadCircScrollThresholdDefault;
+		}
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadCircScrollScale))) 
 		{
 			_scrollScaleRot = plistnum->unsigned16BitValue();
 		}
-		if (plistnum = OSDynamicCast(OSNumber, getProperty(kScrollInvertRot))) 
+		else
+		{
+			_scrollScaleRot = kTrackpadCircScrollScaleDefault;
+		}
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadCircScrollInvert))) 
 		{
 			_scrollInvertRot = plistnum->unsigned8BitValue();
 		}
-		if (plistnum = OSDynamicCast(OSNumber, getProperty(kScrollDominantAxisOnly))) 
+		else
+		{
+			_scrollInvertRot = (bool)kTrackpadCircScrollInvertDefault;
+		}
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadScrollDominantAxisOnly))) 
 		{
 			_scrollDominantAxisOnly = (bool) plistnum->unsigned8BitValue();
 		}
-		if (plistnum = OSDynamicCast(OSNumber, getProperty(kScrollRightClick))) 
+		else
 		{
-			_scrollRightClick = (bool) plistnum->unsigned8BitValue();
+			_scrollDominantAxisOnly = (bool)kTrackpadScrollDominantAxisOnlyDefault;
 		}
-		if (plistnum = OSDynamicCast(OSNumber, getProperty(kScrollMinDelay))) 
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadTwoFingerModClick))) 
+		{
+			_twoFingerModClick = (bool) plistnum->unsigned8BitValue();
+		}
+		else
+		{
+			_twoFingerModClick = kTrackpadTwoFingerModClickDefault;
+		}
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadScrollMinDelay))) 
 		{
 			nanoseconds_to_absolutetime(plistnum->unsigned32BitValue() * 1000 * 1000, &_scrollMinDelayAB);
 		}
-		if (plistnum = OSDynamicCast(OSNumber, getProperty(kScrollMaxRotDelay))) 
+		else
+		{
+			nanoseconds_to_absolutetime(kTrackpadScrollMinDelayDefault * 1000 * 1000, &_scrollMinDelayAB);
+		}
+		if (plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadCircScrollMaxDelay))) 
 		{
 			nanoseconds_to_absolutetime(plistnum->unsigned32BitValue() * 1000 * 1000, &_scrollMaxRotDelayAB);
+		}
+		else
+		{
+			nanoseconds_to_absolutetime(kTrackpadCircScrollMaxDelayDefault * 1000 * 1000, &_scrollMaxRotDelayAB);
 		}
 		nanoseconds_to_absolutetime(0, &_lastScrollTimeAB);
         // end modifications
@@ -1431,7 +1509,7 @@ IOReturn AppleADBMouseType4::setParamProperties( OSDictionary * dict )
     IOByteCount adblength;
     UInt16	settrue = 0;
 	
-    if (typeTrackpad == TRUE) 
+	if (typeTrackpad == TRUE) 
     {  
 		IOLockLock( _mouseLock); 
 		if (datan = OSDynamicCast(OSNumber, dict->getObject("Clicking"))) 
@@ -1603,69 +1681,92 @@ IOReturn AppleADBMouseType4::setParamProperties( OSDictionary * dict )
 		}
 		
 // modified dub:
-		if (datan = OSDynamicCast(OSNumber, dict->getObject(kEnableScrollX))) 
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadScroll))) 
+		{
+			_enableScrolling = (bool) datan->unsigned8BitValue();
+			setProperty(kTrackpadScroll, _enableScrolling, sizeof(UInt8)*8);
+		}
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadHorizScroll))) 
 		{
 			_enableScrollX = (bool) datan->unsigned8BitValue();
+			setProperty(kTrackpadHorizScroll, _enableScrollX, sizeof(UInt8)*8);
 		}
-		if (datan = OSDynamicCast(OSNumber, dict->getObject(kScrollThresholdX))) 
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadHorizScrollThreshold))) 
 		{
 			_scrollThreshX = datan->unsigned16BitValue();
+			setProperty(kTrackpadHorizScrollThreshold, _scrollThreshX, sizeof(UInt16)*8);
 		}
-		if (datan = OSDynamicCast(OSNumber, dict->getObject(kScrollScaleX))) 
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadHorizScrollScale))) 
 		{
 			_scrollScaleX = datan->unsigned16BitValue();
+			setProperty(kTrackpadHorizScrollScale, _scrollScaleX, sizeof(UInt16)*8);
 		}
-		if (datan = OSDynamicCast(OSNumber, dict->getObject(kScrollInvertX))) 
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadHorizScrollInvert))) 
 		{
 			_scrollInvertX = (bool) datan->unsigned8BitValue();
+			setProperty(kTrackpadHorizScrollInvert, _scrollInvertX, sizeof(UInt8)*8);
 		}
-		if (datan = OSDynamicCast(OSNumber, dict->getObject(kEnableScrollY))) 
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadVertScroll))) 
 		{
 			_enableScrollY = (bool) datan->unsigned8BitValue();
+			setProperty(kTrackpadVertScroll, _enableScrollY, sizeof(UInt8)*8);
 		}
-		if (datan = OSDynamicCast(OSNumber, dict->getObject(kScrollThresholdY))) 
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadVertScrollThreshold))) 
 		{
 			_scrollThreshY = datan->unsigned16BitValue();
+			setProperty(kTrackpadVertScrollThreshold, _scrollThreshY, sizeof(UInt16)*8);
 		}
-		if (datan = OSDynamicCast(OSNumber, dict->getObject(kScrollScaleY))) 
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadVertScrollScale))) 
 		{
 			_scrollScaleY = datan->unsigned16BitValue();
+			setProperty(kTrackpadVertScrollScale, _scrollScaleY, sizeof(UInt16)*8);
 		}
-		if (datan = OSDynamicCast(OSNumber, dict->getObject(kScrollInvertY))) 
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadVertScrollInvert))) 
 		{
 			_scrollInvertY = (bool) datan->unsigned8BitValue();
+			setProperty(kTrackpadVertScrollInvert, _scrollInvertY, sizeof(UInt8)*8);
 		}
-		if (datan = OSDynamicCast(OSNumber, dict->getObject(kEnableScrollRot))) 
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadCircScroll))) 
 		{
 			_enableScrollRot = (bool) datan->unsigned8BitValue();
+			setProperty(kTrackpadCircScroll, _enableScrollRot, sizeof(UInt8)*8);
 		}
-		if (datan = OSDynamicCast(OSNumber, dict->getObject(kScrollThresholdRot))) 
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadCircScrollThreshold))) 
 		{
 			_scrollThreshRot = datan->unsigned16BitValue();
+			setProperty(kTrackpadCircScrollThreshold, _scrollThreshRot, sizeof(UInt16)*8);
 		}
-		if (datan = OSDynamicCast(OSNumber, dict->getObject(kScrollScaleRot))) 
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadCircScrollScale))) 
 		{
 			_scrollScaleRot = datan->unsigned16BitValue();
+			setProperty(kTrackpadCircScrollScale, _scrollScaleRot, sizeof(UInt16)*8);
 		}
-		if (datan = OSDynamicCast(OSNumber, dict->getObject(kScrollInvertRot))) 
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadCircScrollInvert))) 
 		{
 			_scrollInvertRot = (bool) datan->unsigned8BitValue();
+			setProperty(kTrackpadCircScrollInvert, _scrollInvertRot, sizeof(UInt8)*8);
 		}
-		if (datan = OSDynamicCast(OSNumber, dict->getObject(kScrollDominantAxisOnly))) 
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadScrollDominantAxisOnly))) 
 		{
 			_scrollDominantAxisOnly = (bool) datan->unsigned8BitValue();
+			setProperty(kTrackpadScrollDominantAxisOnly, _scrollDominantAxisOnly, sizeof(UInt8)*8);
 		}
-		if (datan = OSDynamicCast(OSNumber, dict->getObject(kScrollRightClick))) 
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadTwoFingerModClick))) 
 		{
-			_scrollRightClick = (bool) datan->unsigned8BitValue();
+			_twoFingerModClick = datan->unsigned8BitValue();
+			setProperty(kTrackpadTwoFingerModClick, _twoFingerModClick, sizeof(UInt8)*8);
 		}
-		if (datan = OSDynamicCast(OSNumber, dict->getObject(kScrollMinDelay))) 
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadScrollMinDelay))) 
 		{
-			nanoseconds_to_absolutetime(datan->unsigned16BitValue() * 1000 * 1000, &_scrollMinDelayAB);
+			UInt16 minDelay = datan->unsigned16BitValue();
+			nanoseconds_to_absolutetime(minDelay * 1000 * 1000, &_scrollMinDelayAB);
+			setProperty(kTrackpadScrollMinDelay, minDelay, sizeof(UInt16)*8);
 		}
-		if (datan = OSDynamicCast(OSNumber, dict->getObject(kScrollMaxRotDelay))) 
+		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadCircScrollMaxDelay))) 
 		{
-			nanoseconds_to_absolutetime(datan->unsigned16BitValue() * 1000 * 1000, &_scrollMaxRotDelayAB);
+			UInt16 maxRotDelay = datan->unsigned16BitValue();
+			nanoseconds_to_absolutetime(maxRotDelay * 1000 * 1000, &_scrollMaxRotDelayAB);
+			setProperty(kTrackpadCircScrollMaxDelay, maxRotDelay, sizeof(UInt16)*8);
 		}
 // end modifications
 

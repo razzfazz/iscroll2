@@ -99,6 +99,7 @@ private:
 	
 	// modified dub:
 	short			_oldScrollX, _oldScrollY;
+	bool			_enableScrolling;
 	bool			_enableScrollX;
 	UInt16			_scrollThreshX;
 	UInt16			_scrollScaleX;
@@ -112,7 +113,7 @@ private:
 	UInt16			_scrollScaleRot;
 	bool			_scrollInvertRot;
 	bool			_scrollDominantAxisOnly;
-	bool			_scrollRightClick;
+	UInt16			_twoFingerModClick;
 	AbsoluteTime	_scrollMinDelayAB;
 	AbsoluteTime	_scrollMaxRotDelayAB;
     AbsoluteTime	_lastScrollTimeAB;
@@ -126,7 +127,6 @@ private:
 	AbsoluteTime	_jitterclicktimeAB, _zonepeckingtimeAB, _timeoutStickyAB, _sticky2fingerTimeAB,
 					_fake5minAB, _keyboardTimeAB;
 
-    virtual IOReturn setParamProperties( OSDictionary * dict );
     bool enableEnhancedMode();
     IOService		* _pADBKeyboard;
     IONotifier		* _notifierA, * _notifierT;
@@ -141,6 +141,7 @@ protected:
 	UInt8	deviceNumButtons;
 	
 public:
+    virtual IOReturn setParamProperties( OSDictionary * dict );
 	virtual IOService * probe(IOService * provider, SInt32 * score);
 	virtual bool start(IOService * provider);
 	virtual void packet(UInt8 adbCommand, IOByteCount length, UInt8 * data);

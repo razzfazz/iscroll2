@@ -124,7 +124,7 @@
 	<key>CFBundleExecutable</key>
 	<string>iScroll2</string>
 	<key>CFBundleGetInfoString</key>
-	<string>2.0.10</string>
+	<string>0.5</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
@@ -136,11 +136,11 @@
 	<key>CFBundlePackageType</key>
 	<string>KEXT</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.0.10</string>
+	<string>0.5</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2.0.10</string>
+	<string>0.5</string>
 	<key>IOKitPersonalities</key>
 	<dict>
 		<key>AppleADBMouseType1</key>
@@ -179,12 +179,6 @@
 			<string>3-01</string>
 			<key>CFBundleIdentifier</key>
 			<string>name.razzfazz.iScroll2</string>
-			<key>EnableScrollRot</key>
-			<integer>1</integer>
-			<key>EnableScrollX</key>
-			<integer>1</integer>
-			<key>EnableScrollY</key>
-			<integer>1</integer>
 			<key>IOClass</key>
 			<string>AppleADBMouseType4</string>
 			<key>IOProbeScore</key>
@@ -205,32 +199,6 @@
 			<integer>0</integer>
 			<key>PalmNoAction When Typing</key>
 			<integer>0</integer>
-			<key>ScrollDominantAxisOnly</key>
-			<integer>1</integer>
-			<key>ScrollInvertRot</key>
-			<integer>0</integer>
-			<key>ScrollInvertX</key>
-			<integer>0</integer>
-			<key>ScrollInvertY</key>
-			<integer>0</integer>
-			<key>ScrollMaxRotDelay</key>
-			<integer>250</integer>
-			<key>ScrollMinDelay</key>
-			<integer>20</integer>
-			<key>ScrollRightClick</key>
-			<integer>1</integer>
-			<key>ScrollScaleRot</key>
-			<integer>4</integer>
-			<key>ScrollScaleX</key>
-			<integer>8</integer>
-			<key>ScrollScaleY</key>
-			<integer>4</integer>
-			<key>ScrollThresholdRot</key>
-			<integer>20</integer>
-			<key>ScrollThresholdX</key>
-			<integer>4</integer>
-			<key>ScrollThresholdY</key>
-			<integer>2</integer>
 			<key>Trackpad Jitter Max delta</key>
 			<integer>16</integer>
 			<key>Trackpad Jitter Milliseconds</key>
@@ -288,6 +256,7 @@
 			files = (
 				1A224C40FF42367911CA2CB7,
 				85104D9007BD612C009915A7,
+				85B0E0ED07C9388800FD7DBC,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,6 +412,7 @@
 //244
 		247142CAFF3F8F9811CA285C = {
 			children = (
+				85B0E0EC07C9388800FD7DBC,
 				85104D8F07BD612C009915A7,
 				1A224C3EFF42367911CA2CB7,
 				1A224C3FFF42367911CA2CB7,
@@ -473,6 +443,20 @@
 		};
 		85104D9007BD612C009915A7 = {
 			fileRef = 85104D8F07BD612C009915A7;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		85B0E0EC07C9388800FD7DBC = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = defaults.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		85B0E0ED07C9388800FD7DBC = {
+			fileRef = 85B0E0EC07C9388800FD7DBC;
 			isa = PBXBuildFile;
 			settings = {
 			};

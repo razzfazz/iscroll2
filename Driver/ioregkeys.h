@@ -7,19 +7,25 @@
  *
  */
 
-#define kEnableScrollX			"EnableScrollX"
-#define kScrollThresholdX		"ScrollThresholdX"
-#define kScrollScaleX			"ScrollScaleX"
-#define kScrollInvertX			"ScrollInvertX"
-#define kEnableScrollY			"EnableScrollY"
-#define kScrollThresholdY		"ScrollThresholdY"
-#define kScrollScaleY			"ScrollScaleY"
-#define kScrollInvertY			"ScrollInvertY"
-#define kEnableScrollRot		"EnableScrollRot"
-#define kScrollThresholdRot		"ScrollThresholdRot"
-#define kScrollScaleRot			"ScrollScaleRot"
-#define kScrollInvertRot		"ScrollInvertRot"
-#define kScrollDominantAxisOnly	"ScrollDominantAxisOnly"
-#define kScrollRightClick		"ScrollRightClick"
-#define kScrollMinDelay			"ScrollMinDelay"
-#define kScrollMaxRotDelay		"ScrollMaxRotDelay"
+#ifndef _ISCROLL2_IOREGKEYS_H_
+#define _ISCROLL2_IOREGKEYS_H_
+
+#define kTrackpadScroll					"TrackpadScroll"
+#define kTrackpadHorizScroll			"TrackpadHorizScroll"
+#define kTrackpadHorizScrollThreshold	"TrackpadHorizScrollThreshold"
+#define kTrackpadHorizScrollScale		"TrackpadHorizScrollScale"
+#define kTrackpadHorizScrollInvert		"TrackpadHorizScrollInvert"
+#define kTrackpadVertScroll				"TrackpadVertScroll"
+#define kTrackpadVertScrollThreshold	"TrackpadVertScrollThreshold"
+#define kTrackpadVertScrollScale		"TrackpadVertScrollScale"
+#define kTrackpadVertScrollInvert		"TrackpadVertScrollInvert"
+#define kTrackpadCircScroll				"TrackpadCircScroll"
+#define kTrackpadCircScrollThreshold	"TrackpadCircScrollThreshold"
+#define kTrackpadCircScrollScale		"TrackpadCircScrollScale"
+#define kTrackpadCircScrollInvert		"TrackpadCircScrollInvert"
+#define kTrackpadScrollDominantAxisOnly	"TrackpadScrollDominantAxisOnly"
+#define kTrackpadTwoFingerModClick		"TrackpadTwoFingerModClick"
+#define kTrackpadScrollMinDelay			"TrackpadScrollMinDelay"
+#define kTrackpadCircScrollMaxDelay		"TrackpadCircScrollMaxDelay"
+
+#endif

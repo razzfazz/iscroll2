@@ -53,6 +53,7 @@
 				French,
 				German,
 				zh_TW,
+				Dutch,
 			);
 			mainGroup = 089C166AFE841209C02AAC07;
 			projectDirPath = "";
@@ -110,6 +111,7 @@
 				85EA57F807E5828200B27FD3,
 				85EA57F907E5828A00B27FD3,
 				85EA57FA07E5829000B27FD3,
+				8552AC1608007BEF00B21E73,
 			);
 			isa = PBXVariantGroup;
 			name = InfoPlist.strings;
@@ -256,6 +258,22 @@
 			lastKnownFileType = text.plist.strings;
 			name = French;
 			path = French.lproj/InfoPlist.strings;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		8552AC1508007BDA00B21E73 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.nib;
+			name = Dutch;
+			path = Dutch.lproj/iScroll2Pref.nib;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		8552AC1608007BEF00B21E73 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.strings;
+			name = Dutch;
+			path = Dutch.lproj/InfoPlist.strings;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -588,6 +606,7 @@
 				85EA57FB07E582A500B27FD3,
 				85EA57FC07E582AC00B27FD3,
 				85EA57FD07E582B100B27FD3,
+				8552AC1508007BDA00B21E73,
 			);
 			isa = PBXVariantGroup;
 			name = iScroll2Pref.nib;

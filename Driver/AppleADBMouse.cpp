@@ -482,7 +482,7 @@ bool add_usb_mouse(OSObject * us, void *, IOService * yourDevice)
 
 bool remove_usb_mouse(OSObject * us, void *, IOService * yourDevice)
 {
-    if (us)
+	if (us)
     {
 		((iScroll2 *)us)->_check_usb_mouse(yourDevice, false);
     }
@@ -653,6 +653,7 @@ void iScroll2::packet(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
 	bool			palm = false, outzone = false, has2fingers = false;
 	UInt32          buttonState = 0;
 	AbsoluteTime	now;
+	bool			shouldIgnore;
 	
 // modified dub:
 /*
@@ -662,6 +663,10 @@ void iScroll2::packet(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
 		return;
 	}
 */
+	IOLockLock(_mouseLock);
+	shouldIgnore = (_ignoreTrackpad && (_externalMice && (_externalMice->getCount() > 0 )));  
+	IOLockUnlock(_mouseLock);
+	if(shouldIgnore) return;
 // end modifications
 	
 	numExtraBytes = length - 2;

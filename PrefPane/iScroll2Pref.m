@@ -60,6 +60,7 @@
 
 - (void)mainViewDidLoad
 {
+	NSDictionary * localizedInfoDict;
 	_buttons = [[NSDictionary alloc] initWithObjectsAndKeys:
 		_VEnable, @kTrackpadVScroll,
 		_HEnable, @kTrackpadHScroll,
@@ -103,6 +104,9 @@
 		[NSNumber numberWithInt: kTrackpadScrollMinDelayDefault], @kTrackpadScrollMinDelay,
 		0];
 	[_version setStringValue:[NSString stringWithFormat:@"Version %@", [[[self bundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]]];
+	localizedInfoDict = [[self bundle] localizedInfoDictionary];
+	[_name setStringValue:[localizedInfoDict objectForKey:(NSString *)kCFBundleNameKey]];
+	[_copyright setStringValue:[localizedInfoDict objectForKey:(NSString *)@"NSHumanReadableCopyright"]];
 }
 
 - (void)willSelect
@@ -145,6 +149,17 @@
 	}
 	else if([sender isMemberOfClass:[NSPopUpButton class]])
 	{
+		if((sender == _clickMapTo || sender == _tapMapTo || sender == _twoFingerClickMapTo) 
+			&& ([_clickMapTo indexOfSelectedItem] && [_tapMapTo indexOfSelectedItem] && [_twoFingerClickMapTo indexOfSelectedItem]))
+			if(NSRunAlertPanel(@"Warning:", 
+				@"This will leave no action mapped to a left click.\n"
+				@"If you proceed, you will be unable to control your system with the trackpad.\n"
+				@"You should only do this if you have an external mouse attached to your system.",
+				@"Cancel", @"Proceed", nil) != NSAlertAlternateReturn)
+			{
+				[sender selectItemAtIndex:0];
+				return;
+			}
 		control = [_popupbuttons keyEnumerator];
 		while(key = [control nextObject])
 		{

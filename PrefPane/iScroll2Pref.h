@@ -29,7 +29,9 @@
     IBOutlet NSButton		*_VInvert;
     IBOutlet NSSlider		*_VScale;
     IBOutlet NSSlider		*_VThresh;
+	IBOutlet NSTextField	*_name;
 	IBOutlet NSTextField	*_version;
+	IBOutlet NSTextField	*_copyright;
 	NSDictionary			*_buttons;
 	NSDictionary			*_sliders;
 	NSDictionary			*_popupbuttons;

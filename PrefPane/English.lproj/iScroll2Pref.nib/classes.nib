@@ -30,8 +30,10 @@
                 "_VScale" = NSSlider; 
                 "_VThresh" = NSSlider; 
                 "_clickMapTo" = NSPopUpButton; 
+                "_copyright" = NSTextField; 
                 "_ignoreWeakerAxis" = NSButton; 
                 "_minDelay" = NSSlider; 
+                "_name" = NSTextField; 
                 "_tapMapTo" = NSPopUpButton; 
                 "_twoFingerClickMapTo" = NSPopUpButton; 
                 "_version" = NSTextField; 

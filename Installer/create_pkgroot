@@ -1,0 +1,43 @@
+#!/bin/sh
+
+kextpath="System/Library/Extensions"
+kextname="iScroll2.kext"
+kextowner="root:wheel"
+kextuperms="rwX"
+kextgperms="rX"
+kextoperms="rX"
+
+prefpath="Library/PreferencePanes"
+prefname="iScroll2.prefPane"
+prefowner="root:admin"
+prefuperms="rwX"
+prefgperms="rwX"
+prefoperms="rX"
+
+if [ ! -d "pkgroot/Contents/$kextpath" ]
+then
+	mkdir -p "pkgroot/Contents/$kextpath"
+fi
+cp -R ../Driver/build/$kextname "pkgroot/Contents/$kextpath"
+chown -R $kextowner "pkgroot/Contents/`echo $kextpath | cut -d / -f 1`"
+chmod -R u=$kextuperms "pkgroot/Contents/`echo $kextpath | cut -d / -f 1`"
+chmod -R g=$kextgperms "pkgroot/Contents/`echo $kextpath | cut -d / -f 1`"
+chmod -R o=$kextoperms "pkgroot/Contents/`echo $kextpath | cut -d / -f 1`"
+
+if [ ! -d "pkgroot/Contents/$prefpath" ]
+then
+	mkdir -p "pkgroot/Contents/$prefpath"
+fi
+cp -R ../PrefPane/build/$prefname "pkgroot/Contents/$prefpath"
+chown -R $prefowner "pkgroot/Contents/`echo $prefpath | cut -d / -f 1`"
+chmod -R u=$prefuperms "pkgroot/Contents/`echo $prefpath | cut -d / -f 1`"
+chmod -R g=$prefgperms "pkgroot/Contents/`echo $prefpath | cut -d / -f 1`"
+chmod -R o=$prefoperms "pkgroot/Contents/`echo $prefpath | cut -d / -f 1`"
+
+if [ ! -d "pkgroot/Resources" ]
+then
+       mkdir -p "pkgroot/Resources"
+fi
+cp -R Install_resources/* pkgroot/Resources
+rm -R `find pkgroot/Resources -name CVS`
+cp ../Website/index.html pkgroot/Resources/ReadMe.html

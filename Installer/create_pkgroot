@@ -14,7 +14,10 @@ prefuperms="rwX"
 prefgperms="rwX"
 prefoperms="rX"
 
-rm -R pkgroot
+if [ -e pkgroot ]
+then
+	rm -R pkgroot
+fi
 
 mkdir -p "pkgroot/Contents/$kextpath"
 cp -R ../Driver/build/$kextname "pkgroot/Contents/$kextpath"

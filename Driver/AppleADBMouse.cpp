@@ -1250,7 +1250,7 @@ bool AppleADBMouseType4::enableEnhancedMode()
             IOLog("AppleADBMouseType4 deviceClass = %d (non-Extended Mode)\n", adbdata[6]);
             return FALSE;
         }
-        IOLog("AppleADBMouseType4 deviceClass = %d (Extended Mode)\n", adbdata[6]);
+        IOLog("AppleADBMouseType4 deviceClass = %d (Extended Mode, Scrolling supported)\n", adbdata[6]);
 		
         // Set ADB Extended Features to default values.
         adbdata[0] = 0x19;  //MSB=Use Soft click (gesture).  7 bits for DownTime.
@@ -1799,19 +1799,16 @@ IOReturn AppleADBMouseType4::setParamProperties( OSDictionary * dict )
 		{
 			_clickMapTo = datan->unsigned8BitValue();
 			setProperty(kTrackpadClickMapTo, _clickMapTo, sizeof(UInt8)*8);
-			IOLog("ClickMapTo=%d\n", _clickMapTo);
 		}
 		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadTapMapTo))) 
 		{
 			_tapMapTo = datan->unsigned8BitValue();
 			setProperty(kTrackpadTapMapTo, _tapMapTo, sizeof(UInt8)*8);
-			IOLog("TapMapTo=%d\n", _tapMapTo);
 		}
 		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadTwoFingerClickMapTo))) 
 		{
 			_twoFingerClickMapTo = datan->unsigned8BitValue();
 			setProperty(kTrackpadTwoFingerClickMapTo, _twoFingerClickMapTo, sizeof(UInt8)*8);
-			IOLog("TwoFingerClickMapTo=%d\n", _twoFingerClickMapTo);
 		}
 		if (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadScrollMinDelay))) 
 		{

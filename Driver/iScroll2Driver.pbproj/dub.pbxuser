@@ -271,9 +271,9 @@
 	089C167EFE841241C02AAC07 = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {800, 428}}";
-			sepNavSelRange = "{106, 0}";
+			sepNavSelRange = "{155, 0}";
 			sepNavVisRect = "{{0, 0}, {711, 428}}";
-			sepNavWindowFrame = "{{38, 272}, {750, 534}}";
+			sepNavWindowFrame = "{{245, 83}, {750, 534}}";
 		};
 	};
 	1A224C3EFF42367911CA2CB7 = {

@@ -4,15 +4,20 @@ daemonpath="/usr/local/bin"
 daemonname="iScroll2Daemon"
 daemonpidfile="/var/run/${daemonname}.pid"
 
-case "$1" in
-    start)
-        echo "Starting iScroll2..."
-        "${daemonpath}/${daemonname}"
-        ConsoleMessage -s "iScroll2"
-        exit;
-    ;;
-    stop)
-        kill $(cat "${daemonpidfile}")
-    ;;
-esac
+. /etc/rc.common
 
+StartService ()
+{
+    ConsoleMessage "Starting iScroll2"
+    "${daemonpath}/${daemonname}"
+}
+
+StopService ()
+{
+    ConsoleMessage "Stopping iScroll2"
+    kill $(cat "${daemonpidfile}")
+}
+
+RestartService () { StopService; StartService; }
+
+RunService "$1"

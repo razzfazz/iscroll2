@@ -5,12 +5,37 @@
             CLASS = NSPreferencePane; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                "_firstKeyView" = id; 
-                "_initialKeyView" = id; 
-                "_lastKeyView" = id; 
-                "_window" = id; 
+                "_firstKeyView" = NSView; 
+                "_initialKeyView" = NSView; 
+                "_lastKeyView" = NSView; 
+                "_window" = NSWindow; 
             }; 
             SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {saveSettings = id; }; 
+            CLASS = iScroll2Pref; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                "_CEnable" = NSButton; 
+                "_CInvert" = NSButton; 
+                "_CResetTime" = NSSlider; 
+                "_CScale" = NSSlider; 
+                "_CThresh" = NSSlider; 
+                "_HEnable" = NSButton; 
+                "_HInvert" = NSButton; 
+                "_HScale" = NSSlider; 
+                "_HThresh" = NSSlider; 
+                "_VEnable" = NSButton; 
+                "_VInvert" = NSButton; 
+                "_VScale" = NSSlider; 
+                "_VThresh" = NSSlider; 
+                "_enable" = NSButton; 
+                "_ignoreWeakerAxis" = NSButton; 
+                "_minDelay" = NSSlider; 
+                "_twoFingerModClick" = NSMatrix; 
+            }; 
+            SUPERCLASS = NSPreferencePane; 
         }
     ); 
     IBVersion = 1; 

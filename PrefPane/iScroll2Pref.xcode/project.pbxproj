@@ -124,6 +124,8 @@
 		};
 		08FB77AFFE84173DC02AAC07 = {
 			children = (
+				85B0DDD607C7644500FD7DBC,
+				85B0DDD707C7644500FD7DBC,
 				F506C03C013D9D7901CA16C8,
 				F506C03D013D9D7901CA16C8,
 			);
@@ -144,6 +146,8 @@
 //104
 		1058C7ACFEA557BF11CA2CBB = {
 			children = (
+				85B0DDDF07C7649800FD7DBC,
+				85FA19FF07C6A8E000C16F52,
 				1058C7ADFEA557BF11CA2CBB,
 				F506C035013D953901CA16C8,
 			);
@@ -222,6 +226,72 @@
 //322
 //323
 //324
+//850
+//851
+//852
+//853
+//854
+		85B0DDD607C7644500FD7DBC = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = ioregistry.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		85B0DDD707C7644500FD7DBC = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			path = ioregistry.c;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		85B0DDD807C7644500FD7DBC = {
+			fileRef = 85B0DDD607C7644500FD7DBC;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		85B0DDD907C7644500FD7DBC = {
+			fileRef = 85B0DDD707C7644500FD7DBC;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		85B0DDDF07C7649800FD7DBC = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = Carbon.framework;
+			path = /System/Library/Frameworks/Carbon.framework;
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		85B0DDE007C7649800FD7DBC = {
+			fileRef = 85B0DDDF07C7649800FD7DBC;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		85FA19FF07C6A8E000C16F52 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = IOKit.framework;
+			path = /System/Library/Frameworks/IOKit.framework;
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		85FA1A0007C6A8E000C16F52 = {
+			fileRef = 85FA19FF07C6A8E000C16F52;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+//850
+//851
+//852
+//853
+//854
 //8D0
 //8D1
 //8D2
@@ -273,6 +343,7 @@
 			files = (
 				8D202CEA0486D31800D8A456,
 				8D202CEB0486D31800D8A456,
+				85B0DDD807C7644500FD7DBC,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,6 +392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D202CF10486D31800D8A456,
+				85B0DDD907C7644500FD7DBC,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +408,8 @@
 			files = (
 				8D202CF30486D31800D8A456,
 				8D202CF40486D31800D8A456,
+				85FA1A0007C6A8E000C16F52,
+				85B0DDE007C7649800FD7DBC,
 			);
 			isa = PBXFrameworksBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

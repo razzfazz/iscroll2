@@ -124,7 +124,7 @@
 	<key>CFBundleExecutable</key>
 	<string>iScroll2</string>
 	<key>CFBundleGetInfoString</key>
-	<string>0.12</string>
+	<string>0.13</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
@@ -136,51 +136,21 @@
 	<key>CFBundlePackageType</key>
 	<string>KEXT</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.12</string>
+	<string>0.13</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.12</string>
+	<string>0.13</string>
 	<key>IOKitPersonalities</key>
 	<dict>
-		<key>AppleADBMouseType1</key>
-		<dict>
-			<key>ADB Match</key>
-			<string>3</string>
-			<key>CFBundleIdentifier</key>
-			<string>name.razzfazz.driver.iScroll2</string>
-			<key>IOClass</key>
-			<string>AppleADBMouseType1</string>
-			<key>IOProbeScore</key>
-			<integer>2500</integer>
-			<key>IOProviderClass</key>
-			<string>IOADBDevice</string>
-			<key>dpi</key>
-			<integer>100</integer>
-		</dict>
-		<key>AppleADBMouseType2</key>
-		<dict>
-			<key>ADB Match</key>
-			<string>3</string>
-			<key>CFBundleIdentifier</key>
-			<string>name.razzfazz.driver.iScroll2</string>
-			<key>IOClass</key>
-			<string>AppleADBMouseType2</string>
-			<key>IOProbeScore</key>
-			<integer>5000</integer>
-			<key>IOProviderClass</key>
-			<string>IOADBDevice</string>
-			<key>dpi</key>
-			<integer>200</integer>
-		</dict>
-		<key>AppleADBMouseType4</key>
+		<key>iScroll2</key>
 		<dict>
 			<key>ADB Match</key>
 			<string>3-01</string>
 			<key>CFBundleIdentifier</key>
 			<string>name.razzfazz.driver.iScroll2</string>
 			<key>IOClass</key>
-			<string>AppleADBMouseType4</string>
+			<string>iScroll2</string>
 			<key>IOProbeScore</key>
 			<integer>40000</integer>
 			<key>IOProviderClass</key>
@@ -235,15 +205,15 @@
 	<key>OSBundleLibraries</key>
 	<dict>
 		<key>com.apple.iokit.IOADBFamily</key>
-		<string>1.0.0b1</string>
+		<string>1.0</string>
 		<key>com.apple.iokit.IOHIDSystem</key>
-		<string>1.0.0b1</string>
+		<string>1.2</string>
 		<key>com.apple.kernel.iokit</key>
-		<string>1.0.0b1</string>
+		<string>6.0</string>
 		<key>com.apple.kernel.libkern</key>
-		<string>1.0.0b1</string>
+		<string>6.0</string>
 		<key>com.apple.kernel.mach</key>
-		<string>1.0.0b1</string>
+		<string>6.0</string>
 	</dict>
 </dict>
 </plist>

@@ -69,6 +69,7 @@ public:
 };
 
 
+#if 0
 class AppleADBMouseType1 : public AppleADBMouse
 {
 	OSDeclareDefaultStructors(AppleADBMouseType1);
@@ -78,7 +79,6 @@ public:
 	virtual bool start(IOService * provider);
 };
 
-
 class AppleADBMouseType2 : public AppleADBMouse
 {
 	OSDeclareDefaultStructors(AppleADBMouseType2);
@@ -87,17 +87,22 @@ public:
 	virtual IOService * probe(IOService * provider, SInt32 * score);
 	virtual bool start(IOService * provider);
 };
+#endif
 
 
-class AppleADBMouseType4 : public AppleADBMouse
+class iScroll2 : public AppleADBMouse
 {
-	OSDeclareDefaultStructors(AppleADBMouseType4);
+	OSDeclareDefaultStructors(iScroll2);
 	
 private:
     bool Clicking, Dragging, DragLock, typeTrackpad;
     bool _jitterclick, _jittermove, _ignoreTrackpad;
+// modifed dub:
+//    bool _palmnomove, _palmnoaction, _2fingernoaction, _sticky2finger, _zonenomove, 
+//		_zonenoaction, _zonepecknomove, _ignorezone, _isWEnhanced, _usePantherSettings;
     bool _palmnomove, _palmnoaction, _2fingernoaction, _sticky2finger, _zonenomove, 
-		_zonenoaction, _zonepecknomove, _ignorezone, _isWEnhanced, _usePantherSettings;
+		_zonenoaction, _zonepecknomove, _ignorezone;
+// end modifications
 	
 	// modified dub:
 	short			_oldScrollX;

@@ -196,6 +196,7 @@ IOByteCount /*length*/, UInt8 * data)
 }
 
 
+#if 0
 // ****************************************************************************
 
 #undef super
@@ -268,13 +269,14 @@ bool AppleADBMouseType2::start(IOService * provider)
 
 
 // ****************************************************************************
+#endif
 
 #undef super
 #define super AppleADBMouse
 
-OSDefineMetaClassAndStructors(AppleADBMouseType4, AppleADBMouse);
+OSDefineMetaClassAndStructors(iScroll2, AppleADBMouse);
 
-IOService * AppleADBMouseType4::probe(IOService * provider, SInt32 * score)
+IOService * iScroll2::probe(IOService * provider, SInt32 * score)
 {
 	UInt8       data[8];
 	IOByteCount length = 8;
@@ -290,6 +292,16 @@ IOService * AppleADBMouseType4::probe(IOService * provider, SInt32 * score)
 	if (adbDevice->readRegister(1, data, &length) != kIOReturnSuccess) return 0;
 	if (length != 8) return 0;
 	
+// modified dub:
+
+	// check signature
+	if( (data[0] != 't') || (data[1] != 'p') || (data[2] != 'a') || (data[3] != 'd') ) return 0;
+
+	// W Enhanced trackpads should report 4 buttons!
+	if(data[7] != 4) return 0;
+
+// end modifications
+
 	// Save the device's Extended Mouse Info.
 	deviceSignature  = ((UInt32 *)data)[0];
 	deviceResolution = ((UInt16 *)data)[2];
@@ -299,10 +311,12 @@ IOService * AppleADBMouseType4::probe(IOService * provider, SInt32 * score)
 	return this;
 }
 
-bool AppleADBMouseType4::start(IOService * provider)
+bool iScroll2::start(IOService * provider)
 {
-	UInt8       adbdata[8];
-	IOByteCount adblength = 8;
+// modified dub:
+//	UInt8       adbdata[8];
+//	IOByteCount adblength = 8;
+// end modifications
 	OSNumber 	*dpi;
 	
 	typeTrackpad = FALSE;
@@ -324,15 +338,21 @@ bool AppleADBMouseType4::start(IOService * provider)
 	_gettime = OSSymbol::withCString("get_last_keydown");
 	_mouseLock = IOLockAlloc(); 
 	
-	adbDevice->readRegister(1, adbdata, &adblength);
-	if( (adbdata[0] == 't') && (adbdata[1] = 'p') && (adbdata[2] == 'a') && (adbdata[3] == 'd') )
-	{
+// modified dub:
+//	adbDevice->readRegister(1, adbdata, &adblength);
+//	if( (adbdata[0] == 't') && (adbdata[1] = 'p') && (adbdata[2] == 'a') && (adbdata[3] == 'd') )
+// fix missing '=' in second comparison (for 'p'):
+//	if( (adbdata[0] == 't') && (adbdata[1] == 'p') && (adbdata[2] == 'a') && (adbdata[3] == 'd') )
+//	{
+// end modifications
 		mach_timespec_t     t;
 		OSNumber 		*datan;
 		
 		t.tv_sec = 1; //Wait for keyboard driver for up to 1 second
 		t.tv_nsec = 0;
-		typeTrackpad = TRUE;
+// modified dub:
+//		typeTrackpad = TRUE;
+// end modifications
 		enableEnhancedMode();
 		_pADBKeyboard = waitForService(serviceMatching("AppleADBKeyboard"), &t);
 		datan = OSDynamicCast( OSNumber, getProperty("Trackpad Jitter Milliseconds"));
@@ -369,19 +389,25 @@ bool AppleADBMouseType4::start(IOService * provider)
 // modified dub:
 //			_buttonCount = 2;	//Assume Apple trackpads will always have 
 								//only 1 button and 1 gesture click
-			_buttonCount = 3;
+			_buttonCount = 6;
 // end modifications
 			setProperty("W Enhanced Trackpad", (unsigned long long)true, sizeof(Clicking)*8);
-			_isWEnhanced = true;
-			_usePantherSettings = false;
+// modified dub:
+//			_isWEnhanced = true;
+//			_usePantherSettings = false;
+// end modifications
 			_jitterclick = _jittermove;	//Necessary since Mouse Pref fix isn't available
 		}  
 		else
 		{
-			_isWEnhanced = false;
+// modified dub:
+//			_isWEnhanced = false;
+// end modifications
 			//Don't even bother to set the property.  Its ABSENCE will be just as informative.
 		}
-	} //end of trackpad processing
+// modified dub:
+//	} //end of trackpad processing
+// end modifications
 	
     if ( ! _notifierA)
         _notifierA = addNotification( gIOFirstMatchNotification, serviceMatching( "IOHIPointing" ), 
@@ -395,7 +421,7 @@ bool AppleADBMouseType4::start(IOService * provider)
 }
 
 
-void AppleADBMouseType4::free( void )
+void iScroll2::free( void )
 {
     if (_notifierA)
     {
@@ -443,7 +469,7 @@ bool add_usb_mouse(OSObject * us, void *, IOService * yourDevice)
 {
     if (us)
     {
-		((AppleADBMouseType4 *)us)->_check_usb_mouse(yourDevice, true);
+		((iScroll2 *)us)->_check_usb_mouse(yourDevice, true);
     }
     return true;
 }
@@ -452,7 +478,7 @@ bool remove_usb_mouse(OSObject * us, void *, IOService * yourDevice)
 {
     if (us)
     {
-		((AppleADBMouseType4 *)us)->_check_usb_mouse(yourDevice, false);
+		((iScroll2 *)us)->_check_usb_mouse(yourDevice, false);
     }
     return true;
 }
@@ -460,7 +486,7 @@ bool remove_usb_mouse(OSObject * us, void *, IOService * yourDevice)
 /*
  *  If any extra  mouse is found, then disable the trackpad.
  */
-void AppleADBMouseType4::_check_usb_mouse( IOService * service, bool added ) 
+void iScroll2::_check_usb_mouse( IOService * service, bool added ) 
 {
     // Check to see if we are interested in this service
     if ( (service == this)                      ||
@@ -490,11 +516,12 @@ void AppleADBMouseType4::_check_usb_mouse( IOService * service, bool added )
 }
 
 
+#if 0
 /*
  *  The following ::packet() has not been changed at all.  Enhanced trackpad processing
  *  will automatically go to ::packetW().
  */
-void AppleADBMouseType4::packet(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
+void iScroll2::packet(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
 {
 	int		  dx, dy, cnt, numExtraBytes;
 	UInt32          buttonState = 0;
@@ -605,23 +632,31 @@ void AppleADBMouseType4::packet(UInt8 /*adbCommand*/, IOByteCount length, UInt8 
 	}
 	dispatchRelativePointerEvent(dx, dy, buttonState, now);
 }
+#endif
 
 /*
  * The following ::packetW() assumes two flags:  
  * _isWEnhanced is true and typeTrackpad is true.
  */
-void AppleADBMouseType4::packetW(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
+// modified dub:
+//void iScroll2::packetW(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
+void iScroll2::packet(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
+// end modifications
 {
 	int				dx, dy, cnt, numExtraBytes;
 	bool			palm = false, outzone = false, has2fingers = false;
 	UInt32          buttonState = 0;
 	AbsoluteTime	now;
 	
+// modified dub:
+/*
 	if (_usePantherSettings)
 	{
 		packetWP(0, length, data);
 		return;
 	}
+*/
+// end modifications
 	
 	numExtraBytes = length - 2;
 	dy = data[0] & 0x7f;
@@ -640,7 +675,9 @@ void AppleADBMouseType4::packetW(UInt8 /*adbCommand*/, IOByteCount length, UInt8
 	//  trackpad never picks up on that.  Can't make gesture clicks using edge of
 	//  my palm either.
 	//if(_isWEnhanced)  //This also implies typeTrackpad == true
-	{
+	// modified dub:
+	//{
+	// end modifications
 		if ((data[2] & 0x80) == 0)
 		{
 			if (_zonenomove)
@@ -691,7 +728,9 @@ void AppleADBMouseType4::packetW(UInt8 /*adbCommand*/, IOByteCount length, UInt8
 			{
 				_sticky2finger = false;  //Make it more efficient
 			}
-		}
+		// modified dub:
+		//}
+		// end modifications
 		
 		//Apple trackpads should not have more than two buttons.  Non-Apple trackpads
 		// should never match the "tpad" signature anyways.
@@ -901,11 +940,12 @@ void AppleADBMouseType4::packetW(UInt8 /*adbCommand*/, IOByteCount length, UInt8
 }
 
 
+#if 0
 /*
  *  Next method is mostly for exploring future Panther filtering for trackpads.
  *  Since it is called by ::packetW(), it also assumes a W enhanced trackpad.
  */
-void AppleADBMouseType4::packetWP(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
+void iScroll2::packetWP(UInt8 /*adbCommand*/, IOByteCount length, UInt8 * data)
 {
 	int		  dx, dy, cnt, numExtraBytes;
 	bool		  palm = false, outzone = false, has2fingers = false;
@@ -1188,10 +1228,10 @@ void AppleADBMouseType4::packetWP(UInt8 /*adbCommand*/, IOByteCount length, UInt
 	}
 	dispatchRelativePointerEvent(dx, dy, buttonState, now);
 }
+#endif
 
 
-
-OSData * AppleADBMouseType4::copyAccelerationTable()
+OSData * iScroll2::copyAccelerationTable()
 {
     char keyName[10];
 	
@@ -1225,7 +1265,7 @@ OSData * AppleADBMouseType4::copyAccelerationTable()
 //
 // ****************************************************************************
 
-bool AppleADBMouseType4::enableEnhancedMode()
+bool iScroll2::enableEnhancedMode()
 {
     UInt8       adbdata[8];
     IOByteCount adblength = 8;
@@ -1243,10 +1283,10 @@ bool AppleADBMouseType4::enableEnhancedMode()
             return FALSE;
         if (adbdata[6] != 0x0D)
         {
-            IOLog("AppleADBMouseType4 deviceClass = %d (non-Extended Mode)\n", adbdata[6]);
+            IOLog("iScroll2 deviceClass = %d (non-Extended Mode)\n", adbdata[6]);
             return FALSE;
         }
-        IOLog("AppleADBMouseType4 deviceClass = %d (Extended Mode, Scrolling supported)\n", adbdata[6]);
+        IOLog("iScroll2 deviceClass = %d (Extended Mode, Scrolling supported)\n", adbdata[6]);
 		
         // Set ADB Extended Features to default values.
         adbdata[0] = 0x19;  //MSB=Use Soft click (gesture).  7 bits for DownTime.
@@ -1294,12 +1334,14 @@ bool AppleADBMouseType4::enableEnhancedMode()
 			_jittermove = false;
 		}	
 		
-		if (_isWEnhanced)  //W enhanced trackpads should get filtering on by default
-		{
+// modified dub:
+//		if (_isWEnhanced)  //W enhanced trackpads should get filtering on by default
+//		{
 			setProperty("JitterNoClick", true, sizeof(UInt32));
 			setProperty("JitterNoMove", true, sizeof(UInt32));
 			_jitterclick = _jittermove = true;
-		}
+//		}
+// end modifications
 		
 		plistnum = OSDynamicCast( OSNumber, getProperty("W sticky input timeout"));
 		if (plistnum)
@@ -1546,7 +1588,7 @@ bool AppleADBMouseType4::enableEnhancedMode()
 // setParamProperties
 //
 // ****************************************************************************
-IOReturn AppleADBMouseType4::setParamProperties( OSDictionary * dict )
+IOReturn iScroll2::setParamProperties( OSDictionary * dict )
 {
     OSNumber 	*datan;
     IOReturn	err = kIOReturnSuccess;
@@ -1554,8 +1596,10 @@ IOReturn AppleADBMouseType4::setParamProperties( OSDictionary * dict )
     IOByteCount adblength;
     UInt16	settrue = 0;
 	
-	if (typeTrackpad == TRUE) 
-    {  
+// modified dub:
+//	if (typeTrackpad == TRUE) 
+//    {  
+// end modifications
 		IOLockLock( _mouseLock); 
 		if (datan = OSDynamicCast(OSNumber, dict->getObject("Clicking"))) 
 		{	  
@@ -1665,11 +1709,13 @@ IOReturn AppleADBMouseType4::setParamProperties( OSDictionary * dict )
 		}
         
 		
-		if (datan = OSDynamicCast(OSNumber, dict->getObject("Use Panther Settings for W"))) 
-		{
-			_usePantherSettings = (bool) datan->unsigned32BitValue();
-			setProperty("Use Panther Settings for W", _usePantherSettings, sizeof(UInt32));
-		}
+// modified dub:
+//		if (datan = OSDynamicCast(OSNumber, dict->getObject("Use Panther Settings for W"))) 
+//		{
+//			_usePantherSettings = (bool) datan->unsigned32BitValue();
+//			setProperty("Use Panther Settings for W", _usePantherSettings, sizeof(UInt32));
+//		}
+// end modifications
 		
 		if (datan = OSDynamicCast(OSNumber, dict->getObject("PalmNoAction Permanent"))) 
 		{
@@ -1820,7 +1866,9 @@ IOReturn AppleADBMouseType4::setParamProperties( OSDictionary * dict )
 // end modifications
 
 		IOLockUnlock( _mouseLock);
-    }  // end of typeTrackpad
+// modified dub:
+//    }  // end of typeTrackpad
+// end modifications
 #if 0
     // For debugging purposes
     adblength = 8;
@@ -1840,7 +1888,7 @@ IOReturn AppleADBMouseType4::setParamProperties( OSDictionary * dict )
         return super::setParamProperties(dict);
     }
     
-    IOLog("AppleADBMouseType4::setParamProperties failing here\n");
+    IOLog("iScroll2::setParamProperties failing here\n");
     return( err );
 }
 

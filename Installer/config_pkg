@@ -5,10 +5,12 @@ kextname="iScroll2.kext"
 prefpath="Library/PreferencePanes"
 prefname="iScroll2.prefPane"
 
+sudo cp -R ../Driver/build/$kextname "Package_contents/$kextpath/$kextname"
 sudo chown -R root:wheel "Package_contents/$kextpath/$kextname"
 sudo chmod -R u=rwX "Package_contents/$kextpath/$kextname"
 sudo chmod -R go=rX "Package_contents/$kextpath/$kextname"
 
+sudo cp -R ../PrefPane/build/$prefname "Package_contents/$prefpath/$prefname"
 sudo chown -R root:wheel "Package_contents/$prefpath/$prefname"
 sudo chmod -R u=rwX "Package_contents/$prefpath/$prefname"
 sudo chmod -R go=rX "Package_contents/$prefpath/$prefname"

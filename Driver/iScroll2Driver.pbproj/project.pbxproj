@@ -124,7 +124,7 @@
 	<key>CFBundleExecutable</key>
 	<string>iScroll2</string>
 	<key>CFBundleGetInfoString</key>
-	<string>0.17</string>
+	<string>0.18</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
@@ -136,11 +136,11 @@
 	<key>CFBundlePackageType</key>
 	<string>KEXT</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.17</string>
+	<string>0.18</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.17</string>
+	<string>0.18</string>
 	<key>IOKitPersonalities</key>
 	<dict>
 		<key>iScroll2</key>
@@ -224,7 +224,6 @@
 			files = (
 				1A224C40FF42367911CA2CB7,
 				85104D9007BD612C009915A7,
-				85B0E0ED07C9388800FD7DBC,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,7 +379,6 @@
 //244
 		247142CAFF3F8F9811CA285C = {
 			children = (
-				85B0E0EC07C9388800FD7DBC,
 				85104D8F07BD612C009915A7,
 				1A224C3EFF42367911CA2CB7,
 				1A224C3FFF42367911CA2CB7,
@@ -411,20 +409,6 @@
 		};
 		85104D9007BD612C009915A7 = {
 			fileRef = 85104D8F07BD612C009915A7;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		85B0E0EC07C9388800FD7DBC = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			path = defaults.h;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		85B0E0ED07C9388800FD7DBC = {
-			fileRef = 85B0E0EC07C9388800FD7DBC;
 			isa = PBXBuildFile;
 			settings = {
 			};

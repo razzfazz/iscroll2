@@ -82,7 +82,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 132017815;
+			PBXPerProjectTemplateStateSaveDate = 132436464;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -259,7 +259,16 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 132017815;
+			PBXWorkspaceStateSaveDate = 132436464;
+		};
+		perUserProjectItems = {
+			85098BB607E23A2600AB4CD5 = 85098BB607E23A2600AB4CD5;
+			85098BCB07E23FDB00AB4CD5 = 85098BCB07E23FDB00AB4CD5;
+			85098BCC07E23FDB00AB4CD5 = 85098BCC07E23FDB00AB4CD5;
+			85C9BFF207E30794001CEF1A = 85C9BFF207E30794001CEF1A;
+			85C9C08007E4C5BA001CEF1A = 85C9C08007E4C5BA001CEF1A;
+			85CFDE3907E4D1F100377140 = 85CFDE3907E4D1F100377140;
+			85CFDE3C07E4D23700377140 = 85CFDE3C07E4D23700377140;
 		};
 		sourceControlManager = 8557FC8C07B6CBC30091B459;
 		userBuildSettings = {
@@ -273,31 +282,61 @@
 			sepNavIntBoundsRect = "{{0, 0}, {800, 428}}";
 			sepNavSelRange = "{355, 0}";
 			sepNavVisRect = "{{0, 0}, {711, 428}}";
-			sepNavWindowFrame = "{{84, 400}, {750, 534}}";
+			sepNavWindowFrame = "{{176, 316}, {750, 534}}";
 		};
 	};
 	1A224C3EFF42367911CA2CB7 = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {711, 2393}}";
-			sepNavSelRange = "{4768, 0}";
-			sepNavVisRect = "{{0, 1946}, {711, 428}}";
-			sepNavWindowFrame = "{{15, 293}, {750, 534}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 378}, {711, 428}}";
+			sepNavWindowFrame = "{{222, 274}, {750, 534}}";
 		};
 	};
 	1A224C3FFF42367911CA2CB7 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {956, 26837}}";
-			sepNavSelRange = "{19717, 0}";
-			sepNavVisRect = "{{0, 10938}, {711, 428}}";
-			sepNavWindowFrame = "{{61, 251}, {750, 534}}";
+			sepNavIntBoundsRect = "{{0, 0}, {956, 24695}}";
+			sepNavSelRange = "{19720, 0}";
+			sepNavVisRect = "{{0, 10416}, {440, 144}}";
+			sepNavWindowFrame = "{{38, 442}, {750, 534}}";
 		};
+	};
+	85098BB607E23A2600AB4CD5 = {
+		fRef = 1A224C3FFF42367911CA2CB7;
+		isa = PBXTextBookmark;
+		name = "AppleADBMouse.cpp: 756";
+		rLen = 0;
+		rLoc = 19742;
+		rType = 0;
+		vrLen = 422;
+		vrLoc = 19293;
+	};
+	85098BCB07E23FDB00AB4CD5 = {
+		fRef = 85104D8F07BD612C009915A7;
+		isa = PBXTextBookmark;
+		name = "ioregkeys.h: 12";
+		rLen = 0;
+		rLoc = 209;
+		rType = 0;
+		vrLen = 266;
+		vrLoc = 37;
+	};
+	85098BCC07E23FDB00AB4CD5 = {
+		fRef = 85104D8F07BD612C009915A7;
+		isa = PBXTextBookmark;
+		name = "ioregkeys.h: 12";
+		rLen = 0;
+		rLoc = 209;
+		rType = 0;
+		vrLen = 266;
+		vrLoc = 37;
 	};
 	85104D8F07BD612C009915A7 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {711, 448}}";
-			sepNavSelRange = "{254, 0}";
-			sepNavVisRect = "{{0, 6}, {711, 428}}";
-			sepNavWindowFrame = "{{245, 253}, {750, 534}}";
+			sepNavIntBoundsRect = "{{0, 0}, {711, 462}}";
+			sepNavSelRange = "{1291, 0}";
+			sepNavVisRect = "{{0, 34}, {711, 428}}";
+			sepNavWindowFrame = "{{268, 232}, {750, 534}}";
 		};
 	};
 	8557FC8C07B6CBC30091B459 = {
@@ -322,12 +361,44 @@
 		wantsCodeCompletionTabCompletes = 1;
 		wantsIndex = 1;
 	};
-	85B0E0EC07C9388800FD7DBC = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {711, 448}}";
-			sepNavSelRange = "{244, 0}";
-			sepNavVisRect = "{{0, 0}, {711, 428}}";
-			sepNavWindowFrame = "{{107, 379}, {750, 534}}";
-		};
+	85C9BFF207E30794001CEF1A = {
+		fRef = 1A224C3FFF42367911CA2CB7;
+		isa = PBXTextBookmark;
+		name = "AppleADBMouse.cpp: 755";
+		rLen = 0;
+		rLoc = 19720;
+		rType = 0;
+		vrLen = 422;
+		vrLoc = 19274;
+	};
+	85C9C08007E4C5BA001CEF1A = {
+		fRef = 1A224C3FFF42367911CA2CB7;
+		isa = PBXTextBookmark;
+		name = "AppleADBMouse.cpp: 756";
+		rLen = 0;
+		rLoc = 19720;
+		rType = 0;
+		vrLen = 422;
+		vrLoc = 19296;
+	};
+	85CFDE3907E4D1F100377140 = {
+		fRef = 1A224C3FFF42367911CA2CB7;
+		isa = PBXTextBookmark;
+		name = "AppleADBMouse.cpp: 756";
+		rLen = 0;
+		rLoc = 19720;
+		rType = 0;
+		vrLen = 422;
+		vrLoc = 19296;
+	};
+	85CFDE3C07E4D23700377140 = {
+		fRef = 1A224C3FFF42367911CA2CB7;
+		isa = PBXTextBookmark;
+		name = "AppleADBMouse.cpp: 756";
+		rLen = 0;
+		rLoc = 19720;
+		rType = 0;
+		vrLen = 422;
+		vrLoc = 19296;
 	};
 }

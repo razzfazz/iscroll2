@@ -1,17 +1,24 @@
 #!/bin/sh
 
+echo "Checking OS version..."
+if [ `sysctl -n kern.osrelease | cut -d "." -f 1` != "7" ]
+then
+    echo "ERROR: Incompatible operating system version detected."
+    exit $[(3<<5)+16]
+fi
+echo "Darwin version `sysctl -n kern.osrelease` detected."
 echo "Checking if Apple trackpad driver is loaded..."
 if ! kextstat | grep com.apple.driver.AppleADBMouse > /dev/null
 then 
     echo "ERROR: Apple trackpad driver not loaded!"
-    exit $[(3<<5)+16]
+    exit $[(3<<5)+17]
 fi
 echo "Apple trackpad driver is loaded."
 echo "Checking if trackpad supports W-Enhanced mode..."
 if ! ioreg -n AppleADBMouseType4 | grep "W Enhanced Trackpad" > /dev/null
 then
     echo "ERROR: Trackpad does not seem to support W-Enhanced mode."
-    exit $[(3<<5)+17]
+    exit $[(3<<5)+18]
 fi
 echo "Trackpad seems to support W-Enhanced mode."
 exit 0

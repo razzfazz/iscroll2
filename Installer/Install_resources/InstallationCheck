@@ -1,26 +1,47 @@
 #!/bin/sh
 
+sysctl="`which sysctl`"
+if [ -z "$sysctl" ]
+then
+     sysctl="/usr/sbin/sysctl"
+fi
+
+ioreg="`which ioreg`"
+if [ -z "$ioreg" ]
+then
+     ioreg="/usr/sbin/ioreg"
+fi
+
+kextstat="`which kextstat`"
+if [ -z "$kextstat" ]
+then
+     kextstat="/usr/sbin/kextstat"
+fi
+
 echo "Checking OS version..."
-if [ "`sysctl -n kern.osrelease | cut -d "." -f 1`" != "7" ]
+if [ "`$sysctl -n kern.osrelease | cut -d "." -f 1`" != "7" ]
 then
     echo "ERROR: Incompatible operating system version detected."
     exit $[(3<<5)+16]
 fi
 echo "Darwin version `sysctl -n kern.osrelease` detected."
+
 echo "Checking if trackpad driver is loaded..."
-if ! (kextstat | grep com.apple.driver.AppleADBMouse > /dev/null || \
-    kextstat | grep name.razzfazz.iScroll2 > /dev/null || \
-    kextstat | grep name.razzfazz.driver.iScroll2 > /dev/null)
+if ! ($kextstat | grep com.apple.driver.AppleADBMouse > /dev/null || \
+    $kextstat | grep name.razzfazz.iScroll2 > /dev/null || \
+    $kextstat | grep name.razzfazz.driver.iScroll2 > /dev/null)
 then 
     echo "ERROR: No compatible trackpad driver loaded!"
     exit $[(3<<5)+17]
 fi
 echo "Apple trackpad driver is loaded."
+
 echo "Checking if trackpad supports W-Enhanced mode..."
-if ! ioreg -n AppleADBMouseType4 | grep "W Enhanced Trackpad" > /dev/null
+if ! $ioreg -n AppleADBMouseType4 | grep "W Enhanced Trackpad" > /dev/null
 then
     echo "ERROR: Trackpad does not seem to support W-Enhanced mode."
     exit $[(3<<5)+18]
 fi
 echo "Trackpad seems to support W-Enhanced mode."
+
 exit 0

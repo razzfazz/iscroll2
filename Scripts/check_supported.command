@@ -30,7 +30,7 @@ echo "Supported trackpad driver found."
 echo
 echo "Checking if trackpad hardware supports scrolling..."
 if ! (ioreg -n AppleADBMouseType4 | grep "W Enhanced Trackpad" > /dev/null || \
-    $ioreg -n iScroll2 | grep "W Enhanced Trackpad" > /dev/null)
+    ioreg -n iScroll2 | grep "W Enhanced Trackpad" > /dev/null)
 then
     echo "Your trackpad does not seem to support W-enhanced mode."
     echo "W-enhanced mode is necessary for two-finger scrolling to work."

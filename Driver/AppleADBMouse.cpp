@@ -858,10 +858,10 @@ void AppleADBMouseType4::packetW(UInt8 /*adbCommand*/, IOByteCount length, UInt8
 				_stickyRotating = false;
 			}
 			angleSquared = _oldScrollY * dx - _oldScrollX * dy;
-			angleSquared = 100 * my_sgn(angleSquared) * (angleSquared * angleSquared) / ((_oldScrollX * _oldScrollX + _oldScrollY * _oldScrollY) * (dx * dx + dy * dy));
+			angleSquared = 100 * my_abs(angleSquared) * angleSquared / ((_oldScrollX * _oldScrollX + _oldScrollY * _oldScrollY) * (dx * dx + dy * dy));
 			if(_stickyRotating || (my_abs(angleSquared) > _scrollThreshRot))
 			{
-				_scrollRot += my_sgn(_scrollScaleRot ? -angleSquared : angleSquared) * (my_abs(dx) + my_abs(dy)) / _scrollScaleRot;
+				_scrollRot += my_sgn(_scrollInvertRot ? -angleSquared : angleSquared) * (my_abs(dx) + my_abs(dy)) / _scrollScaleRot;
 				if(_scrollRot && !withhold)
 				{
 					dispatchScrollWheelEvent(_scrollRot, 0, 0, now);

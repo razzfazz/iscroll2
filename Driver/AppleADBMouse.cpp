@@ -871,9 +871,9 @@ void AppleADBMouseType4::packetW(UInt8 /*adbCommand*/, IOByteCount length, UInt8
 		}
 		if(!skipLinear)
 		{
-			if(_enableScrollX && ((my_abs(dx) < _scrollThreshX) || _scrollDominantAxisOnly && (my_abs(dy) > my_abs(dx))))
+			if(_enableScrollX && ((my_abs(dx) >= _scrollThreshX) && (!_scrollDominantAxisOnly || (my_abs(dx) >= my_abs(dy)))))
 				_scrollX += (_scrollInvertX ? dx : -dx) / _scrollScaleX;
-			if(_enableScrollY && ((my_abs(dy) < _scrollThreshY) || _scrollDominantAxisOnly && (my_abs(dx) > my_abs(dy))))
+			if(_enableScrollY && ((my_abs(dy) >= _scrollThreshY) && (!_scrollDominantAxisOnly || (my_abs(dy) >= my_abs(dx)))))
 				_scrollY += (_scrollInvertY ? dy : -dy) / _scrollScaleY;
 			if((_scrollX || _scrollY) && !withhold)
 			{

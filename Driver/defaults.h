@@ -20,7 +20,7 @@
 #define kTrackpadVScrollScaleDefault			2
 #define kTrackpadVScrollInvertDefault			0
 #define kTrackpadCScrollDefault					0
-#define kTrackpadCScrollThresholdDefault		20
+#define kTrackpadCScrollThresholdDefault		8
 #define kTrackpadCScrollScaleDefault			2
 #define kTrackpadCScrollInvertDefault			0
 #define kTrackpadScrollIgnoreWeakAxisDefault	0

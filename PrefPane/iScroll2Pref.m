@@ -3,10 +3,12 @@
 //  iScroll2
 //
 //  Created by Daniel Becker on 2005-02-13.
-//  Copyright (c) 2005 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2005 Daniel Becker. All rights reserved.
 //
 
 #import "iScroll2Pref.h"
+
+#include <CoreFoundation/CFBundle.h>
 
 #import "ioregistry.h"
 #import "../Driver/ioregkeys.h"
@@ -25,7 +27,7 @@
 	while(key = [control nextObject])
 	{
 		value = [parameters objectForKey:key];
-		if(![value isKindOfClass:[NSNumber class]])
+		if(![value isMemberOfClass:[NSNumber class]])
 		{
 			value = [_defaults objectForKey:key];
 		}
@@ -35,33 +37,33 @@
 	while(key = [control nextObject])
 	{
 		value = [parameters objectForKey:key];
-		if(![value isKindOfClass:[NSNumber class]])
+		if(![value isMemberOfClass:[NSNumber class]])
 		{
 			value = [_defaults objectForKey:key];
 		}
 		[(NSSlider *)[_sliders objectForKey:key] setIntValue:[(NSNumber *)value intValue]];
 	}
-	key = @kTrackpadTwoFingerModClick;
-	value = [parameters objectForKey:key];
-	if(![value isKindOfClass:[NSNumber class]])
+	control = [_popupbuttons keyEnumerator];
+	while(key = [control nextObject])
 	{
-		value = [_defaults objectForKey:key];
+		value = [parameters objectForKey:key];
+		if(![value isMemberOfClass:[NSNumber class]])
+		{
+			value = [_defaults objectForKey:key];
+		}
+		[(NSPopUpButton *)[_popupbuttons objectForKey:key] selectItemAtIndex:[(NSNumber *)value intValue]];
 	}
-	[(NSMatrix *)_twoFingerModClick selectCellWithTag:[(NSNumber *)value intValue]];
 	[parameters release];
 }
 
 - (void)mainViewDidLoad
 {
 	_buttons = [[NSDictionary alloc] initWithObjectsAndKeys:
-		_enable, @kTrackpadScroll,
 		_CEnable, @kTrackpadCircScroll,
 		_CInvert, @kTrackpadCircScrollInvert,
-		_HEnable, @kTrackpadHorizScroll,
 		_HInvert, @kTrackpadHorizScrollInvert,
-		_ignoreWeakerAxis, @kTrackpadScrollDominantAxisOnly,
-		_VEnable, @kTrackpadVertScroll,
 		_VInvert, @kTrackpadVertScrollInvert,
+		_ignoreWeakerAxis, @kTrackpadScrollIgnoreWeakAxis,
 		0];
 	_sliders = [[NSDictionary alloc] initWithObjectsAndKeys:
 		_CResetTime, @kTrackpadCircScrollMaxDelay,
@@ -69,29 +71,36 @@
 		_CThresh, @kTrackpadCircScrollThreshold,
 		_HScale, @kTrackpadHorizScrollScale,
 		_HThresh, @kTrackpadHorizScrollThreshold,
-		_minDelay, @kTrackpadScrollMinDelay,
 		_VScale, @kTrackpadVertScrollScale,
 		_VThresh, @kTrackpadVertScrollThreshold,
+		_minDelay, @kTrackpadScrollMinDelay,
+		0];
+	_popupbuttons = [[NSDictionary alloc] initWithObjectsAndKeys:
+		_clickMapTo, @kTrackpadClickMapTo,
+		_tapMapTo, @kTrackpadTapMapTo,
+		_twoFingerClickMapTo, @kTrackpadTwoFingerClickMapTo,
 		0];
 	_defaults = [[NSDictionary alloc] initWithObjectsAndKeys:
 		[NSNumber numberWithInt: kTrackpadScrollDefault], @kTrackpadScroll,
+		[NSNumber numberWithInt: kTrackpadVertScrollThresholdDefault], @kTrackpadVertScrollThreshold,
+		[NSNumber numberWithInt: kTrackpadVertScrollScaleDefault], @kTrackpadVertScrollScale,
+		[NSNumber numberWithInt: kTrackpadVertScrollInvertDefault], @kTrackpadVertScrollInvert,
 		[NSNumber numberWithInt: kTrackpadHorizScrollDefault], @kTrackpadHorizScroll,
 		[NSNumber numberWithInt: kTrackpadHorizScrollThresholdDefault], @kTrackpadHorizScrollThreshold,
 		[NSNumber numberWithInt: kTrackpadHorizScrollScaleDefault], @kTrackpadHorizScrollScale,
 		[NSNumber numberWithInt: kTrackpadHorizScrollInvertDefault], @kTrackpadHorizScrollInvert,
-		[NSNumber numberWithInt: kTrackpadVertScrollDefault], @kTrackpadVertScroll,
-		[NSNumber numberWithInt: kTrackpadVertScrollThresholdDefault], @kTrackpadVertScrollThreshold,
-		[NSNumber numberWithInt: kTrackpadVertScrollScaleDefault], @kTrackpadVertScrollScale,
-		[NSNumber numberWithInt: kTrackpadVertScrollInvertDefault], @kTrackpadVertScrollInvert,
 		[NSNumber numberWithInt: kTrackpadCircScrollDefault], @kTrackpadCircScroll,
 		[NSNumber numberWithInt: kTrackpadCircScrollThresholdDefault], @kTrackpadCircScrollThreshold,
 		[NSNumber numberWithInt: kTrackpadCircScrollScaleDefault], @kTrackpadCircScrollScale,
 		[NSNumber numberWithInt: kTrackpadCircScrollInvertDefault], @kTrackpadCircScrollInvert,
-		[NSNumber numberWithInt: kTrackpadScrollDominantAxisOnlyDefault], @kTrackpadScrollDominantAxisOnly,
-		[NSNumber numberWithInt: kTrackpadTwoFingerModClickDefault], @kTrackpadTwoFingerModClick,
+		[NSNumber numberWithInt: kTrackpadScrollIgnoreWeakAxisDefault], @kTrackpadScrollIgnoreWeakAxis,
+		[NSNumber numberWithInt: kTrackpadClickMapToDefault], @kTrackpadClickMapTo,
+		[NSNumber numberWithInt: kTrackpadTapMapToDefault], @kTrackpadTapMapTo,
+		[NSNumber numberWithInt: kTrackpadTwoFingerClickMapToDefault], @kTrackpadTwoFingerClickMapTo,
 		[NSNumber numberWithInt: kTrackpadScrollMinDelayDefault], @kTrackpadScrollMinDelay,
 		[NSNumber numberWithInt: kTrackpadCircScrollMaxDelayDefault], @kTrackpadCircScrollMaxDelay,
 		0];
+	[_version setStringValue:[NSString stringWithFormat:@"Version %@", [[[self bundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]]];
 }
 
 - (void)willSelect
@@ -104,7 +113,7 @@
 	NSEnumerator * control;
 	NSDictionary * parameters = nil;
 	NSObject * key;
-	if([sender isKindOfClass:[NSButton class]])
+	if([sender isMemberOfClass:[NSButton class]])
 	{
 		control = [_buttons keyEnumerator];
 		while(key = [control nextObject])
@@ -116,7 +125,7 @@
 			}
 		}
 	}
-	else if([sender isKindOfClass:[NSSlider class]])
+	else if([sender isMemberOfClass:[NSSlider class]])
 	{
 		control = [_sliders keyEnumerator];
 		while(key = [control nextObject])
@@ -128,16 +137,23 @@
 			}
 		}
 	}
-	else if([sender isKindOfClass:[NSMatrix class]])
+	else if([sender isMemberOfClass:[NSPopUpButton class]])
 	{
-		if(_twoFingerModClick == sender)
+		control = [_popupbuttons keyEnumerator];
+		while(key = [control nextObject])
 		{
-			key = @kTrackpadTwoFingerModClick;
-			parameters = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:[[sender selectedCell] tag]], key, 0];
+			if([_popupbuttons objectForKey:key] == sender)
+			{
+				parameters = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:[sender indexOfSelectedItem]], key, 0];
+				break;
+			}
 		}
 	}
-	applySettingsToHIDSystem((CFDictionaryRef)parameters);
-	if(parameters != nil) [parameters release];
+	if(parameters != nil)
+	{
+		applySettingsToHIDSystem((CFDictionaryRef)parameters);
+		[parameters release];
+	}
 }
 
 @end

@@ -50,7 +50,6 @@ EXIT:
 	if(properties) CFRelease(properties);
 	if(regEntry) IOObjectRelease(regEntry);
 	if(iter) IOObjectRelease(iter);
-	printf("returning dictionary at %x with %d pairs\n", success ? (int)parameters : 0, success ? (int)CFDictionaryGetCount(parameters) : 0);
 	return success ? parameters : 0;
 }
 

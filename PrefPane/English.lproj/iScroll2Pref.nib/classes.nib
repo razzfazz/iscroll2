@@ -22,18 +22,18 @@
                 "_CResetTime" = NSSlider; 
                 "_CScale" = NSSlider; 
                 "_CThresh" = NSSlider; 
-                "_HEnable" = NSButton; 
                 "_HInvert" = NSButton; 
                 "_HScale" = NSSlider; 
                 "_HThresh" = NSSlider; 
-                "_VEnable" = NSButton; 
                 "_VInvert" = NSButton; 
                 "_VScale" = NSSlider; 
                 "_VThresh" = NSSlider; 
-                "_enable" = NSButton; 
+                "_clickMapTo" = NSPopUpButton; 
                 "_ignoreWeakerAxis" = NSButton; 
                 "_minDelay" = NSSlider; 
-                "_twoFingerModClick" = NSMatrix; 
+                "_tapMapTo" = NSPopUpButton; 
+                "_twoFingerClickMapTo" = NSPopUpButton; 
+                "_version" = NSTextField; 
             }; 
             SUPERCLASS = NSPreferencePane; 
         }

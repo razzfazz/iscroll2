@@ -18,10 +18,7 @@ if [ ! -d "Package_contents/$kextpath" ]
 then
 	mkdir -p "Package_contents/$kextpath"
 fi
-if [ ! -e "Package_contents/$kextpath/$kextname" ]
-then
-	cp -R ../Driver/build/$kextname "Package_contents/$kextpath"
-fi
+cp -R ../Driver/build/$kextname "Package_contents/$kextpath"
 chown -R $kextowner "Package_contents/`echo $kextpath | cut -d / -f 1`"
 chmod -R u=$kextuperms "Package_contents/`echo $kextpath | cut -d / -f 1`"
 chmod -R g=$kextgperms "Package_contents/`echo $kextpath | cut -d / -f 1`"
@@ -31,11 +28,10 @@ if [ ! -d "Package_contents/$prefpath" ]
 then
 	mkdir -p "Package_contents/$prefpath"
 fi
-if [ -e "Package_contents/$prefpath/$prefname" ]
-then
-	cp -R ../PrefPane/build/$prefname "Package_contents/$prefpath"
-fi
+cp -R ../PrefPane/build/$prefname "Package_contents/$prefpath"
 chown -R $prefowner "Package_contents/`echo $prefpath | cut -d / -f 1`"
 chmod -R u=$prefuperms "Package_contents/`echo $prefpath | cut -d / -f 1`"
 chmod -R g=$prefgperms "Package_contents/`echo $prefpath | cut -d / -f 1`"
 chmod -R o=$prefoperms "Package_contents/`echo $prefpath | cut -d / -f 1`"
+
+cp ../Website/index.html Install_resources/ReadMe.html

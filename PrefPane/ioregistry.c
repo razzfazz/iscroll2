@@ -15,8 +15,8 @@
 
 CFDictionaryRef getHIDSystemParameters()
 {
-	io_iterator_t iter;
-	io_registry_entry_t regEntry;
+	io_iterator_t iter = 0;
+	io_registry_entry_t regEntry = 0;
 	bool success = TRUE;
 	CFMutableDictionaryRef properties = 0;
 	CFDictionaryRef parameters = 0;
@@ -56,8 +56,8 @@ EXIT:
 
 bool applySettingsToHIDSystem(CFDictionaryRef settings)
 {
-	io_iterator_t iter;
-	io_registry_entry_t regEntry;
+	io_iterator_t iter = 0;
+	io_registry_entry_t regEntry = 0;
 	bool success = TRUE;
 	
 	IOServiceGetMatchingServices(kIOMasterPortDefault, 

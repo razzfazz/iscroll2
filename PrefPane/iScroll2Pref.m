@@ -102,7 +102,7 @@
 - (IBAction)saveSettings:(id)sender
 {
 	NSEnumerator * control;
-	NSDictionary * parameters;
+	NSDictionary * parameters = nil;
 	NSObject * key;
 	if([sender isKindOfClass:[NSButton class]])
 	{
@@ -137,7 +137,7 @@
 		}
 	}
 	applySettingsToHIDSystem((CFDictionaryRef)parameters);
-	[parameters release];
+	if(parameters != nil) [parameters release];
 }
 
 @end

@@ -13,13 +13,12 @@
             SUPERCLASS = NSObject; 
         }, 
         {
-            ACTIONS = {saveSettings = id; }; 
+            ACTIONS = {loadDefaults = id; saveSettings = id; }; 
             CLASS = iScroll2Pref; 
             LANGUAGE = ObjC; 
             OUTLETS = {
                 "_CEnable" = NSButton; 
                 "_CInvert" = NSButton; 
-                "_CResetTime" = NSSlider; 
                 "_CScale" = NSSlider; 
                 "_CThresh" = NSSlider; 
                 "_HEnable" = NSButton; 

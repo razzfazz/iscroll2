@@ -38,5 +38,6 @@
 
 - (void)mainViewDidLoad;
 - (IBAction)saveSettings:(id)sender;
+- (IBAction)loadDefaults:(id)sender;
 
 @end

@@ -164,4 +164,10 @@
 	}
 }
 
+- (IBAction)loadDefaults:(id)sender
+{
+	applySettingsToHIDSystem((CFDictionaryRef)_defaults);
+	[self loadSettings];
+}
+
 @end

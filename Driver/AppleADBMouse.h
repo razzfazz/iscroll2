@@ -107,7 +107,7 @@ private:
 	// modified dub:
 	short			_oldScrollX;
 	short			_oldScrollY;
-	bool			_enableScroll;
+//	bool			_enableScroll;
 	bool			_enableScrollX;
 	UInt16			_scrollThreshX;
 	UInt16			_scrollScaleX;

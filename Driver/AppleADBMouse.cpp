@@ -704,7 +704,7 @@ void iScroll2::packet(UInt8 adbCommand, IOByteCount length, UInt8 * data)
 		if ((data[3] & 0x80) == 0)
 		{
 			// modified dub:
-			if (_2fingernoaction || _enableScroll)
+			if (_2fingernoaction || _enableScrollX || _enableScrollY || _enableScrollRot)
 			// end modifications
 			{
 			
@@ -832,7 +832,7 @@ void iScroll2::packet(UInt8 adbCommand, IOByteCount length, UInt8 * data)
 		
 // modified dub:
 //		if ((has2fingers) || (outzone && palm))
-		if ((!_enableScroll && has2fingers) || (outzone && palm))
+		if ((!(_enableScrollX || _enableScrollY || _enableScrollRot) && has2fingers) || (outzone && palm))
 // end modifications
 		
 		{
@@ -901,7 +901,7 @@ void iScroll2::packet(UInt8 adbCommand, IOByteCount length, UInt8 * data)
     } //jittermove
 	
 	// modified dub:
-	if(_enableScroll && has2fingers)
+	if((_enableScrollX || _enableScrollY || _enableScrollRot) && has2fingers)
 	{
 		bool skipLinear = false;
 		AbsoluteTime sub_now = now;
@@ -1448,8 +1448,8 @@ bool iScroll2::enableEnhancedMode()
 		nanoseconds_to_absolutetime(0, &_zonepeckingtimeAB);
 		
 // modified dub:
-		plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadScrollKey));
-		_enableScroll = plistnum ? (bool)plistnum->unsigned8BitValue() :  false;
+/*		plistnum = OSDynamicCast(OSNumber, getProperty(kTrackpadScrollKey));
+		_enableScroll = plistnum ? (bool)plistnum->unsigned8BitValue() :  false;*/
 		nanoseconds_to_absolutetime(0, &_lastScrollTimeAB);
 // end modifications
 		
@@ -1592,11 +1592,11 @@ IOReturn iScroll2::setParamProperties( OSDictionary * dict )
         
 		
 // modified dub:
-//		if (datan = OSDynamicCast(OSNumber, dict->getObject("Use Panther Settings for W"))) 
-//		{
-//			_usePantherSettings = (bool) datan->unsigned32BitValue();
-//			setProperty("Use Panther Settings for W", _usePantherSettings, sizeof(UInt32));
-//		}
+/*		if (datan = OSDynamicCast(OSNumber, dict->getObject("Use Panther Settings for W"))) 
+		{
+			_usePantherSettings = (bool) datan->unsigned32BitValue();
+			setProperty("Use Panther Settings for W", _usePantherSettings, sizeof(UInt32));
+		}*/
 // end modifications
 		
 		if (datan = OSDynamicCast(OSNumber, dict->getObject("PalmNoAction Permanent"))) 
@@ -1654,11 +1654,11 @@ IOReturn iScroll2::setParamProperties( OSDictionary * dict )
 		}
 		
 // modified dub:
-		if(datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadScrollKey))) 
+/*		if(datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadScrollKey))) 
 		{
 			_enableScroll = (bool) datan->unsigned8BitValue();
 			setProperty(kTrackpadScrollKey, _enableScroll, sizeof(UInt8)*8);
-		}
+		}*/
 		if(datad = OSDynamicCast(OSDictionary, dict->getObject(kiScroll2SettingsKey)))
 		{
 			if(datab = OSDynamicCast(OSBoolean, datad->getObject(kTrackpadHScrollKey))) 

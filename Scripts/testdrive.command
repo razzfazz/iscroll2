@@ -6,6 +6,21 @@ modkext="iScroll2.kext"
 clear
 cd `dirname $0`
 echo
+echo "Checking for other alternative trackpad drivers..."
+if kextstat | grep com.ragingmenace.driver.SideTrack > /dev/null
+then
+    echo "ERROR: SideTrack seems to be installed on your machine."
+    echo "iScroll2 is not compatible with SideTrack."
+    exit
+fi
+if kextstat | grep uk.org.outpost.driver.OutpostADBMouse > /dev/null
+then
+    echo "ERROR: FingaMIDI seems to be installed on your machine."
+    echo "iScroll2 is not compatible with FingaMIDI."
+    exit
+fi
+echo
+echo "No alternative trackpad drivers detected."
 echo "Checking if Apple trackpad driver is loaded..."
 if ! kextstat | grep $origbundleid > /dev/null
 then 

@@ -242,6 +242,7 @@
 								<string>089C166AFE841209C02AAC07</string>
 								<string>08FB77AFFE84173DC02AAC07</string>
 								<string>089C167CFE841241C02AAC07</string>
+								<string>089C167DFE841241C02AAC07</string>
 								<string>F506C042013D9D8C01CA16C8</string>
 								<string>089C1671FE841209C02AAC07</string>
 								<string>1058C7ACFEA557BF11CA2CBB</string>
@@ -250,6 +251,9 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>11</integer>
+									<integer>9</integer>
+									<integer>7</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -269,7 +273,7 @@
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>558 280 690 397 0 0 1280 1002 </string>
+						<string>558 211 690 397 0 0 1280 832 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -304,7 +308,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {481, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>558 280 690 397 0 0 1280 1002 </string>
+								<string>558 211 690 397 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -326,7 +330,7 @@
 								<key>Frame</key>
 								<string>{{0, 7}, {481, 348}}</string>
 								<key>RubberWindowFrame</key>
-								<string>558 280 690 397 0 0 1280 1002 </string>
+								<string>558 211 690 397 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -350,9 +354,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>85F73B7B07D508E200D96DAD</string>
+				<string>8545504307D5D76E009B1526</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>85F73B7C07D508E200D96DAD</string>
+				<string>8545504407D5D76E009B1526</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -383,7 +387,7 @@
 		<string>/Users/dub/Documents/Source Code/Mac/iScroll2/PrefPane/iScroll2Pref.xcode</string>
 	</array>
 	<key>WindowString</key>
-	<string>558 280 690 397 0 0 1280 1002 </string>
+	<string>558 211 690 397 0 0 1280 832 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>

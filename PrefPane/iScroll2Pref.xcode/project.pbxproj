@@ -99,6 +99,7 @@
 		089C167DFE841241C02AAC07 = {
 			children = (
 				089C167EFE841241C02AAC07,
+				8545504C07D5D900009B1526,
 			);
 			isa = PBXVariantGroup;
 			name = InfoPlist.strings;
@@ -231,6 +232,22 @@
 //852
 //853
 //854
+		8545504907D5D812009B1526 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.nib;
+			name = French;
+			path = French.lproj/iScroll2Pref.nib;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		8545504C07D5D900009B1526 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.strings;
+			name = French;
+			path = French.lproj/InfoPlist.strings;
+			refType = 4;
+			sourceTree = "<group>";
+		};
 		85B0DDD607C7644500FD7DBC = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -493,6 +510,7 @@
 		F506C042013D9D8C01CA16C8 = {
 			children = (
 				F506C043013D9D8C01CA16C8,
+				8545504907D5D812009B1526,
 			);
 			isa = PBXVariantGroup;
 			name = iScroll2Pref.nib;

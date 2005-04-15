@@ -21,10 +21,10 @@ echo
 
 for f in $files
 do
-	if [ -e $f ]
+	if [ -e "$f" ]
 	then
     		echo "Removing $f..."
-		if ! sudo rm -R $f
+		if ! sudo rm -R "$f"
 		then
         		echo "ERROR: Unable to remove $f. Please remove manually."
 		 fi

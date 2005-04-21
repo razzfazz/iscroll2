@@ -24,15 +24,24 @@ void ConsoleUserChangedCallBackFunction(SCDynamicStoreRef store,
 	username = SCDynamicStoreCopyConsoleUser(store, &uid, &gid);
     if (username != NULL)
     {
-		syslog(1, "Console user changed to %d", uid);
+		const char * name;
+		name = CFStringGetCStringPtr(username, kCFStringEncodingMacRoman);
+		if(name) syslog(1, "Console user changed to '%s'.", name);
+		else syslog(1, "Console user changed to UID %d.", uid);
 		settings = CFPreferencesCopyValue(CFSTR(kCurrentParametersKey), 
 										  CFSTR(kDriverAppID), username, kCFPreferencesAnyHost);
         CFRelease(username);
 		if(!settings)
 		{
-			syslog(1, "No settings found for user %d; loading defaults.\n", uid);
+			if(name) syslog(1, "No custom settings found for user '%s'; loading defaults.\n", name);
+			else syslog(1, "No custom settings found for UID %d; loading defaults.\n", uid);
 			settings = CFPreferencesCopyValue(CFSTR(kDefaultParametersKey), 
 											  CFSTR(kDriverAppID), kCFPreferencesAnyUser, kCFPreferencesCurrentHost);
+		}
+		else
+		{
+			if(name) syslog(1, "%d settings loaded for user '%s'.\n", CFDictionaryGetCount(settings), name);
+			else syslog(1, "%d settings loaded for UID %d.\n", CFDictionaryGetCount(settings), uid);
 		}
     }
     else
@@ -111,8 +120,8 @@ int main (int argc, const char * argv[])
     Boolean				result;
     CFRunLoopSourceRef	rls = NULL;
     FILE				* pid_file;
-	syslog(1, "Daemon starting up with PID %d.\n", getpid());
     daemon(0,0);
+	syslog(1, "Daemon starting up with PID %d.\n", getpid());
     result = InstallConsoleUserChangedNotifier(CFSTR(kProgramName), &rls);
     if (result != TRUE)
     {

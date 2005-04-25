@@ -1,19 +1,28 @@
 #!/bin/sh
 
-kextname="iScroll2.kext"
-kextdir="/System/Library/Extensions"
-prefname="iScroll2.prefPane"
-prefdir="/Library/PreferencePanes"
+files="/System/Library/Extensions/iScroll2.kext \
+	/Library/PreferencePanes/iScroll2.prefPane \
+	/Library/Preferences/name.razzfazz.driver.iScroll2.plist \
+	/Library/StartupItems/iScroll2 \
+	/usr/local/bin/iScroll2Daemon \
+	/Library/Receipts/iScroll2.pkg \
+	/System/Library/Extensions.kextcache"
 
-if [ -e "$kextdir/$kextname" ]
-then
-    echo "Removing old version of $kextname."
-    rm -R "$kextdir/$kextname"
-fi
+echo "iScroll2 preupdate script running..."
 
-if [ -e "$prefdir/$prefname" ]
-then
-    echo "Removing old version of $prefname."
-    rm -R "$prefdir/$prefname"
-fi
-exit 0
+for f in $files
+do
+	if [ -e "$f" ]
+	then
+    		echo "Removing $f..."
+		if ! rm -R "$f"
+		then
+       		echo "ERROR: Unable to remove $f. Please remove manually."
+		 fi
+    		echo "$f successfully removed."
+	else
+   		echo "$f not found, skipping."
+	fi
+done
+
+echo "iScroll2 preupdate script done."

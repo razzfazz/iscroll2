@@ -67,9 +67,8 @@
 {
 	NSDictionary * localizedInfoDict;
 	_buttons = [[NSDictionary alloc] initWithObjectsAndKeys:
-		_VEnable, @kTrackpadVScrollKey,
-		_HEnable, @kTrackpadHScrollKey,
 		_CEnable, @kTrackpadCScrollKey,
+		_COnly, @kTrackpadCScrollOnlyKey,
 		_CInvert, @kTrackpadCScrollInvertKey,
 		_HInvert, @kTrackpadHScrollInvertKey,
 		_VInvert, @kTrackpadVScrollInvertKey,
@@ -78,11 +77,8 @@
 	_sliders = [[NSDictionary alloc] initWithObjectsAndKeys:
 		_CScale, @kTrackpadCScrollScaleKey,
 		_CThresh, @kTrackpadCScrollThresholdKey,
-		_HScale, @kTrackpadHScrollScaleKey,
 		_HThresh, @kTrackpadHScrollThresholdKey,
-		_VScale, @kTrackpadVScrollScaleKey,
 		_VThresh, @kTrackpadVScrollThresholdKey,
-		_minDelay, @kTrackpadScrollMinDelayKey,
 		0];
 	_popupbuttons = [[NSDictionary alloc] initWithObjectsAndKeys:
 		_clickMapTo, @kTrackpadClickMapToKey,

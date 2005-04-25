@@ -251,8 +251,6 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>10</integer>
-									<integer>8</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -272,7 +270,7 @@
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>531 156 690 397 0 0 1280 832 </string>
+						<string>531 152 690 397 0 0 1280 1002 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -307,7 +305,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {481, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>531 156 690 397 0 0 1280 832 </string>
+								<string>531 152 690 397 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -327,7 +325,7 @@
 								<key>Frame</key>
 								<string>{{0, 7}, {481, 348}}</string>
 								<key>RubberWindowFrame</key>
-								<string>531 156 690 397 0 0 1280 832 </string>
+								<string>531 152 690 397 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -351,9 +349,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>8552AC1308007B8300B21E73</string>
+				<string>85CAAEC5081DA30000203449</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>8552AC1408007B8300B21E73</string>
+				<string>85CAAEC6081DA30000203449</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -381,10 +379,11 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>8509A53A07C01729002A3DD9</string>
 		<string>/Users/dub/Documents/Source Code/Mac/iScroll2/PrefPane/iScroll2Pref.xcode</string>
 	</array>
 	<key>WindowString</key>
-	<string>531 156 690 397 0 0 1280 832 </string>
+	<string>531 152 690 397 0 0 1280 1002 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>
@@ -473,7 +472,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>8509A53A07C01729002A3DD9</string>
-				<string>85098BF407E2419900AB4CD5</string>
+				<string>85CAAEDA081DAB4200203449</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -484,7 +483,7 @@
 			<key>WindowToolGUID</key>
 			<string>8509A53A07C01729002A3DD9</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

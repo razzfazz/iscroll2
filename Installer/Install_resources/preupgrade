@@ -8,7 +8,7 @@ files="/System/Library/Extensions/iScroll2.kext \
 	/Library/Receipts/iScroll2.pkg \
 	/System/Library/Extensions.kextcache"
 
-echo "iScroll2 preupdate script running..."
+echo "iScroll2 preupgrade script running..."
 
 for f in $files
 do
@@ -25,4 +25,4 @@ do
 	fi
 done
 
-echo "iScroll2 preupdate script done."
+echo "iScroll2 preupgrade script done."

@@ -2,7 +2,8 @@
 
 if [ ! ( -f /usr/sbin/ioreg -a -f /usr/sbin/kextstat -a -f /usr/sbin/sysctl ) ]
 then
-    echo "WARNING: BSD subsystem not installed. Skipping checks."
+    echo "WARNING: BSD subsystem not installed."
+    echo "Skipping installation checks."
     exit 53
 fi
 

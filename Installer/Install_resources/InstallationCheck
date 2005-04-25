@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ ! ( -f /usr/sbin/ioreg -a -f /usr/sbin/kextstat -a -f /usr/sbin/sysctl ) ]
+if [ ! -f /usr/sbin/ioreg -o ! -f /usr/sbin/kextstat -o ! -f /usr/sbin/sysctl ]
 then
     echo "WARNING: BSD subsystem not installed."
     echo "Skipping installation checks."
@@ -8,7 +8,7 @@ then
 fi
 
 echo "Checking OS version..."
-if [ "`sysctl -n kern.osrelease | cut -d "." -f 1`" != "7" ]
+if [ "`sysctl -n kern.osrelease | cut -d "." -f 1`" \< "7" ]
 then
     echo "ERROR: Incompatible operating system version detected."
     exit 112

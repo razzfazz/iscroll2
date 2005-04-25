@@ -1,33 +1,18 @@
 #!/bin/sh
 
-if [ -f "`which sysctl`" ]
+if [ ! ( -f /usr/sbin/ioreg -a -f /usr/sbin/kextstat -a -f /usr/sbin/sysctl ) ]
 then
-     sysctl="`which sysctl`"
-else
-     sysctl="/usr/sbin/sysctl"
-fi
-
-if [ -f "`which ioreg`" ]
-then
-     ioreg="`which ioreg`"
-else
-     ioreg="/usr/sbin/ioreg"
-fi
-
-if [ -f "`which kextstat`" ]
-then
-     kextstat="`which kextstat`"
-else
-     kextstat="/usr/sbin/kextstat"
+    echo "WARNING: BSD subsystem not installed. Skipping checks."
+    exit 53
 fi
 
 echo "Checking OS version..."
-if [ "`$sysctl -n kern.osrelease | cut -d "." -f 1`" != "7" ]
+if [ "`sysctl -n kern.osrelease | cut -d "." -f 1`" != "7" ]
 then
     echo "ERROR: Incompatible operating system version detected."
     exit 112
 fi
-echo "Darwin version `$sysctl -n kern.osrelease` detected."
+echo "Darwin version `sysctl -n kern.osrelease` detected."
 
 echo "Checking for other alternative trackpad drivers..."
 if kextstat | grep com.ragingmenace.driver.SideTrack > /dev/null
@@ -45,9 +30,9 @@ fi
 echo "No other known alternative drivers detected."
 
 echo "Checking if trackpad driver is loaded..."
-if ! ($kextstat | grep com.apple.driver.AppleADBMouse > /dev/null || \
-    $kextstat | grep name.razzfazz.iScroll2 > /dev/null || \
-    $kextstat | grep name.razzfazz.driver.iScroll2 > /dev/null)
+if ! (kextstat | grep com.apple.driver.AppleADBMouse > /dev/null || \
+    kextstat | grep name.razzfazz.iScroll2 > /dev/null || \
+    kextstat | grep name.razzfazz.driver.iScroll2 > /dev/null)
 then 
     echo "ERROR: No compatible trackpad driver loaded!"
     exit 115
@@ -55,8 +40,8 @@ fi
 echo "Apple trackpad driver is loaded."
 
 echo "Checking if trackpad supports W-Enhanced mode..."
-if ! ($ioreg -n AppleADBMouseType4 | grep "W Enhanced Trackpad" > /dev/null || \
-    $ioreg -n iScroll2 | grep "W Enhanced Trackpad" > /dev/null)
+if ! (ioreg -n AppleADBMouseType4 | grep "W Enhanced Trackpad" > /dev/null || \
+    ioreg -n iScroll2 | grep "W Enhanced Trackpad" > /dev/null)
 then
     echo "ERROR: Trackpad does not seem to support W-Enhanced mode."
     exit 116

@@ -29,26 +29,32 @@ void ConsoleUserChangedCallBackFunction(SCDynamicStoreRef store,
 		if(name) syslog(1, "Console user changed to '%s'.", name);
 		else syslog(1, "Console user changed to UID %d.", uid);
 		settings = CFPreferencesCopyValue(CFSTR(kCurrentParametersKey), 
-										  CFSTR(kDriverAppID), username, kCFPreferencesAnyHost);
+										  CFSTR(kDriverAppID), username, 
+										  kCFPreferencesAnyHost);
         CFRelease(username);
 		if(!settings)
 		{
-			if(name) syslog(1, "No custom settings found for user '%s'; loading defaults.\n", name);
+			if(name) syslog(1, "No custom settings found for user '%s'; loading defaults.\n", 
+				name);
 			else syslog(1, "No custom settings found for UID %d; loading defaults.\n", uid);
 			settings = CFPreferencesCopyValue(CFSTR(kDefaultParametersKey), 
-											  CFSTR(kDriverAppID), kCFPreferencesAnyUser, kCFPreferencesCurrentHost);
+											  CFSTR(kDriverAppID), kCFPreferencesAnyUser, 
+											  kCFPreferencesCurrentHost);
 		}
 		else
 		{
-			if(name) syslog(1, "%d settings loaded for user '%s'.\n", CFDictionaryGetCount(settings), name);
-			else syslog(1, "%d settings loaded for UID %d.\n", CFDictionaryGetCount(settings), uid);
+			if(name) syslog(1, "%d settings loaded for user '%s'.\n", 
+				CFDictionaryGetCount(settings), name);
+			else syslog(1, "%d settings loaded for UID %d.\n", 
+				CFDictionaryGetCount(settings), uid);
 		}
     }
     else
     {
 		syslog(1, "Console user logged out.\n");
 		settings = CFPreferencesCopyValue(CFSTR(kDefaultParametersKey), 
-										  CFSTR(kDriverAppID), kCFPreferencesAnyUser, kCFPreferencesCurrentHost);
+										  CFSTR(kDriverAppID), kCFPreferencesAnyUser, 
+										  kCFPreferencesCurrentHost);
     }
 	IOServiceGetMatchingServices(kIOMasterPortDefault, 
 								 IOServiceMatching(kIOHIDSystemClass),
@@ -60,7 +66,8 @@ void ConsoleUserChangedCallBackFunction(SCDynamicStoreRef store,
 	if(regEntry == 0) {
 		goto EXIT;
 	}
-	if(IORegistryEntrySetCFProperty(regEntry, CFSTR(kiScroll2SettingsKey), settings) != KERN_SUCCESS) {
+	if(IORegistryEntrySetCFProperty(regEntry, CFSTR(kiScroll2SettingsKey), 
+		settings) != KERN_SUCCESS) {
 		goto EXIT;
 	}
 EXIT:
@@ -69,7 +76,8 @@ EXIT:
 	if(iter) IOObjectRelease(iter);
 }
 
-Boolean InstallConsoleUserChangedNotifier(CFStringRef appID, CFRunLoopSourceRef * rls)
+Boolean InstallConsoleUserChangedNotifier(CFStringRef appID, 
+	CFRunLoopSourceRef * rls)
 {
 	SCDynamicStoreContext context = { 0, NULL, NULL, NULL, NULL };
 	SCDynamicStoreRef session = NULL;
@@ -87,16 +95,19 @@ Boolean InstallConsoleUserChangedNotifier(CFStringRef appID, CFRunLoopSourceRef 
         CFRetain(appID);
     }
 	context.info = (void*) NULL;
-	session = SCDynamicStoreCreate(NULL, appID, ConsoleUserChangedCallBackFunction, &context);  
+	session = SCDynamicStoreCreate(NULL, appID, ConsoleUserChangedCallBackFunction, 
+		&context);  
 	CFRelease(appID);
     if (session == NULL) return FALSE;
+	ConsoleUserChangedCallBackFunction(session, 0, &context);
     consoleUserNameChangeKey = SCDynamicStoreKeyCreateConsoleUser(NULL);
     if (consoleUserNameChangeKey == NULL) 
     {
         CFRelease(session); 
         return FALSE;
     }
-    notificationKeys = CFArrayCreate(NULL, (void*)&consoleUserNameChangeKey, (CFIndex)1, &kCFTypeArrayCallBacks);
+    notificationKeys = CFArrayCreate(NULL, (void*)&consoleUserNameChangeKey, 
+		(CFIndex)1, &kCFTypeArrayCallBacks);
     if (notificationKeys == NULL)
     {
         CFRelease(session); 

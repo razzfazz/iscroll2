@@ -292,11 +292,11 @@
 										<key>PBXProjectModuleLabel</key>
 										<string>iScroll2Daemon.c</string>
 										<key>bookmark</key>
-										<string>85745600081304B70065739D</string>
+										<string>85CAAE9B081DA2C300203449</string>
 										<key>history</key>
 										<array>
 											<string>85C9C05E07E4BEF2001CEF1A</string>
-											<string>857455E8081304AB0065739D</string>
+											<string>85745600081304B70065739D</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -360,9 +360,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>85745601081304B70065739D</string>
+				<string>85CAAE95081DA09100203449</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>85745602081304B70065739D</string>
+				<string>85CAAE96081DA09100203449</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>

@@ -107,30 +107,23 @@ private:
 	// modified dub:
 	short			_oldScrollX;
 	short			_oldScrollY;
-//	bool			_enableScroll;
 	bool			_enableScrollX;
 	UInt16			_scrollThreshX;
-	UInt16			_scrollScaleX;
 	bool			_scrollInvertX;
 	bool			_enableScrollY;
 	UInt16			_scrollThreshY;
-	UInt16			_scrollScaleY;
 	bool			_scrollInvertY;
 	bool			_enableScrollRot;
 	UInt16			_scrollThreshRot;
 	UInt16			_scrollScaleRot;
 	bool			_scrollInvertRot;
+	bool			_scrollOnlyRot;
 	UInt8			_clickMapTo;
 	UInt8			_tapMapTo;
 	UInt8			_twoFingerClickMapTo;
-	AbsoluteTime	_scrollMinDelayAB;
-    AbsoluteTime	_lastScrollTimeAB;
 	bool			_stickyRotating;
 	bool			_scrollDominantAxisOnly;
 	UInt8			_oldButtonState;
-	short			_scrollX;
-	short			_scrollY;
-	short			_scrollRot;
 	// end modifications
 	
     UInt8		_WThreshold;

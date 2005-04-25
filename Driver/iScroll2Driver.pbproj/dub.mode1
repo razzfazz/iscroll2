@@ -266,7 +266,7 @@
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>110 115 690 397 0 0 1280 832 </string>
+						<string>110 141 690 397 0 0 1280 1002 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -282,7 +282,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>AppleADBMouse.cpp</string>
+								<string>AppleADBMouse.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -290,20 +290,26 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>AppleADBMouse.cpp</string>
+										<string>AppleADBMouse.h</string>
 										<key>bookmark</key>
-										<string>855530EE07E6E548008FF3AE</string>
+										<string>85CAAF17081DAFB800203449</string>
 										<key>history</key>
 										<array>
-											<string>85098BCB07E23FDB00AB4CD5</string>
 											<string>855530EC07E6E548008FF3AE</string>
-											<string>855530DA07E6E236008FF3AE</string>
+											<string>85CAAEF5081DAB6D00203449</string>
+											<string>85CAAEF6081DAB6D00203449</string>
+											<string>85CAAEF7081DAB6D00203449</string>
 										</array>
 										<key>prevStack</key>
 										<array>
 											<string>85098BB607E23A2600AB4CD5</string>
 											<string>85098BCC07E23FDB00AB4CD5</string>
 											<string>855530ED07E6E548008FF3AE</string>
+											<string>85CAAEF8081DAB6D00203449</string>
+											<string>85CAAEF9081DAB6D00203449</string>
+											<string>85CAAEFA081DAB6D00203449</string>
+											<string>85CAAEFB081DAB6D00203449</string>
+											<string>85CAAEFC081DAB6D00203449</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -317,7 +323,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {481, 176}}</string>
 								<key>RubberWindowFrame</key>
-								<string>110 115 690 397 0 0 1280 832 </string>
+								<string>110 141 690 397 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -339,7 +345,7 @@
 								<key>Frame</key>
 								<string>{{0, 183}, {481, 172}}</string>
 								<key>RubberWindowFrame</key>
-								<string>110 115 690 397 0 0 1280 832 </string>
+								<string>110 141 690 397 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -363,9 +369,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>855530EF07E6E548008FF3AE</string>
+				<string>85CAAEC2081DA30000203449</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>855530F007E6E548008FF3AE</string>
+				<string>85CAAEC3081DA30000203449</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -393,10 +399,11 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>8557FC9307B6CC340091B459</string>
 		<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Driver/iScroll2Driver.pbproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>110 115 690 397 0 0 1280 832 </string>
+	<string>110 141 690 397 0 0 1280 1002 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>
@@ -424,6 +431,12 @@
 										<string>1CD052900623707200166675</string>
 										<key>PBXProjectModuleLabel</key>
 										<string>AppleADBMouse.cpp</string>
+										<key>bookmark</key>
+										<string>85CAAF18081DAFB800203449</string>
+										<key>history</key>
+										<array>
+											<string>85CAAF0E081DAE1F00203449</string>
+										</array>
 									</dict>
 									<key>SplitCount</key>
 									<string>1</string>
@@ -485,7 +498,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>8557FC9307B6CC340091B459</string>
-				<string>85098BE407E240D500AB4CD5</string>
+				<string>85CAAF02081DAC1E00203449</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -496,7 +509,7 @@
 			<key>WindowToolGUID</key>
 			<string>8557FC9307B6CC340091B459</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

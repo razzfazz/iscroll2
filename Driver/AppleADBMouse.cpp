@@ -909,7 +909,7 @@ void iScroll2::packet(UInt8 adbCommand, IOByteCount length, UInt8 * data)
 	// modified dub:
 	if((_enableScrollX || _enableScrollY || _enableScrollRot) && has2fingers)
 	{
-		bool skipLinear = _scrollOnlyRot;
+		bool skipLinear = _enableScrollRot && _scrollOnlyRot;
 		if(_enableScrollRot)
 		{
 			short angleSquared = _oldScrollY * dx - _oldScrollX * dy;

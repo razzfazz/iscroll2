@@ -249,6 +249,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>4</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -294,13 +296,13 @@
 										<key>PBXProjectModuleLabel</key>
 										<string>AppleADBMouse.cpp</string>
 										<key>bookmark</key>
-										<string>8523A9DD081E9365008ADB56</string>
+										<string>8523A9F0081EAC41008ADB56</string>
 										<key>history</key>
 										<array>
 											<string>855530EC07E6E548008FF3AE</string>
 											<string>851FE93A081E2A4000C92DA6</string>
 											<string>851FE93B081E2A4000C92DA6</string>
-											<string>8523211A081E54100011BF33</string>
+											<string>8523A9EB081EAC3F008ADB56</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -365,9 +367,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>8523A9A3081E88D0008ADB56</string>
+				<string>8523A9ED081EAC3F008ADB56</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>8523A9A4081E88D0008ADB56</string>
+				<string>8523A9EE081EAC3F008ADB56</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -395,10 +397,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>8557FC9307B6CC340091B459</string>
-		<string>85104E4807BD6D49009915A7</string>
 		<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Driver/iScroll2Driver.pbproj</string>
-		<string>8523A9A5081E88D0008ADB56</string>
 	</array>
 	<key>WindowString</key>
 	<string>110 115 690 397 0 0 1280 832 </string>

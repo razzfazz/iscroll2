@@ -79,7 +79,8 @@ my_sgn(int x)
 #define kIOHIDTrackpadScrollAccelerationType	"HIDTrackpadScrollAcceleration"
 #endif
 
-#define kDefaultScrollFixedResolution	(10 << 16)
+#define kDefaultScrollFixedResolution	(100 << 16)
+#define kTrackpadScrollDefault 1
 
 // end modifications
 
@@ -390,7 +391,7 @@ bool iScroll2::start(IOService * provider)
 // modified dub:
 		setProperty(kIOHIDScrollAccelerationTypeKey, kIOHIDTrackpadScrollAccelerationType);
 		setProperty(kIOHIDScrollResolutionKey, kDefaultScrollFixedResolution, 32);
-		setProperty("TrackpadScroll", 1, 32); // FIXME
+		setProperty(kTrackpadScrollKey, kTrackpadScrollDefault, 32); // FIXME
 // end modifications
 
 		//This is the only way to find out if we have new trackpad with W info passed in relative mode

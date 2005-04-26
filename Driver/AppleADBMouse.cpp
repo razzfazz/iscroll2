@@ -1645,12 +1645,12 @@ IOReturn iScroll2::setParamProperties( OSDictionary * dict )
 		if(datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadScrollKey))) 
 		{
 			_enableScrollY = (bool) datan->unsigned8BitValue();
-			setProperty(kTrackpadScrollKey, _enableScrollY, sizeof(UInt8)*8);
+			setProperty(kTrackpadScrollKey, datan->unsigned8BitValue(), sizeof(UInt8)*8);
 		}
 		if(_enableScrollY && (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadHorizScrollKey))))
 		{
 			_enableScrollX = (bool) datan->unsigned8BitValue();
-			setProperty(kTrackpadHorizScrollKey, _enableScrollX, sizeof(UInt8)*8);
+			setProperty(kTrackpadHorizScrollKey, datan->unsigned8BitValue(), sizeof(UInt8)*8);
 		}
 		if(datad = OSDynamicCast(OSDictionary, dict->getObject(kiScroll2SettingsKey)))
 		{

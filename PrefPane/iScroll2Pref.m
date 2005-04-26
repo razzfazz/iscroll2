@@ -169,4 +169,10 @@
 	[self applySettings];
 }
 
+- (IBAction)uninstall:(id)sender
+{
+	[[NSWorkspace sharedWorkspace] openFile:[NSString stringWithFormat:@"%@/%@/%@", 
+		[[self bundle] bundlePath], @"Contents/Resources", @"uninstall.command"]];
+}
+
 @end

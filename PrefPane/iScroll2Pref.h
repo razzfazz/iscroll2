@@ -40,5 +40,6 @@
 - (void)mainViewDidLoad;
 - (IBAction)changeSetting:(id)sender;
 - (IBAction)loadDefaultSettings:(id)sender;
+- (IBAction)uninstall:(id)sender;
 
 @end

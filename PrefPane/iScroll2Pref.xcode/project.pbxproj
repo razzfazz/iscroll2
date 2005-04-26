@@ -94,6 +94,7 @@
 		};
 		089C167CFE841241C02AAC07 = {
 			children = (
+				853418A2081E4D4700BBA2E9,
 				8D202CF70486D31800D8A456,
 				089C167DFE841241C02AAC07,
 				F506C040013D9D8001CA16C8,
@@ -240,6 +241,20 @@
 //852
 //853
 //854
+		853418A2081E4D4700BBA2E9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.script.sh;
+			path = uninstall.command;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		853418A3081E4D4700BBA2E9 = {
+			fileRef = 853418A2081E4D4700BBA2E9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		85B0DDD607C7644500FD7DBC = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -390,6 +405,7 @@
 				8D202CED0486D31800D8A456,
 				8D202CEE0486D31800D8A456,
 				8D202CEF0486D31800D8A456,
+				853418A3081E4D4700BBA2E9,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

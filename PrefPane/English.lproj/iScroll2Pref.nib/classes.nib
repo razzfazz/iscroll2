@@ -13,7 +13,7 @@
             SUPERCLASS = NSObject; 
         }, 
         {
-            ACTIONS = {changeSetting = id; loadDefaultSettings = id; }; 
+            ACTIONS = {changeSetting = id; loadDefaultSettings = id; uninstall = id; }; 
             CLASS = iScroll2Pref; 
             LANGUAGE = ObjC; 
             OUTLETS = {

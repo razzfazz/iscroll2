@@ -109,3 +109,5 @@ mkdir -p "pkgroot/$resourcepath"
 cp -R "$resourcesrcpath"/* "pkgroot/$resourcepath"
 rm -R `find "pkgroot/$resourcepath" -name CVS`
 cp "$readmesrcpath/$readmesrcname" "pkgroot/$readmepath/$readmename"
+
+rm -R `find pkgroot -name CVS`

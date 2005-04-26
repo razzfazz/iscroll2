@@ -5,8 +5,7 @@ files="/System/Library/Extensions/iScroll2.kext \
 	/Library/Preferences/name.razzfazz.driver.iScroll2.plist \
 	/Library/StartupItems/iScroll2 \
 	/usr/local/bin/iScroll2Daemon \
-	/Library/Receipts/iScroll2.pkg \
-	/System/Library/Extensions.kextcache"
+	/Library/Receipts/iScroll2.pkg"
 
 echo "iScroll2 preupgrade script running..."
 

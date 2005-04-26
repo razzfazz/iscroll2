@@ -60,18 +60,21 @@ void ConsoleUserChangedCallBackFunction(SCDynamicStoreRef store,
 								 IOServiceMatching(kIOHIDSystemClass),
 								 &iter);
 	if (iter == 0) {
+		syslog(1, "Couldn't find HIDSystem service!\n");
 		goto EXIT;
 	}
 	regEntry = IOIteratorNext(iter);
 	if(regEntry == 0) {
+		syslog(1, "Couldn't find HIDSystem service!\n");
 		goto EXIT;
 	}
 	if(IORegistryEntrySetCFProperty(regEntry, CFSTR(kiScroll2SettingsKey), 
 		settings) != KERN_SUCCESS) {
+		syslog(1, "Couldn't get HIDSystem properties!\n");
 		goto EXIT;
 	}
 EXIT:
-		if(settings) CFRelease(settings);
+	if(settings) CFRelease(settings);
 	if(regEntry) IOObjectRelease(regEntry);
 	if(iter) IOObjectRelease(iter);
 }
@@ -99,11 +102,12 @@ Boolean InstallConsoleUserChangedNotifier(CFStringRef appID,
 		&context);  
 	CFRelease(appID);
     if (session == NULL) return FALSE;
-	ConsoleUserChangedCallBackFunction(session, 0, &context);
+//	ConsoleUserChangedCallBackFunction(session, 0, &context);
     consoleUserNameChangeKey = SCDynamicStoreKeyCreateConsoleUser(NULL);
     if (consoleUserNameChangeKey == NULL) 
     {
-        CFRelease(session); 
+        CFRelease(session);
+		syslog(1, "Couldn't create ConsoleUser key!\n"); 
         return FALSE;
     }
     notificationKeys = CFArrayCreate(NULL, (void*)&consoleUserNameChangeKey, 
@@ -112,6 +116,7 @@ Boolean InstallConsoleUserChangedNotifier(CFStringRef appID,
     {
         CFRelease(session); 
         CFRelease(consoleUserNameChangeKey);
+		syslog(1, "Couldn't create notification key array!\n"); 
         return FALSE;
     }
 	result = SCDynamicStoreSetNotificationKeys(session, notificationKeys, NULL);
@@ -120,6 +125,7 @@ Boolean InstallConsoleUserChangedNotifier(CFStringRef appID,
 	if (result == FALSE)
 	{
         CFRelease(session); 
+		syslog(1, "Couldn't set up dynamic store notification!\n"); 
         return FALSE;
 	}
     *rls = SCDynamicStoreCreateRunLoopSource(NULL, session, (CFIndex)0);

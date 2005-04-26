@@ -1291,12 +1291,12 @@ bool iScroll2::enableEnhancedMode()
         if (adbdata[6] != 0x0D)
         {
 // modified dub:
-            IOLog("%s: deviceClass = 0x%2x (non-Extended Mode)\n", getName(), adbdata[6]);
+            IOLog("%s: deviceClass = 0x%x (non-Extended Mode)\n", getName(), adbdata[6]);
 // end modifications
             return FALSE;
         }
 // modified dub:
-        IOLog("%s: deviceClass = 0x%2x (Extended Mode, scrolling supported)\n", getName(), adbdata[6]);
+        IOLog("%s: deviceClass = 0x%x (Extended Mode, scrolling supported)\n", getName(), adbdata[6]);
 // end modifications
 		
         // Set ADB Extended Features to default values.

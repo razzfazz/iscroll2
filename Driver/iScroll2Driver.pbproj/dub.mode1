@@ -204,8 +204,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -296,13 +294,13 @@
 										<key>PBXProjectModuleLabel</key>
 										<string>AppleADBMouse.cpp</string>
 										<key>bookmark</key>
-										<string>851FE944081E2BBD00C92DA6</string>
+										<string>8597B496081E3AFF004209CE</string>
 										<key>history</key>
 										<array>
 											<string>855530EC07E6E548008FF3AE</string>
 											<string>851FE93A081E2A4000C92DA6</string>
 											<string>851FE93B081E2A4000C92DA6</string>
-											<string>851FE93C081E2A4000C92DA6</string>
+											<string>851FE944081E2BBD00C92DA6</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -310,9 +308,6 @@
 											<string>85098BCC07E23FDB00AB4CD5</string>
 											<string>855530ED07E6E548008FF3AE</string>
 											<string>85CAAEF9081DAB6D00203449</string>
-											<string>851FE93D081E2A4000C92DA6</string>
-											<string>851FE93E081E2A4000C92DA6</string>
-											<string>851FE93F081E2A4000C92DA6</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -334,6 +329,8 @@
 							<string>176pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -370,9 +367,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>851FE941081E2A4000C92DA6</string>
+				<string>8597B492081E3A09004209CE</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>851FE942081E2A4000C92DA6</string>
+				<string>8597B493081E3A09004209CE</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>

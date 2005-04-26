@@ -908,7 +908,7 @@ void iScroll2::packet(UInt8 adbCommand, IOByteCount length, UInt8 * data)
 	// modified dub:
 	if((_enableScrollX || _enableScrollY || _enableScrollRot) && has2fingers)
 	{
-		bool skipLinear = false;
+		bool skipLinear = _scrollOnlyRot;
 		if(_enableScrollRot)
 		{
 			short angleSquared = _oldScrollY * dx - _oldScrollX * dy;
@@ -1685,6 +1685,10 @@ IOReturn iScroll2::setParamProperties( OSDictionary * dict )
 			if(datab = OSDynamicCast(OSBoolean, datad->getObject(kTrackpadCScrollInvertKey))) 
 			{
 				_scrollInvertRot = datab->isTrue();
+			}
+			if(datab = OSDynamicCast(OSBoolean, datad->getObject(kTrackpadCScrollOnlyKey))) 
+			{
+				_scrollOnlyRot = datab->isTrue();
 			}
 			if(datab = OSDynamicCast(OSBoolean, datad->getObject(kTrackpadScrollIgnoreWeakAxisKey))) 
 			{

@@ -2,6 +2,7 @@
 
 echo "iScroll2 postflight script running..."
 
+mv /tmp/iScroll2.kext /System/Library/Extensions
 touch /System/Library/Extensions
 
 echo "iScroll2 postflight script done."

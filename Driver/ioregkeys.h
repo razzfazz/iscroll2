@@ -27,5 +27,6 @@
 #define kTrackpadTapMapToKey				"TrackpadTapMapTo"
 #define kTrackpadClickMapToKey				"TrackpadClickMapTo"
 #define kTrackpadTwoFingerClickMapToKey		"TrackpadTwoFingerClickMapTo"
+#define kTrackpadScrollResolutionKey		"TrackpadScrollResolution"
 
 #endif

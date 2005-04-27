@@ -292,13 +292,13 @@
 										<key>PBXProjectModuleLabel</key>
 										<string>AppleADBMouse.cpp</string>
 										<key>bookmark</key>
-										<string>8523AA15081EB2AF008ADB56</string>
+										<string>85C18EED081F8159004C495A</string>
 										<key>history</key>
 										<array>
 											<string>855530EC07E6E548008FF3AE</string>
 											<string>851FE93A081E2A4000C92DA6</string>
 											<string>851FE93B081E2A4000C92DA6</string>
-											<string>8523AA14081EB2AF008ADB56</string>
+											<string>8523AA15081EB2AF008ADB56</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -365,9 +365,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>8523AA16081EB2AF008ADB56</string>
+				<string>85C18ED3081F7EDA004C495A</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>8523AA17081EB2AF008ADB56</string>
+				<string>85C18ED4081F7EDA004C495A</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -395,6 +395,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>8557FC9307B6CC340091B459</string>
 		<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Driver/iScroll2Driver.pbproj</string>
 	</array>
 	<key>WindowString</key>
@@ -426,6 +427,12 @@
 										<string>1CD052900623707200166675</string>
 										<key>PBXProjectModuleLabel</key>
 										<string>AppleADBMouse.cpp</string>
+										<key>bookmark</key>
+										<string>85C18EEF081F8159004C495A</string>
+										<key>history</key>
+										<array>
+											<string>85C18EEE081F8159004C495A</string>
+										</array>
 									</dict>
 									<key>SplitCount</key>
 									<string>1</string>
@@ -487,7 +494,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>8557FC9307B6CC340091B459</string>
-				<string>8523A9BB081E8EBB008ADB56</string>
+				<string>85C18EF0081F8159004C495A</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -498,7 +505,7 @@
 			<key>WindowToolGUID</key>
 			<string>8557FC9307B6CC340091B459</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

@@ -391,7 +391,7 @@ bool iScroll2::start(IOService * provider)
 // modified dub:
 		setProperty(kIOHIDScrollAccelerationTypeKey, kIOHIDTrackpadScrollAccelerationType);
 		setProperty(kIOHIDScrollResolutionKey, kDefaultScrollFixedResolution, 32);
-		setProperty(kTrackpadScrollKey, kTrackpadScrollDefault, 32); // FIXME
+		setProperty(kTrackpadScrollKey, kTrackpadScrollDefault, 32);
 // end modifications
 
 		//This is the only way to find out if we have new trackpad with W info passed in relative mode
@@ -1706,6 +1706,10 @@ IOReturn iScroll2::setParamProperties( OSDictionary * dict )
 			if(datan = OSDynamicCast(OSNumber, datad->getObject(kTrackpadTwoFingerClickMapToKey))) 
 			{
 				_twoFingerClickMapTo = datan->unsigned8BitValue();
+			}
+			if(datan = OSDynamicCast(OSNumber, datad->getObject(kTrackpadScrollResolutionKey)))
+			{
+				setProperty(kIOHIDScrollResolutionKey, datan->unsigned32BitValue(), 32);
 			}
 			setProperty(kiScroll2SettingsKey, datad);
 		}

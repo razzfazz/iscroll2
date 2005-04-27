@@ -82,7 +82,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 136229408;
+			PBXPerProjectTemplateStateSaveDate = 136281814;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -259,17 +259,19 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 136229408;
+			PBXWorkspaceStateSaveDate = 136281814;
 		};
 		perUserProjectItems = {
 			85098BB607E23A2600AB4CD5 = 85098BB607E23A2600AB4CD5;
 			85098BCC07E23FDB00AB4CD5 = 85098BCC07E23FDB00AB4CD5;
 			851FE93A081E2A4000C92DA6 = 851FE93A081E2A4000C92DA6;
 			851FE93B081E2A4000C92DA6 = 851FE93B081E2A4000C92DA6;
-			8523AA14081EB2AF008ADB56 = 8523AA14081EB2AF008ADB56;
 			8523AA15081EB2AF008ADB56 = 8523AA15081EB2AF008ADB56;
 			855530EC07E6E548008FF3AE = 855530EC07E6E548008FF3AE;
 			855530ED07E6E548008FF3AE = 855530ED07E6E548008FF3AE;
+			85C18EED081F8159004C495A = 85C18EED081F8159004C495A;
+			85C18EEE081F8159004C495A = 85C18EEE081F8159004C495A;
+			85C18EEF081F8159004C495A = 85C18EEF081F8159004C495A;
 			85CAAEF9081DAB6D00203449 = 85CAAEF9081DAB6D00203449;
 		};
 		sourceControlManager = 8557FC8C07B6CBC30091B459;
@@ -297,10 +299,10 @@
 	};
 	1A224C3FFF42367911CA2CB7 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {956, 24373}}";
-			sepNavSelRange = "{19993, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {956, 24429}}";
+			sepNavSelRange = "{19984, 0}";
 			sepNavVisRect = "{{0, 10416}, {440, 144}}";
-			sepNavWindowFrame = "{{84, 230}, {750, 534}}";
+			sepNavWindowFrame = "{{15, 293}, {750, 534}}";
 		};
 	};
 	85098BB607E23A2600AB4CD5 = {
@@ -328,7 +330,7 @@
 			sepNavIntBoundsRect = "{{0, 0}, {464, 434}}";
 			sepNavSelRange = "{209, 0}";
 			sepNavVisRect = "{{0, 0}, {440, 144}}";
-			sepNavWindowFrame = "{{153, 337}, {750, 534}}";
+			sepNavWindowFrame = "{{84, 230}, {750, 534}}";
 		};
 	};
 	851FE93A081E2A4000C92DA6 = {
@@ -350,16 +352,6 @@
 		rType = 0;
 		vrLen = 219;
 		vrLoc = 2758;
-	};
-	8523AA14081EB2AF008ADB56 = {
-		fRef = 1A224C3FFF42367911CA2CB7;
-		isa = PBXTextBookmark;
-		name = "AppleADBMouse.cpp: 762";
-		rLen = 0;
-		rLoc = 19993;
-		rType = 0;
-		vrLen = 368;
-		vrLoc = 19488;
 	};
 	8523AA15081EB2AF008ADB56 = {
 		fRef = 1A224C3FFF42367911CA2CB7;
@@ -412,6 +404,33 @@
 		wantsCodeCompletionPlaceholdersInserted = 1;
 		wantsCodeCompletionTabCompletes = 1;
 		wantsIndex = 1;
+	};
+	85C18EED081F8159004C495A = {
+		fRef = 1A224C3FFF42367911CA2CB7;
+		isa = PBXTextBookmark;
+		name = "AppleADBMouse.cpp: 762";
+		rLen = 0;
+		rLoc = 19984;
+		rType = 0;
+		vrLen = 368;
+		vrLoc = 19479;
+	};
+	85C18EEE081F8159004C495A = {
+		fRef = 1A224C3FFF42367911CA2CB7;
+		isa = PBXTextBookmark;
+		rLen = 1;
+		rLoc = 1709;
+		rType = 1;
+	};
+	85C18EEF081F8159004C495A = {
+		fRef = 1A224C3FFF42367911CA2CB7;
+		isa = PBXTextBookmark;
+		name = "\t\t\tif(datan = OSDynamicCast(OSNumber, datad->getObject(kTrackpadScrollResolutionKey)))\n";
+		rLen = 87;
+		rLoc = 48209;
+		rType = 0;
+		vrLen = 564;
+		vrLoc = 47919;
 	};
 	85CAAEF9081DAB6D00203449 = {
 		fRef = 1A224C3EFF42367911CA2CB7;

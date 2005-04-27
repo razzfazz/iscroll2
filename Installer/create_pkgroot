@@ -1,6 +1,6 @@
 #!/bin/sh
 
-kextpath="Contents/tmp"
+kextpath="Contents/System/Library/Extensions"
 kextsrcpath="../Driver/build"
 kextname="iScroll2.kext"
 kextsrcname="$kextname"

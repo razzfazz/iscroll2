@@ -15,8 +15,10 @@
 
 #define kiScroll2SettingsKey				"iScroll2Settings"
 #define kTrackpadHScrollThresholdKey		"TrackpadHScrollThreshold"
+#define kTrackpadHScrollScaleKey			"TrackpadHScrollScale"
 #define kTrackpadHScrollInvertKey			"TrackpadHScrollInvert"
 #define kTrackpadVScrollThresholdKey		"TrackpadVScrollThreshold"
+#define kTrackpadVScrollScaleKey			"TrackpadVScrollScale"
 #define kTrackpadVScrollInvertKey			"TrackpadVScrollInvert"
 #define kTrackpadCScrollKey					"TrackpadCScroll"
 #define kTrackpadCScrollOnlyKey				"TrackpadCScrollOnly"
@@ -28,5 +30,8 @@
 #define kTrackpadClickMapToKey				"TrackpadClickMapTo"
 #define kTrackpadTwoFingerClickMapToKey		"TrackpadTwoFingerClickMapTo"
 #define kTrackpadScrollResolutionKey		"TrackpadScrollResolution"
+#define kTrackpadTapDownTimeKey				"TrackpadTapDownTime"
+#define kTrackpadStickyDragTimeKey			"TrackpadStickyDragTime"
+#define kTrackpadScrollMinDelayKey			"TrackpadScrollMinDelay"
 
 #endif

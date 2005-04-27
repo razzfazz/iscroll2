@@ -875,7 +875,8 @@ void iScroll2::packet(UInt8 adbCommand, IOByteCount length, UInt8 * data)
 				_keyboardTimeAB.hi = 0;
 				_keyboardTimeAB.lo = 0;
 				_pADBKeyboard->callPlatformFunction(_gettime, false, (void *)&_keyboardTimeAB, 0, 0, 0);
-				nanoseconds_to_absolutetime( (unsigned long long)( (unsigned long long)(5 * 60 * 1000) * (unsigned long long)(1000 * 1000) ), &_fake5minAB);
+				nanoseconds_to_absolutetime( (unsigned long long)( (unsigned long long)(5 * 60 * 1000) 
+					* (unsigned long long)(1000 * 1000) ), &_fake5minAB);
 				sub_now = now;
 				SUB_ABSOLUTETIME(&sub_now, &_keyboardTimeAB); 
 				if (CMP_ABSOLUTETIME (&sub_now, &_fake5minAB) == -1) 
@@ -910,25 +911,41 @@ void iScroll2::packet(UInt8 adbCommand, IOByteCount length, UInt8 * data)
 	if((_enableScrollX || _enableScrollY || _enableScrollRot) && has2fingers)
 	{
 		bool skipLinear = _enableScrollRot && _scrollOnlyRot;
+		AbsoluteTime sub_now = now;	 
+		bool withhold;	 
+		SUB_ABSOLUTETIME(&sub_now, &_scrollMinDelayAB);	 
+		withhold = CMP_ABSOLUTETIME(&sub_now, &_lastScrollTimeAB) == -1;	 
 		if(_enableScrollRot)
 		{
 			short angleSquared = _oldScrollY * dx - _oldScrollX * dy;
-			angleSquared = 100 * my_abs(angleSquared) * angleSquared / ((_oldScrollX * _oldScrollX + _oldScrollY * _oldScrollY) * (dx * dx + dy * dy));
+			angleSquared = 100 * my_abs(angleSquared) * angleSquared / 
+				((_oldScrollX * _oldScrollX + _oldScrollY * _oldScrollY) * (dx * dx + dy * dy));
 			if(_stickyRotating || (my_abs(angleSquared) >= _scrollThreshRot))
 			{
-				short scrollRot = my_sgn(_scrollInvertRot ? -angleSquared : angleSquared) * (my_abs(dx) + my_abs(dy)) / _scrollScaleRot;
-				dispatchScrollWheelEvent(scrollRot, 0, 0, now);
+				_scrollRot += my_sgn(_scrollInvertRot ? -angleSquared : angleSquared) * (my_abs(dx) + my_abs(dy));
+				if((_scrollRot / _scrollScaleRot) && !withhold)
+				{
+					dispatchScrollWheelEvent(_scrollRot / _scrollScaleRot, 0, 0, now);
+					_scrollRot = 0;
+					_lastScrollTimeAB = now;
+				}
 				skipLinear = true;
 			}
 		}
 		if(!skipLinear)
 		{
-			short scrollX = 0, scrollY = 0;
-			if(_enableScrollX && ((my_abs(dx) >= _scrollThreshX) && (!_scrollDominantAxisOnly || (my_abs(dx) >= my_abs(dy)))))
-				scrollX = (_scrollInvertX ? dx : -dx);
-			if(_enableScrollY && ((my_abs(dy) >= _scrollThreshY) && (!_scrollDominantAxisOnly || (my_abs(dy) >= my_abs(dx)))))
-				scrollY = (_scrollInvertY ? dy : -dy);
-			dispatchScrollWheelEvent(scrollY, scrollX, 0, now);
+			if(_enableScrollX && ((my_abs(dx) >= _scrollThreshX) 
+				&& (!_scrollDominantAxisOnly || (my_abs(dx) >= my_abs(dy)))))
+				_scrollX += (_scrollInvertX ? dx : -dx);
+			if(_enableScrollY && ((my_abs(dy) >= _scrollThreshY) 
+				&& (!_scrollDominantAxisOnly || (my_abs(dy) >= my_abs(dx)))))
+				_scrollY += (_scrollInvertY ? dy : -dy);
+			if(((_scrollX / _scrollScaleX) || (_scrollY / _scrollScaleY)) && !withhold)
+			{
+				dispatchScrollWheelEvent(_scrollY / _scrollScaleY, _scrollX / _scrollScaleX, 0, now);
+				_scrollX = _scrollY = 0;
+				_lastScrollTimeAB = now;
+			}
 		}
 		if(buttonState != _oldButtonState)
 		{
@@ -1442,6 +1459,10 @@ bool iScroll2::enableEnhancedMode()
 		_zonepeckingtime64 = 0;	
 		nanoseconds_to_absolutetime(0, &_zonepeckingtimeAB);
 		
+// modified dub:
+		nanoseconds_to_absolutetime(0, &_lastScrollTimeAB);	 
+// end modifications
+		
 		return TRUE;
     }
 	
@@ -1659,6 +1680,10 @@ IOReturn iScroll2::setParamProperties( OSDictionary * dict )
 			{
 				_scrollThreshX = datan->unsigned16BitValue();
 			}
+			if(datan = OSDynamicCast(OSNumber, datad->getObject(kTrackpadHScrollScaleKey)))
+			{
+				_scrollScaleX = datan->unsigned16BitValue();
+			}
 			if(datab = OSDynamicCast(OSBoolean, datad->getObject(kTrackpadHScrollInvertKey))) 
 			{
 				_scrollInvertX = datab->isTrue();
@@ -1666,6 +1691,10 @@ IOReturn iScroll2::setParamProperties( OSDictionary * dict )
 			if(datan = OSDynamicCast(OSNumber, datad->getObject(kTrackpadVScrollThresholdKey))) 
 			{
 				_scrollThreshY = datan->unsigned16BitValue();
+			}
+			if(datan = OSDynamicCast(OSNumber, datad->getObject(kTrackpadVScrollScaleKey)))
+			{
+				_scrollScaleY = datan->unsigned16BitValue();
 			}
 			if(datab = OSDynamicCast(OSBoolean, datad->getObject(kTrackpadVScrollInvertKey))) 
 			{
@@ -1711,7 +1740,26 @@ IOReturn iScroll2::setParamProperties( OSDictionary * dict )
 			{
 				setProperty(kIOHIDScrollResolutionKey, datan->unsigned32BitValue(), 32);
 			}
-			setProperty(kiScroll2SettingsKey, datad);
+			if(datan = OSDynamicCast(OSNumber, datad->getObject(kTrackpadTapDownTimeKey)))
+			{
+				adblength = sizeof(adbdata);
+				adbDevice->readRegister(2, adbdata, &adblength);
+				adbdata[0] = (adbdata[0] & (1 << 7) | (datan->unsigned8BitValue() & 0x7f));
+				adbDevice->writeRegister(2, adbdata, &adblength);
+			}
+			if(datan = OSDynamicCast(OSNumber, datad->getObject(kTrackpadStickyDragTimeKey)))
+			{
+				adblength = sizeof(adbdata);
+				adbDevice->readRegister(2, adbdata, &adblength);
+				adbdata[3] = (adbdata[3] & (1 << 7) | (datan->unsigned8BitValue() & 0x7f));
+				adbDevice->writeRegister(2, adbdata, &adblength);
+			}
+			if(datan = OSDynamicCast(OSNumber, datad->getObject(kTrackpadScrollMinDelayKey)))
+			{
+				UInt16 minDelay = datan->unsigned16BitValue();
+				nanoseconds_to_absolutetime(minDelay * 1000 * 1000, &_scrollMinDelayAB);
+			}
+ 			setProperty(kiScroll2SettingsKey, datad);
 		}
 // end modifications
 

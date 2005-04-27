@@ -82,7 +82,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 136281814;
+			PBXPerProjectTemplateStateSaveDate = 136331954;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -259,19 +259,19 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 136281814;
+			PBXWorkspaceStateSaveDate = 136331954;
 		};
 		perUserProjectItems = {
 			85098BB607E23A2600AB4CD5 = 85098BB607E23A2600AB4CD5;
 			85098BCC07E23FDB00AB4CD5 = 85098BCC07E23FDB00AB4CD5;
 			851FE93A081E2A4000C92DA6 = 851FE93A081E2A4000C92DA6;
 			851FE93B081E2A4000C92DA6 = 851FE93B081E2A4000C92DA6;
-			8523AA15081EB2AF008ADB56 = 8523AA15081EB2AF008ADB56;
 			855530EC07E6E548008FF3AE = 855530EC07E6E548008FF3AE;
 			855530ED07E6E548008FF3AE = 855530ED07E6E548008FF3AE;
-			85C18EED081F8159004C495A = 85C18EED081F8159004C495A;
-			85C18EEE081F8159004C495A = 85C18EEE081F8159004C495A;
-			85C18EEF081F8159004C495A = 85C18EEF081F8159004C495A;
+			859CE6660820431200D22EE6 = 859CE6660820431200D22EE6;
+			859CE6770820466200D22EE6 = 859CE6770820466200D22EE6;
+			859CE67A0820466400D22EE6 = 859CE67A0820466400D22EE6;
+			859CE67B0820466400D22EE6 = 859CE67B0820466400D22EE6;
 			85CAAEF9081DAB6D00203449 = 85CAAEF9081DAB6D00203449;
 		};
 		sourceControlManager = 8557FC8C07B6CBC30091B459;
@@ -286,7 +286,7 @@
 			sepNavIntBoundsRect = "{{0, 0}, {800, 144}}";
 			sepNavSelRange = "{155, 0}";
 			sepNavVisRect = "{{0, 0}, {440, 144}}";
-			sepNavWindowFrame = "{{153, 167}, {750, 534}}";
+			sepNavWindowFrame = "{{130, 188}, {750, 534}}";
 		};
 	};
 	1A224C3EFF42367911CA2CB7 = {
@@ -294,15 +294,15 @@
 			sepNavIntBoundsRect = "{{0, 0}, {614, 2295}}";
 			sepNavSelRange = "{3538, 0}";
 			sepNavVisRect = "{{0, 1158}, {440, 144}}";
-			sepNavWindowFrame = "{{38, 272}, {750, 534}}";
+			sepNavWindowFrame = "{{61, 421}, {750, 534}}";
 		};
 	};
 	1A224C3FFF42367911CA2CB7 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {956, 24429}}";
+			sepNavIntBoundsRect = "{{0, 0}, {704, 25101}}";
 			sepNavSelRange = "{19984, 0}";
-			sepNavVisRect = "{{0, 10416}, {440, 144}}";
-			sepNavWindowFrame = "{{15, 293}, {750, 534}}";
+			sepNavVisRect = "{{0, 0}, {440, 144}}";
+			sepNavWindowFrame = "{{84, 400}, {750, 534}}";
 		};
 	};
 	85098BB607E23A2600AB4CD5 = {
@@ -327,10 +327,10 @@
 	};
 	85104D8F07BD612C009915A7 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {464, 434}}";
-			sepNavSelRange = "{209, 0}";
-			sepNavVisRect = "{{0, 0}, {440, 144}}";
-			sepNavWindowFrame = "{{84, 230}, {750, 534}}";
+			sepNavIntBoundsRect = "{{0, 0}, {711, 462}}";
+			sepNavSelRange = "{1277, 0}";
+			sepNavVisRect = "{{0, 20}, {711, 428}}";
+			sepNavWindowFrame = "{{107, 209}, {750, 534}}";
 		};
 	};
 	851FE93A081E2A4000C92DA6 = {
@@ -352,16 +352,6 @@
 		rType = 0;
 		vrLen = 219;
 		vrLoc = 2758;
-	};
-	8523AA15081EB2AF008ADB56 = {
-		fRef = 1A224C3FFF42367911CA2CB7;
-		isa = PBXTextBookmark;
-		name = "AppleADBMouse.cpp: 762";
-		rLen = 0;
-		rLoc = 19993;
-		rType = 0;
-		vrLen = 368;
-		vrLoc = 19488;
 	};
 	855530EC07E6E548008FF3AE = {
 		fRef = 089C167EFE841241C02AAC07;
@@ -405,32 +395,42 @@
 		wantsCodeCompletionTabCompletes = 1;
 		wantsIndex = 1;
 	};
-	85C18EED081F8159004C495A = {
+	859CE6660820431200D22EE6 = {
 		fRef = 1A224C3FFF42367911CA2CB7;
 		isa = PBXTextBookmark;
 		name = "AppleADBMouse.cpp: 762";
 		rLen = 0;
 		rLoc = 19984;
 		rType = 0;
-		vrLen = 368;
-		vrLoc = 19479;
+		vrLen = 358;
+		vrLoc = 0;
 	};
-	85C18EEE081F8159004C495A = {
+	859CE6770820466200D22EE6 = {
 		fRef = 1A224C3FFF42367911CA2CB7;
 		isa = PBXTextBookmark;
 		rLen = 1;
-		rLoc = 1709;
+		rLoc = 944;
 		rType = 1;
 	};
-	85C18EEF081F8159004C495A = {
+	859CE67A0820466400D22EE6 = {
 		fRef = 1A224C3FFF42367911CA2CB7;
 		isa = PBXTextBookmark;
-		name = "\t\t\tif(datan = OSDynamicCast(OSNumber, datad->getObject(kTrackpadScrollResolutionKey)))\n";
-		rLen = 87;
-		rLoc = 48209;
+		name = "AppleADBMouse.cpp: 762";
+		rLen = 0;
+		rLoc = 19984;
 		rType = 0;
-		vrLen = 564;
-		vrLoc = 47919;
+		vrLen = 358;
+		vrLoc = 0;
+	};
+	859CE67B0820466400D22EE6 = {
+		fRef = 1A224C3FFF42367911CA2CB7;
+		isa = PBXTextBookmark;
+		name = "AppleADBMouse.cpp: 945";
+		rLen = 0;
+		rLoc = 25996;
+		rType = 0;
+		vrLen = 709;
+		vrLoc = 25520;
 	};
 	85CAAEF9081DAB6D00203449 = {
 		fRef = 1A224C3EFF42367911CA2CB7;

@@ -31,6 +31,10 @@
 		<integer>0</integer>
 		<key>TrackpadTwoFingerClickMapTo</key>
 		<integer>1</integer>
+		<key>TrackpadScrollResolution</key>
+		<integer>6553600</integer>
+		<key>TrackpadTapDownTime</key>
+		<integer>25</integer>
 	</dict>
 </dict>
 </plist>

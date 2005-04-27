@@ -20,6 +20,8 @@
 {
 	NSDictionary * settings;
 	settings = (NSDictionary *)getHIDSystemParameters();
+	_trackpadScroll = [(NSNumber *)[settings objectForKey:@kTrackpadScrollKey] boolValue];
+	_trackpadHorizScroll = [(NSNumber *)[settings objectForKey:@kTrackpadHorizScrollKey] boolValue];
 	[_current setDictionary:[settings objectForKey:@kiScroll2SettingsKey]];
 	[settings release];
 }
@@ -49,6 +51,8 @@
 		object = [_current objectForKey:key];
 		[(NSPopUpButton *)[_popupbuttons objectForKey:key] selectItemAtIndex:[(NSNumber *)object intValue]];
 	}
+	[_VEnable setState:_trackpadScroll ? NSOnState : NSOffState];
+	[_HEnable setState:_trackpadHorizScroll ? NSOnState : NSOffState];
 }
 
 - (void)applySettings
@@ -79,6 +83,8 @@
 		_CThresh, @kTrackpadCScrollThresholdKey,
 		_HThresh, @kTrackpadHScrollThresholdKey,
 		_VThresh, @kTrackpadVScrollThresholdKey,
+		_scrollResolution, @kTrackpadScrollResolutionKey,
+		_tapDownTime, @kTrackpadTapDownTimeKey,
 		0];
 	_popupbuttons = [[NSDictionary alloc] initWithObjectsAndKeys:
 		_clickMapTo, @kTrackpadClickMapToKey,
@@ -86,10 +92,15 @@
 		_twoFingerClickMapTo, @kTrackpadTwoFingerClickMapToKey,
 		0];
 	_current = [[NSMutableDictionary alloc] init];
-	[_version setStringValue:[NSString stringWithFormat:@"Version %@", [[[self bundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]]];
 	localizedInfoDict = [[[self bundle] localizedInfoDictionary] retain];
-	[_name setStringValue:[localizedInfoDict objectForKey:(NSString *)kCFBundleNameKey]];
-	[_copyright setStringValue:[localizedInfoDict objectForKey:(NSString *)@"NSHumanReadableCopyright"]];
+	[_nameBottom setStringValue:[localizedInfoDict objectForKey:(NSString *)kCFBundleNameKey]];
+	[_versionBottom setStringValue:[NSString stringWithFormat:@"Version %@, %@", 
+		[[[self bundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey], 
+		[localizedInfoDict objectForKey:(NSString *)@"NSHumanReadableCopyright"]]];
+	[_nameAbout setStringValue:[localizedInfoDict objectForKey:(NSString *)kCFBundleNameKey]];
+	[_versionAbout setStringValue:[NSString stringWithFormat:@"Version %@", 
+		[[[self bundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]]];
+	[_copyrightAbout setStringValue:[localizedInfoDict objectForKey:(NSString *)@"NSHumanReadableCopyright"]];
 	[localizedInfoDict release];
 }
 

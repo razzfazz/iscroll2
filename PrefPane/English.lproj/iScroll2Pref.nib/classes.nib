@@ -22,17 +22,23 @@
                 "_COnly" = NSButton; 
                 "_CScale" = NSSlider; 
                 "_CThresh" = NSSlider; 
+                "_HEnable" = NSButton; 
                 "_HInvert" = NSButton; 
                 "_HThresh" = NSSlider; 
+                "_VEnable" = NSButton; 
                 "_VInvert" = NSButton; 
                 "_VThresh" = NSSlider; 
                 "_clickMapTo" = NSPopUpButton; 
-                "_copyright" = NSTextField; 
+                "_copyrightAbout" = NSTextField; 
                 "_ignoreWeakerAxis" = NSButton; 
-                "_name" = NSTextField; 
+                "_nameAbout" = NSTextField; 
+                "_nameBottom" = NSTextField; 
+                "_scrollResolution" = NSSlider; 
+                "_tapDownTime" = NSSlider; 
                 "_tapMapTo" = NSPopUpButton; 
                 "_twoFingerClickMapTo" = NSPopUpButton; 
-                "_version" = NSTextField; 
+                "_versionAbout" = NSTextField; 
+                "_versionBottom" = NSTextField; 
             }; 
             SUPERCLASS = NSPreferencePane; 
         }

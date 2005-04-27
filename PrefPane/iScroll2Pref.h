@@ -12,6 +12,8 @@
 
 @interface iScroll2Pref : NSPreferencePane 
 {
+    IBOutlet NSButton		*_HEnable;
+    IBOutlet NSButton		*_VEnable;
     IBOutlet NSButton		*_CEnable;
     IBOutlet NSButton		*_CInvert;
 	IBOutlet NSButton		*_COnly;
@@ -25,13 +27,19 @@
     IBOutlet NSButton		*_ignoreWeakerAxis;
     IBOutlet NSButton		*_VInvert;
     IBOutlet NSSlider		*_VThresh;
-	IBOutlet NSTextField	*_name;
-	IBOutlet NSTextField	*_version;
-	IBOutlet NSTextField	*_copyright;
+	IBOutlet NSSlider		*_scrollResolution;
+	IBOutlet NSSlider		*_tapDownTime;
+	IBOutlet NSTextField	*_nameBottom;
+	IBOutlet NSTextField	*_versionBottom;
+	IBOutlet NSTextField	*_nameAbout;
+	IBOutlet NSTextField	*_versionAbout;
+	IBOutlet NSTextField	*_copyrightAbout;
 	NSDictionary			*_buttons;
 	NSDictionary			*_sliders;
 	NSDictionary			*_popupbuttons;
 	NSMutableDictionary		*_current;
+	BOOL					_trackpadScroll;
+	BOOL					_trackpadHorizScroll;
 }
 
 - (void)getSettings;

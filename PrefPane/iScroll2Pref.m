@@ -81,10 +81,14 @@
 	_sliders = [[NSDictionary alloc] initWithObjectsAndKeys:
 		_CScale, @kTrackpadCScrollScaleKey,
 		_CThresh, @kTrackpadCScrollThresholdKey,
+		_HScale, @kTrackpadHScrollScaleKey,
 		_HThresh, @kTrackpadHScrollThresholdKey,
+		_VScale, @kTrackpadVScrollScaleKey,
 		_VThresh, @kTrackpadVScrollThresholdKey,
 		_scrollResolution, @kTrackpadScrollResolutionKey,
 		_tapDownTime, @kTrackpadTapDownTimeKey,
+		_stickyDragTime, @kTrackpadStickyDragTimeKey,
+		_minDelay, @kTrackpadScrollMinDelayKey,
 		0];
 	_popupbuttons = [[NSDictionary alloc] initWithObjectsAndKeys:
 		_clickMapTo, @kTrackpadClickMapToKey,
@@ -93,14 +97,11 @@
 		0];
 	_current = [[NSMutableDictionary alloc] init];
 	localizedInfoDict = [[[self bundle] localizedInfoDictionary] retain];
-	[_nameBottom setStringValue:[localizedInfoDict objectForKey:(NSString *)kCFBundleNameKey]];
-	[_versionBottom setStringValue:[NSString stringWithFormat:@"Version %@, %@", 
-		[[[self bundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey], 
-		[localizedInfoDict objectForKey:(NSString *)@"NSHumanReadableCopyright"]]];
-	[_nameAbout setStringValue:[localizedInfoDict objectForKey:(NSString *)kCFBundleNameKey]];
-	[_versionAbout setStringValue:[NSString stringWithFormat:@"Version %@", 
+	[_smallName setStringValue:[localizedInfoDict objectForKey:(NSString *)kCFBundleNameKey]];
+	[_productName setStringValue:[localizedInfoDict objectForKey:(NSString *)kCFBundleNameKey]];
+	[_productVersion setStringValue:[NSString stringWithFormat:@"Version %@", 
 		[[[self bundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]]];
-	[_copyrightAbout setStringValue:[localizedInfoDict objectForKey:(NSString *)@"NSHumanReadableCopyright"]];
+	[_copyright setStringValue:[localizedInfoDict objectForKey:(NSString *)@"NSHumanReadableCopyright"]];
 	[localizedInfoDict release];
 }
 

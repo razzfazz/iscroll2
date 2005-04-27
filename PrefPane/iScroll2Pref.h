@@ -12,28 +12,32 @@
 
 @interface iScroll2Pref : NSPreferencePane 
 {
-    IBOutlet NSButton		*_HEnable;
-    IBOutlet NSButton		*_VEnable;
     IBOutlet NSButton		*_CEnable;
     IBOutlet NSButton		*_CInvert;
-	IBOutlet NSButton		*_COnly;
     IBOutlet NSSlider		*_CScale;
     IBOutlet NSSlider		*_CThresh;
+	IBOutlet NSButton		*_COnly;
     IBOutlet NSPopUpButton	*_tapMapTo;
     IBOutlet NSPopUpButton	*_twoFingerClickMapTo;
     IBOutlet NSPopUpButton	*_clickMapTo;
+    IBOutlet NSButton		*_HEnable;
     IBOutlet NSButton		*_HInvert;
+    IBOutlet NSSlider		*_HScale;
     IBOutlet NSSlider		*_HThresh;
     IBOutlet NSButton		*_ignoreWeakerAxis;
+    IBOutlet NSButton		*_VEnable;
     IBOutlet NSButton		*_VInvert;
+    IBOutlet NSSlider		*_VScale;
     IBOutlet NSSlider		*_VThresh;
 	IBOutlet NSSlider		*_scrollResolution;
+	IBOutlet NSSlider		*_minDelay;
 	IBOutlet NSSlider		*_tapDownTime;
-	IBOutlet NSTextField	*_nameBottom;
-	IBOutlet NSTextField	*_versionBottom;
-	IBOutlet NSTextField	*_nameAbout;
-	IBOutlet NSTextField	*_versionAbout;
-	IBOutlet NSTextField	*_copyrightAbout;
+	IBOutlet NSSlider		*_stickyDragTime;
+	IBOutlet NSTextField	*_smallName;
+	IBOutlet NSTextField	*_productName;
+	IBOutlet NSTextField	*_productVersion;
+	IBOutlet NSTextField	*_copyright;
+	IBOutlet NSTextField	*_aboutText;
 	NSDictionary			*_buttons;
 	NSDictionary			*_sliders;
 	NSDictionary			*_popupbuttons;

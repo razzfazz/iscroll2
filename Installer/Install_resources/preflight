@@ -9,21 +9,21 @@ files="/System/Library/Extensions/iScroll2.kext \
 	/Library/Receipts/iScroll2.pkg \
 	${userprefs}"
 
-echo "iScroll2 preupgrade script running..."
+echo "iScroll2 preflight script running..."
 
 for f in $files
 do
 	if [ -e "$f" ]
 	then
-    		echo "Removing $f..."
+    	echo "Removing $f..."
 		if ! rm -R "$f"
 		then
        		echo "ERROR: Unable to remove $f. Please remove manually."
 		 fi
-    		echo "$f successfully removed."
+    	echo "$f successfully removed."
 	else
    		echo "$f not found, skipping."
 	fi
 done
 
-echo "iScroll2 preupgrade script done."
+echo "iScroll2 preflight script done."

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "iScroll2 postflight script running..."
+
+touch /System/Library/Extensions
+
+echo "iScroll2 postflight script done."

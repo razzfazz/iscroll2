@@ -111,3 +111,4 @@ rm -R `find "pkgroot/$resourcepath" -name CVS`
 cp "$readmesrcpath/$readmesrcname" "pkgroot/$readmepath/$readmename"
 
 rm -R `find pkgroot -name CVS`
+rm -R `find pkgroot -name .DS_Store`

@@ -22,7 +22,7 @@ void ConsoleUserChangedCallBackFunction(SCDynamicStoreRef store,
 	io_registry_entry_t	regEntry = 0;
 	CFDictionaryRef		settings = 0;
 	username = SCDynamicStoreCopyConsoleUser(store, &uid, &gid);
-    if (username != NULL)
+	if (username != NULL)
     {
 		const char * name;
 		name = CFStringGetCStringPtr(username, kCFStringEncodingMacRoman);
@@ -51,7 +51,7 @@ void ConsoleUserChangedCallBackFunction(SCDynamicStoreRef store,
     }
     else
     {
-		syslog(1, "Console user logged out.\n");
+		syslog(1, "No console user currently logged in.\n");
 		settings = CFPreferencesCopyValue(CFSTR(kDefaultParametersKey), 
 										  CFSTR(kDriverAppID), kCFPreferencesAnyUser, 
 										  kCFPreferencesCurrentHost);
@@ -70,7 +70,7 @@ void ConsoleUserChangedCallBackFunction(SCDynamicStoreRef store,
 	}
 	if(IORegistryEntrySetCFProperty(regEntry, CFSTR(kiScroll2SettingsKey), 
 		settings) != KERN_SUCCESS) {
-		syslog(1, "Couldn't get HIDSystem properties!\n");
+		syslog(1, "Couldn't set HIDSystem properties!\n");
 		goto EXIT;
 	}
 EXIT:
@@ -101,8 +101,12 @@ Boolean InstallConsoleUserChangedNotifier(CFStringRef appID,
 	session = SCDynamicStoreCreate(NULL, appID, ConsoleUserChangedCallBackFunction, 
 		&context);  
 	CFRelease(appID);
-    if (session == NULL) return FALSE;
-//	ConsoleUserChangedCallBackFunction(session, 0, &context);
+    if (session == NULL)
+	{
+		syslog(1, "Couldn't create DynamicStore session!\n");
+		return FALSE;
+	}
+	ConsoleUserChangedCallBackFunction(session, 0, &context);
     consoleUserNameChangeKey = SCDynamicStoreKeyCreateConsoleUser(NULL);
     if (consoleUserNameChangeKey == NULL) 
     {

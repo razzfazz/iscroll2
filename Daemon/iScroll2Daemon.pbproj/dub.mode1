@@ -266,7 +266,7 @@
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>421 309 690 397 0 0 1280 832 </string>
+						<string>421 422 690 397 0 0 1280 1002 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -292,11 +292,11 @@
 										<key>PBXProjectModuleLabel</key>
 										<string>iScroll2Daemon.c</string>
 										<key>bookmark</key>
-										<string>8526AF22081E35AD00244A94</string>
+										<string>85B2A3D4082A90FF009265D8</string>
 										<key>history</key>
 										<array>
 											<string>85C9C05E07E4BEF2001CEF1A</string>
-											<string>852206BA081E315E00E23423</string>
+											<string>8582B29C082A8B21001D4552</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -314,7 +314,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {481, 104}}</string>
 								<key>RubberWindowFrame</key>
-								<string>421 309 690 397 0 0 1280 832 </string>
+								<string>421 422 690 397 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -336,7 +336,7 @@
 								<key>Frame</key>
 								<string>{{0, 111}, {481, 244}}</string>
 								<key>RubberWindowFrame</key>
-								<string>421 309 690 397 0 0 1280 832 </string>
+								<string>421 422 690 397 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -360,9 +360,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>8526AF1E081E356300244A94</string>
+				<string>85B2A3D5082A90FF009265D8</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>8526AF1F081E356300244A94</string>
+				<string>85B2A3D6082A90FF009265D8</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -391,10 +391,9 @@
 	<key>WindowOrderList</key>
 	<array>
 		<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Daemon/iScroll2Daemon.pbproj</string>
-		<string>8526AF20081E356300244A94</string>
 	</array>
 	<key>WindowString</key>
-	<string>421 309 690 397 0 0 1280 832 </string>
+	<string>421 422 690 397 0 0 1280 1002 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>

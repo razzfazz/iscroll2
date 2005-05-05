@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist SYSTEM "file://localhost/System/Library/DTDs/PropertyList.dtd"><plist version="0.9"><dict>	<key>Description</key>	<string>two-finger scrolling</string>	<key>Provides</key>	<array>		<string>iScroll2</string>	</array>	<key>Requires</key>	<array>
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist SYSTEM "file://localhost/System/Library/DTDs/PropertyList.dtd"><plist version="0.9"><dict>	<key>Description</key>	<string>iScroll2</string>	<key>Provides</key>	<array>		<string>iScroll2</string>	</array>	<key>Requires</key>	<array>
 		<string>Network Configuration</string>
 	</array>
 	<key>Uses</key>	<array/>	<key>OrderPreference</key>	<string>None</string></dict></plist>

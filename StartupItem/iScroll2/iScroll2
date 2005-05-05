@@ -1,6 +1,6 @@
 #!/bin/sh
 
-daemonpath="."
+daemonpath="/Library/StartupItems/iScroll2"
 daemonname="iScroll2Daemon"
 daemonpidfile="/var/run/${daemonname}.pid"
 

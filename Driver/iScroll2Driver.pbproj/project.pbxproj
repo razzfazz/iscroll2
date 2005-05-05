@@ -99,7 +99,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MODULE_IOKIT = YES;
 				MODULE_NAME = name.razzfazz.driver.iScroll2;
-				MODULE_VERSION = 0.23;
+				MODULE_VERSION = 0.24;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
@@ -124,7 +124,7 @@
 	<key>CFBundleExecutable</key>
 	<string>iScroll2</string>
 	<key>CFBundleGetInfoString</key>
-	<string>0.23</string>
+	<string>0.24</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
@@ -136,11 +136,11 @@
 	<key>CFBundlePackageType</key>
 	<string>KEXT</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.23</string>
+	<string>0.24</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.23</string>
+	<string>0.24</string>
 	<key>IOKitPersonalities</key>
 	<dict>
 		<key>iScroll2</key>

@@ -187,4 +187,13 @@
 		[[self bundle] bundlePath], @"Contents/Resources", @"uninstall.command"]];
 }
 
+- (IBAction)showWarning:(id)sender
+{
+    [self displaySettings];
+	NSRunAlertPanel(@"Please use the Keyboard & Mouse preference pane to make this change.",
+					@"Apple's Keyboard & Mouse preference pane assumes it is the only place "
+					@"where this settings can be changed, and will overwrite any changes "
+					@"made elsewhere.", @"OK", nil, nil);
+}
+
 @end

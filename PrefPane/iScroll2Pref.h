@@ -53,5 +53,6 @@
 - (IBAction)changeSetting:(id)sender;
 - (IBAction)loadDefaultSettings:(id)sender;
 - (IBAction)uninstall:(id)sender;
+- (IBAction)showWarning:(id)sender;
 
 @end

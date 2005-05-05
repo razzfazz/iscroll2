@@ -1,6 +1,6 @@
 #!/bin/sh
 
-daemonpath="/usr/local/bin"
+daemonpath="."
 daemonname="iScroll2Daemon"
 daemonpidfile="/var/run/${daemonname}.pid"
 
@@ -10,12 +10,14 @@ StartService ()
 {
     ConsoleMessage "Starting iScroll2"
     "${daemonpath}/${daemonname}"
+    ConsoleMessage -S
 }
 
 StopService ()
 {
     ConsoleMessage "Stopping iScroll2"
     kill $(cat "${daemonpidfile}")
+    ConsoleMessage -S
 }
 
 RestartService () { StopService; StartService; }

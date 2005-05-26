@@ -108,6 +108,9 @@ chmod -R o=$daemonoperms "pkgroot/$daemonpath/$daemonname"
 mkdir -p "pkgroot/$resourcepath"
 cp -R "$resourcesrcpath"/* "pkgroot/$resourcepath"
 rm -R `find "pkgroot/$resourcepath" -name CVS`
+chmod a+x "pkgroot/$resourcepath/InstallationCheck"
+chmod a+x "pkgroot/$resourcepath/preflight"
+chmod a+x "pkgroot/$resourcepath/postflight"
 cp "$readmesrcpath/$readmesrcname" "pkgroot/$readmepath/$readmename"
 
 rm -R `find pkgroot -name CVS`

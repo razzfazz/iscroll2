@@ -1,8 +1,6 @@
-/* Localized versions of InstallationCheck.plist messages */
-
 "16" = "Incompatible operating system version detected. iScroll2 requires Mac OS X 10.3 (Panther) or higher.";
 "17" = "SideTrack seems to be installed on your machine. iScroll2 and SideTrack cannot be installed at the same time.";
 "18" = "FingaMIDI seems to be installed on your machine. iScroll2 and FingaMIDI cannot be installed at the same time.";
 "19" = "Your machine does not seem to have a compatible trackpad, or is using an alternative driver already.";
 "20" = "Your trackpad does not seem to support W-enhanced mode. This is a prerequisite for using iScroll2.";
-"21" = "The BSD subsystem is not installed on this machine. All installation checks are skipped."
+"21" = "The BSD subsystem is not installed on this machine. All installation checks are skipped.";

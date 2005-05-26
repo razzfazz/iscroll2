@@ -80,7 +80,6 @@ my_sgn(int x)
 #endif
 
 #define kDefaultScrollFixedResolution	(100 << 16)
-#define kTrackpadScrollDefault 1
 
 // end modifications
 
@@ -391,7 +390,6 @@ bool iScroll2::start(IOService * provider)
 // modified dub:
 		setProperty(kIOHIDScrollAccelerationTypeKey, kIOHIDTrackpadScrollAccelerationType);
 		setProperty(kIOHIDScrollResolutionKey, kDefaultScrollFixedResolution, 32);
-		setProperty(kTrackpadScrollKey, kTrackpadScrollDefault, 32);
 // end modifications
 
 		//This is the only way to find out if we have new trackpad with W info passed in relative mode
@@ -1664,18 +1662,12 @@ IOReturn iScroll2::setParamProperties( OSDictionary * dict )
 		}
 		
 // modified dub:
-		if(datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadScrollKey))) 
-		{
-			_enableScrollY = (bool) datan->unsigned8BitValue();
-			setProperty(kTrackpadScrollKey, datan->unsigned8BitValue(), sizeof(UInt8)*8);
-		}
-		if(_enableScrollY && (datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadHorizScrollKey))))
-		{
-			_enableScrollX = (bool) datan->unsigned8BitValue();
-			setProperty(kTrackpadHorizScrollKey, datan->unsigned8BitValue(), sizeof(UInt8)*8);
-		}
 		if(datad = OSDynamicCast(OSDictionary, dict->getObject(kiScroll2SettingsKey)))
 		{
+			if(datab = OSDynamicCast(OSBoolean, datad->getObject(kTrackpadHScrollKey)))
+			{
+				_enableScrollX = datab->isTrue();
+			}
 			if(datan = OSDynamicCast(OSNumber, datad->getObject(kTrackpadHScrollThresholdKey))) 
 			{
 				_scrollThreshX = datan->unsigned16BitValue();
@@ -1687,6 +1679,10 @@ IOReturn iScroll2::setParamProperties( OSDictionary * dict )
 			if(datab = OSDynamicCast(OSBoolean, datad->getObject(kTrackpadHScrollInvertKey))) 
 			{
 				_scrollInvertX = datab->isTrue();
+			}
+			if(datab = OSDynamicCast(OSBoolean, datad->getObject(kTrackpadVScrollKey))) 
+			{
+				_enableScrollY = datab->isTrue();
 			}
 			if(datan = OSDynamicCast(OSNumber, datad->getObject(kTrackpadVScrollThresholdKey))) 
 			{

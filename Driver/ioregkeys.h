@@ -10,13 +10,12 @@
 #ifndef _ISCROLL2_IOREGKEYS_H_
 #define _ISCROLL2_IOREGKEYS_H_
 
-#define kTrackpadScrollKey					"TrackpadScroll"
-#define kTrackpadHorizScrollKey				"TrackpadHorizScroll"
-
 #define kiScroll2SettingsKey				"iScroll2Settings"
+#define kTrackpadHScrollKey					"TrackpadHScroll"
 #define kTrackpadHScrollThresholdKey		"TrackpadHScrollThreshold"
 #define kTrackpadHScrollScaleKey			"TrackpadHScrollScale"
 #define kTrackpadHScrollInvertKey			"TrackpadHScrollInvert"
+#define kTrackpadVScrollKey					"TrackpadVScroll"
 #define kTrackpadVScrollThresholdKey		"TrackpadVScrollThreshold"
 #define kTrackpadVScrollScaleKey			"TrackpadVScrollScale"
 #define kTrackpadVScrollInvertKey			"TrackpadVScrollInvert"

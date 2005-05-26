@@ -79,76 +79,48 @@ EXIT:
 	if(iter) IOObjectRelease(iter);
 }
 
-Boolean InstallConsoleUserChangedNotifier(CFStringRef appID, 
-	CFRunLoopSourceRef * rls)
+int main (int argc, const char * argv[]) 
 {
-	SCDynamicStoreContext context = { 0, NULL, NULL, NULL, NULL };
-	SCDynamicStoreRef session = NULL;
-	CFStringRef consoleUserNameChangeKey = NULL;
-	CFArrayRef notificationKeys;
-	Boolean result;
-	
-	*rls = NULL;
-	if (appID == NULL)
-	{
-		appID = CFSTR("");
-    }
-    else
-    {
-        CFRetain(appID);
-    }
-	context.info = (void*) NULL;
-	session = SCDynamicStoreCreate(NULL, appID, ConsoleUserChangedCallBackFunction, 
-		&context);  
-	CFRelease(appID);
+	SCDynamicStoreContext	context = {0, NULL, NULL, NULL, NULL};
+	SCDynamicStoreRef		session = NULL;
+	CFStringRef				consoleUserNameChangeKey = NULL;
+	CFArrayRef				notificationKeys;
+    CFRunLoopSourceRef		rls = NULL;
+    FILE					* pid_file;
+    daemon(0,0);
+	syslog(1, "Daemon starting up with PID %d.\n", getpid());
+	session = SCDynamicStoreCreate(NULL, CFSTR(kProgramName), 
+		ConsoleUserChangedCallBackFunction, &context);  
     if (session == NULL)
 	{
 		syslog(1, "Couldn't create DynamicStore session!\n");
-		return FALSE;
+		return 1;
 	}
-	ConsoleUserChangedCallBackFunction(session, 0, &context);
     consoleUserNameChangeKey = SCDynamicStoreKeyCreateConsoleUser(NULL);
     if (consoleUserNameChangeKey == NULL) 
     {
         CFRelease(session);
 		syslog(1, "Couldn't create ConsoleUser key!\n"); 
-        return FALSE;
+        return 1;
     }
     notificationKeys = CFArrayCreate(NULL, (void*)&consoleUserNameChangeKey, 
 		(CFIndex)1, &kCFTypeArrayCallBacks);
+	CFRelease(consoleUserNameChangeKey);
     if (notificationKeys == NULL)
     {
         CFRelease(session); 
-        CFRelease(consoleUserNameChangeKey);
 		syslog(1, "Couldn't create notification key array!\n"); 
-        return FALSE;
-    }
-	result = SCDynamicStoreSetNotificationKeys(session, notificationKeys, NULL);
-	CFRelease(notificationKeys); 
-	CFRelease(consoleUserNameChangeKey); 
-	if (result == FALSE)
-	{
-        CFRelease(session); 
-		syslog(1, "Couldn't set up dynamic store notification!\n"); 
-        return FALSE;
-	}
-    *rls = SCDynamicStoreCreateRunLoopSource(NULL, session, (CFIndex)0);
-    return TRUE;
-}
-
-int main (int argc, const char * argv[]) 
-{
-    Boolean				result;
-    CFRunLoopSourceRef	rls = NULL;
-    FILE				* pid_file;
-    daemon(0,0);
-	syslog(1, "Daemon starting up with PID %d.\n", getpid());
-    result = InstallConsoleUserChangedNotifier(CFSTR(kProgramName), &rls);
-    if (result != TRUE)
-    {
-		syslog(1, "Unable to register for login notification.\n");
         return 1;
     }
+	if (SCDynamicStoreSetNotificationKeys(session, notificationKeys, NULL) == FALSE)
+	{
+		CFRelease(notificationKeys); 
+        CFRelease(session); 
+		syslog(1, "Couldn't set up dynamic store notification!\n"); 
+        return 1;
+	}
+	CFRelease(notificationKeys); 
+    rls = SCDynamicStoreCreateRunLoopSource(NULL, session, (CFIndex)0);
     pid_file = fopen(kPIDFile, "w");
     fprintf(pid_file, "%d\n", getpid());
     fclose(pid_file);

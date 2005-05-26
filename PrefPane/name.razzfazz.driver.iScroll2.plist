@@ -5,12 +5,16 @@
 <dict>
 	<key>DefaultParameters</key>
 	<dict>
+        <key>TrackpadHScroll</key>
+        <false/>
 		<key>TrackpadHScrollThreshold</key>
 		<integer>0</integer>
 		<key>TrackpadHScrollScale</key>
 		<integer>1</integer>
 		<key>TrackpadHScrollInvert</key>
 		<false/>
+		<key>TrackpadVScroll</key>
+		<true/>
 		<key>TrackpadVScrollThreshold</key>
 		<integer>0</integer>
 		<key>TrackpadVScrollScale</key>
@@ -25,8 +29,6 @@
 		<integer>2</integer>
 		<key>TrackpadCScrollInvert</key>
 		<false/>
-        <key>TrackpadCScrollOnly</key>
-        <false/>
 		<key>TrackpadScrollIgnoreWeakAxis</key>
 		<false/>
 		<key>TrackpadClickMapTo</key>

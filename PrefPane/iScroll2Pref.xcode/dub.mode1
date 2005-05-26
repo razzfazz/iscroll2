@@ -204,6 +204,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -242,8 +244,6 @@
 								<string>089C166AFE841209C02AAC07</string>
 								<string>08FB77AFFE84173DC02AAC07</string>
 								<string>089C167CFE841241C02AAC07</string>
-								<string>089C167DFE841241C02AAC07</string>
-								<string>F506C042013D9D8C01CA16C8</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
@@ -268,7 +268,7 @@
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>527 161 690 397 0 0 1280 832 </string>
+						<string>527 208 690 397 0 0 1280 1002 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -303,7 +303,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {481, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>527 161 690 397 0 0 1280 832 </string>
+								<string>527 208 690 397 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -311,8 +311,6 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -325,7 +323,7 @@
 								<key>Frame</key>
 								<string>{{0, 7}, {481, 348}}</string>
 								<key>RubberWindowFrame</key>
-								<string>527 161 690 397 0 0 1280 832 </string>
+								<string>527 208 690 397 0 0 1280 1002 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -349,9 +347,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>85D852A30833543E00D457FD</string>
+				<string>85085F8A083E54B5000860E7</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>85D852A40833543E00D457FD</string>
+				<string>85085F8B083E54B5000860E7</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -379,10 +377,13 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>8509A53A07C01729002A3DD9</string>
+		<string>85085FAE083E5AF9000860E7</string>
+		<string>85085FB5083E5B62000860E7</string>
 		<string>/Users/dub/Documents/Source Code/Mac/iScroll2/PrefPane/iScroll2Pref.xcode</string>
 	</array>
 	<key>WindowString</key>
-	<string>527 161 690 397 0 0 1280 832 </string>
+	<string>527 208 690 397 0 0 1280 1002 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>
@@ -471,7 +472,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>8509A53A07C01729002A3DD9</string>
-				<string>85A90D2D082A5B19001FD5A6</string>
+				<string>85085FAD083E5AF9000860E7</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -482,7 +483,7 @@
 			<key>WindowToolGUID</key>
 			<string>8509A53A07C01729002A3DD9</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

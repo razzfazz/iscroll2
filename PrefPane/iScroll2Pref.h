@@ -16,7 +16,6 @@
     IBOutlet NSButton		*_CInvert;
     IBOutlet NSSlider		*_CScale;
     IBOutlet NSSlider		*_CThresh;
-	IBOutlet NSButton		*_COnly;
     IBOutlet NSPopUpButton	*_tapMapTo;
     IBOutlet NSPopUpButton	*_twoFingerClickMapTo;
     IBOutlet NSPopUpButton	*_clickMapTo;
@@ -42,8 +41,6 @@
 	NSDictionary			*_sliders;
 	NSDictionary			*_popupbuttons;
 	NSMutableDictionary		*_current;
-	BOOL					_trackpadScroll;
-	BOOL					_trackpadHorizScroll;
 }
 
 - (void)getSettings;
@@ -53,6 +50,5 @@
 - (IBAction)changeSetting:(id)sender;
 - (IBAction)loadDefaultSettings:(id)sender;
 - (IBAction)uninstall:(id)sender;
-- (IBAction)showWarning:(id)sender;
 
 @end

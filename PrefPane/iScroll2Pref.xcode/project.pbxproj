@@ -94,6 +94,7 @@
 		};
 		089C167CFE841241C02AAC07 = {
 			children = (
+				85085F9A083E56A0000860E7,
 				853418A2081E4D4700BBA2E9,
 				8D202CF70486D31800D8A456,
 				089C167DFE841241C02AAC07,
@@ -133,6 +134,7 @@
 		};
 		08FB77AFFE84173DC02AAC07 = {
 			children = (
+				85085FA0083E57C3000860E7,
 				85C9C02807E4B872001CEF1A,
 				85B0DDD607C7644500FD7DBC,
 				85B0DDD707C7644500FD7DBC,
@@ -241,6 +243,45 @@
 //852
 //853
 //854
+		85085F9A083E56A0000860E7 = {
+			children = (
+				85085F9B083E56A0000860E7,
+			);
+			isa = PBXVariantGroup;
+			name = Localizable.strings;
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		85085F9B083E56A0000860E7 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.strings;
+			name = English;
+			path = English.lproj/Localizable.strings;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		85085F9C083E56A0000860E7 = {
+			fileRef = 85085F9A083E56A0000860E7;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		85085FA0083E57C3000860E7 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = localizationkeys.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		85085FA1083E57C3000860E7 = {
+			fileRef = 85085FA0083E57C3000860E7;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		853418A2081E4D4700BBA2E9 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
@@ -383,6 +424,7 @@
 				8D202CEB0486D31800D8A456,
 				85B0DDD807C7644500FD7DBC,
 				85C9C02907E4B872001CEF1A,
+				85085FA1083E57C3000860E7,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,6 +448,7 @@
 				8D202CEE0486D31800D8A456,
 				8D202CEF0486D31800D8A456,
 				853418A3081E4D4700BBA2E9,
+				85085F9C083E56A0000860E7,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

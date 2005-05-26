@@ -13,18 +13,12 @@
             SUPERCLASS = NSObject; 
         }, 
         {
-            ACTIONS = {
-                changeSetting = id; 
-                loadDefaultSettings = id; 
-                showWarning = id; 
-                uninstall = id; 
-            }; 
+            ACTIONS = {changeSetting = id; loadDefaultSettings = id; uninstall = id; }; 
             CLASS = iScroll2Pref; 
             LANGUAGE = ObjC; 
             OUTLETS = {
                 "_CEnable" = NSButton; 
                 "_CInvert" = NSButton; 
-                "_COnly" = NSButton; 
                 "_CScale" = NSSlider; 
                 "_CThresh" = NSSlider; 
                 "_HEnable" = NSButton; 

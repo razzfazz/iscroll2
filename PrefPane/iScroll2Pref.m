@@ -11,6 +11,7 @@
 #include <CoreFoundation/CFBundle.h>
 
 #import "ioregistry.h"
+#import "localizationkeys.h"
 #import "../Driver/ioregkeys.h"
 #import "preferences.h"
 
@@ -20,8 +21,6 @@
 {
 	NSDictionary * settings;
 	settings = (NSDictionary *)getHIDSystemParameters();
-	_trackpadScroll = [(NSNumber *)[settings objectForKey:@kTrackpadScrollKey] boolValue];
-	_trackpadHorizScroll = [(NSNumber *)[settings objectForKey:@kTrackpadHorizScrollKey] boolValue];
 	[_current setDictionary:[settings objectForKey:@kiScroll2SettingsKey]];
 	[settings release];
 }
@@ -51,8 +50,6 @@
 		object = [_current objectForKey:key];
 		[(NSPopUpButton *)[_popupbuttons objectForKey:key] selectItemAtIndex:[(NSNumber *)object intValue]];
 	}
-	[_VEnable setState:_trackpadScroll ? NSOnState : NSOffState];
-	[_HEnable setState:_trackpadHorizScroll ? NSOnState : NSOffState];
 }
 
 - (void)applySettings
@@ -72,7 +69,8 @@
 	NSDictionary * localizedInfoDict;
 	_buttons = [[NSDictionary alloc] initWithObjectsAndKeys:
 		_CEnable, @kTrackpadCScrollKey,
-		_COnly, @kTrackpadCScrollOnlyKey,
+		_HEnable, @kTrackpadHScrollKey,
+		_VEnable, @kTrackpadVScrollKey,
 		_CInvert, @kTrackpadCScrollInvertKey,
 		_HInvert, @kTrackpadHScrollInvertKey,
 		_VInvert, @kTrackpadVScrollInvertKey,
@@ -99,7 +97,8 @@
 	localizedInfoDict = [[[self bundle] localizedInfoDictionary] retain];
 	[_smallName setStringValue:[localizedInfoDict objectForKey:(NSString *)kCFBundleNameKey]];
 	[_productName setStringValue:[localizedInfoDict objectForKey:(NSString *)kCFBundleNameKey]];
-	[_productVersion setStringValue:[NSString stringWithFormat:@"Version %@", 
+	[_productVersion setStringValue:[NSString stringWithFormat:
+		[[self bundle] localizedStringForKey:@kVersionStringKey value:@"" table:nil], 
 		[[[self bundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]]];
 	[_copyright setStringValue:[localizedInfoDict objectForKey:(NSString *)@"NSHumanReadableCopyright"]];
 	[localizedInfoDict release];
@@ -144,11 +143,12 @@
 	{
 		if((sender == _clickMapTo || sender == _tapMapTo || sender == _twoFingerClickMapTo) 
 			&& ([_clickMapTo indexOfSelectedItem] && [_tapMapTo indexOfSelectedItem] && [_twoFingerClickMapTo indexOfSelectedItem]))
-			if(NSRunAlertPanel(@"Warning:", 
-				@"This will leave no action mapped to a left click.\n"
-				@"If you proceed, you will be unable to control your system with the trackpad.\n"
-				@"You should only do this if you have an external mouse attached to your system.",
-				@"Cancel", @"Proceed", nil) != NSAlertAlternateReturn)
+			if(NSRunAlertPanel(
+				[[self bundle] localizedStringForKey:@kWarningTitleStringKey value:@"" table:nil], 
+				[[self bundle] localizedStringForKey:@kWarningTextStringKey value:@"" table:nil],
+				[[self bundle] localizedStringForKey:@kWarningCancelStringKey value:@"" table:nil],
+				[[self bundle] localizedStringForKey:@kWarningProceedStringKey value:@"" table:nil],
+				nil) != NSAlertAlternateReturn)
 			{
 				[sender selectItemAtIndex:0];
 				return;
@@ -185,15 +185,6 @@
 {
 	[[NSWorkspace sharedWorkspace] openFile:[NSString stringWithFormat:@"%@/%@/%@", 
 		[[self bundle] bundlePath], @"Contents/Resources", @"uninstall.command"]];
-}
-
-- (IBAction)showWarning:(id)sender
-{
-    [self displaySettings];
-	NSRunAlertPanel(@"Please use the Keyboard & Mouse preference pane to make this change.",
-					@"Apple's Keyboard & Mouse preference pane assumes it is the only place "
-					@"where this settings can be changed, and will overwrite any changes "
-					@"made elsewhere.", @"OK", nil, nil);
 }
 
 @end

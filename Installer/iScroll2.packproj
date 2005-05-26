@@ -77,7 +77,7 @@
 									<key>Path</key>
 									<string>Utilities</string>
 									<key>Path Type</key>
-									<integer>0</integer>
+									<integer>1</integer>
 									<key>Privileges</key>
 									<integer>509</integer>
 									<key>Type</key>
@@ -91,7 +91,7 @@
 							<key>Path</key>
 							<string>Applications</string>
 							<key>Path Type</key>
-							<integer>0</integer>
+							<integer>1</integer>
 							<key>Privileges</key>
 							<integer>509</integer>
 							<key>Type</key>
@@ -101,7 +101,408 @@
 						</dict>
 						<dict>
 							<key>Children</key>
-							<array/>
+							<array>
+								<dict>
+									<key>Children</key>
+									<array>
+										<dict>
+											<key>Children</key>
+											<array>
+												<dict>
+													<key>Children</key>
+													<array>
+														<dict>
+															<key>Children</key>
+															<array/>
+															<key>GID</key>
+															<integer>80</integer>
+															<key>Path</key>
+															<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/PreferencePanes/iScroll2.prefPane/Contents/Info.plist</string>
+															<key>Path Type</key>
+															<integer>1</integer>
+															<key>Privileges</key>
+															<integer>436</integer>
+															<key>Type</key>
+															<integer>3</integer>
+															<key>UID</key>
+															<integer>0</integer>
+														</dict>
+														<dict>
+															<key>Children</key>
+															<array>
+																<dict>
+																	<key>Children</key>
+																	<array/>
+																	<key>GID</key>
+																	<integer>80</integer>
+																	<key>Path</key>
+																	<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/PreferencePanes/iScroll2.prefPane/Contents/MacOS/iScroll2</string>
+																	<key>Path Type</key>
+																	<integer>1</integer>
+																	<key>Privileges</key>
+																	<integer>509</integer>
+																	<key>Type</key>
+																	<integer>3</integer>
+																	<key>UID</key>
+																	<integer>0</integer>
+																</dict>
+															</array>
+															<key>Expanded</key>
+															<true/>
+															<key>GID</key>
+															<integer>80</integer>
+															<key>Path</key>
+															<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/PreferencePanes/iScroll2.prefPane/Contents/MacOS</string>
+															<key>Path Type</key>
+															<integer>1</integer>
+															<key>Privileges</key>
+															<integer>509</integer>
+															<key>Type</key>
+															<integer>3</integer>
+															<key>UID</key>
+															<integer>0</integer>
+														</dict>
+														<dict>
+															<key>Children</key>
+															<array>
+																<dict>
+																	<key>Children</key>
+																	<array>
+																		<dict>
+																			<key>Children</key>
+																			<array/>
+																			<key>GID</key>
+																			<integer>80</integer>
+																			<key>Path</key>
+																			<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/PreferencePanes/iScroll2.prefPane/Contents/Resources/English.lproj/InfoPlist.strings</string>
+																			<key>Path Type</key>
+																			<integer>1</integer>
+																			<key>Privileges</key>
+																			<integer>436</integer>
+																			<key>Type</key>
+																			<integer>3</integer>
+																			<key>UID</key>
+																			<integer>0</integer>
+																		</dict>
+																		<dict>
+																			<key>Children</key>
+																			<array>
+																				<dict>
+																					<key>Children</key>
+																					<array/>
+																					<key>GID</key>
+																					<integer>80</integer>
+																					<key>Path</key>
+																					<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/PreferencePanes/iScroll2.prefPane/Contents/Resources/English.lproj/iScroll2Pref.nib/classes.nib</string>
+																					<key>Path Type</key>
+																					<integer>1</integer>
+																					<key>Privileges</key>
+																					<integer>436</integer>
+																					<key>Type</key>
+																					<integer>3</integer>
+																					<key>UID</key>
+																					<integer>0</integer>
+																				</dict>
+																				<dict>
+																					<key>Children</key>
+																					<array/>
+																					<key>GID</key>
+																					<integer>80</integer>
+																					<key>Path</key>
+																					<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/PreferencePanes/iScroll2.prefPane/Contents/Resources/English.lproj/iScroll2Pref.nib/info.nib</string>
+																					<key>Path Type</key>
+																					<integer>1</integer>
+																					<key>Privileges</key>
+																					<integer>436</integer>
+																					<key>Type</key>
+																					<integer>3</integer>
+																					<key>UID</key>
+																					<integer>0</integer>
+																				</dict>
+																				<dict>
+																					<key>Children</key>
+																					<array/>
+																					<key>GID</key>
+																					<integer>80</integer>
+																					<key>Path</key>
+																					<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/PreferencePanes/iScroll2.prefPane/Contents/Resources/English.lproj/iScroll2Pref.nib/keyedobjects.nib</string>
+																					<key>Path Type</key>
+																					<integer>1</integer>
+																					<key>Privileges</key>
+																					<integer>436</integer>
+																					<key>Type</key>
+																					<integer>3</integer>
+																					<key>UID</key>
+																					<integer>0</integer>
+																				</dict>
+																			</array>
+																			<key>Expanded</key>
+																			<true/>
+																			<key>GID</key>
+																			<integer>80</integer>
+																			<key>Path</key>
+																			<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/PreferencePanes/iScroll2.prefPane/Contents/Resources/English.lproj/iScroll2Pref.nib</string>
+																			<key>Path Type</key>
+																			<integer>1</integer>
+																			<key>Privileges</key>
+																			<integer>509</integer>
+																			<key>Type</key>
+																			<integer>3</integer>
+																			<key>UID</key>
+																			<integer>0</integer>
+																		</dict>
+																		<dict>
+																			<key>Children</key>
+																			<array/>
+																			<key>GID</key>
+																			<integer>80</integer>
+																			<key>Path</key>
+																			<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/PreferencePanes/iScroll2.prefPane/Contents/Resources/English.lproj/Localizable.strings</string>
+																			<key>Path Type</key>
+																			<integer>1</integer>
+																			<key>Privileges</key>
+																			<integer>436</integer>
+																			<key>Type</key>
+																			<integer>3</integer>
+																			<key>UID</key>
+																			<integer>0</integer>
+																		</dict>
+																	</array>
+																	<key>Expanded</key>
+																	<true/>
+																	<key>GID</key>
+																	<integer>80</integer>
+																	<key>Path</key>
+																	<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/PreferencePanes/iScroll2.prefPane/Contents/Resources/English.lproj</string>
+																	<key>Path Type</key>
+																	<integer>1</integer>
+																	<key>Privileges</key>
+																	<integer>509</integer>
+																	<key>Type</key>
+																	<integer>3</integer>
+																	<key>UID</key>
+																	<integer>0</integer>
+																</dict>
+																<dict>
+																	<key>Children</key>
+																	<array/>
+																	<key>GID</key>
+																	<integer>80</integer>
+																	<key>Path</key>
+																	<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/PreferencePanes/iScroll2.prefPane/Contents/Resources/iScroll2Pref.tiff</string>
+																	<key>Path Type</key>
+																	<integer>1</integer>
+																	<key>Privileges</key>
+																	<integer>436</integer>
+																	<key>Type</key>
+																	<integer>3</integer>
+																	<key>UID</key>
+																	<integer>0</integer>
+																</dict>
+																<dict>
+																	<key>Children</key>
+																	<array/>
+																	<key>GID</key>
+																	<integer>80</integer>
+																	<key>Path</key>
+																	<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/PreferencePanes/iScroll2.prefPane/Contents/Resources/uninstall.command</string>
+																	<key>Path Type</key>
+																	<integer>1</integer>
+																	<key>Privileges</key>
+																	<integer>509</integer>
+																	<key>Type</key>
+																	<integer>3</integer>
+																	<key>UID</key>
+																	<integer>0</integer>
+																</dict>
+															</array>
+															<key>Expanded</key>
+															<true/>
+															<key>GID</key>
+															<integer>80</integer>
+															<key>Path</key>
+															<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/PreferencePanes/iScroll2.prefPane/Contents/Resources</string>
+															<key>Path Type</key>
+															<integer>1</integer>
+															<key>Privileges</key>
+															<integer>509</integer>
+															<key>Type</key>
+															<integer>3</integer>
+															<key>UID</key>
+															<integer>0</integer>
+														</dict>
+													</array>
+													<key>Expanded</key>
+													<true/>
+													<key>GID</key>
+													<integer>80</integer>
+													<key>Path</key>
+													<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/PreferencePanes/iScroll2.prefPane/Contents</string>
+													<key>Path Type</key>
+													<integer>1</integer>
+													<key>Privileges</key>
+													<integer>509</integer>
+													<key>Type</key>
+													<integer>3</integer>
+													<key>UID</key>
+													<integer>0</integer>
+												</dict>
+											</array>
+											<key>Expanded</key>
+											<true/>
+											<key>GID</key>
+											<integer>80</integer>
+											<key>Path</key>
+											<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/PreferencePanes/iScroll2.prefPane</string>
+											<key>Path Type</key>
+											<integer>1</integer>
+											<key>Privileges</key>
+											<integer>509</integer>
+											<key>Type</key>
+											<integer>3</integer>
+											<key>UID</key>
+											<integer>0</integer>
+										</dict>
+									</array>
+									<key>Expanded</key>
+									<true/>
+									<key>GID</key>
+									<integer>80</integer>
+									<key>Path</key>
+									<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/PreferencePanes</string>
+									<key>Path Type</key>
+									<integer>1</integer>
+									<key>Privileges</key>
+									<integer>509</integer>
+									<key>Type</key>
+									<integer>3</integer>
+									<key>UID</key>
+									<integer>0</integer>
+								</dict>
+								<dict>
+									<key>Children</key>
+									<array>
+										<dict>
+											<key>Children</key>
+											<array/>
+											<key>GID</key>
+											<integer>80</integer>
+											<key>Path</key>
+											<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/Preferences/name.razzfazz.driver.iScroll2.plist</string>
+											<key>Path Type</key>
+											<integer>1</integer>
+											<key>Privileges</key>
+											<integer>436</integer>
+											<key>Type</key>
+											<integer>3</integer>
+											<key>UID</key>
+											<integer>0</integer>
+										</dict>
+									</array>
+									<key>Expanded</key>
+									<true/>
+									<key>GID</key>
+									<integer>80</integer>
+									<key>Path</key>
+									<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/Preferences</string>
+									<key>Path Type</key>
+									<integer>1</integer>
+									<key>Privileges</key>
+									<integer>509</integer>
+									<key>Type</key>
+									<integer>3</integer>
+									<key>UID</key>
+									<integer>0</integer>
+								</dict>
+								<dict>
+									<key>Children</key>
+									<array>
+										<dict>
+											<key>Children</key>
+											<array>
+												<dict>
+													<key>Children</key>
+													<array/>
+													<key>GID</key>
+													<integer>0</integer>
+													<key>Path</key>
+													<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/StartupItems/iScroll2/iScroll2</string>
+													<key>Path Type</key>
+													<integer>1</integer>
+													<key>Privileges</key>
+													<integer>493</integer>
+													<key>Type</key>
+													<integer>3</integer>
+													<key>UID</key>
+													<integer>0</integer>
+												</dict>
+												<dict>
+													<key>Children</key>
+													<array/>
+													<key>GID</key>
+													<integer>0</integer>
+													<key>Path</key>
+													<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/StartupItems/iScroll2/iScroll2Daemon</string>
+													<key>Path Type</key>
+													<integer>1</integer>
+													<key>Privileges</key>
+													<integer>493</integer>
+													<key>Type</key>
+													<integer>3</integer>
+													<key>UID</key>
+													<integer>0</integer>
+												</dict>
+												<dict>
+													<key>Children</key>
+													<array/>
+													<key>GID</key>
+													<integer>0</integer>
+													<key>Path</key>
+													<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/StartupItems/iScroll2/StartupParameters.plist</string>
+													<key>Path Type</key>
+													<integer>1</integer>
+													<key>Privileges</key>
+													<integer>420</integer>
+													<key>Type</key>
+													<integer>3</integer>
+													<key>UID</key>
+													<integer>0</integer>
+												</dict>
+											</array>
+											<key>Expanded</key>
+											<true/>
+											<key>GID</key>
+											<integer>0</integer>
+											<key>Path</key>
+											<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/StartupItems/iScroll2</string>
+											<key>Path Type</key>
+											<integer>1</integer>
+											<key>Privileges</key>
+											<integer>493</integer>
+											<key>Type</key>
+											<integer>3</integer>
+											<key>UID</key>
+											<integer>0</integer>
+										</dict>
+									</array>
+									<key>Expanded</key>
+									<true/>
+									<key>GID</key>
+									<integer>0</integer>
+									<key>Path</key>
+									<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/Library/StartupItems</string>
+									<key>Path Type</key>
+									<integer>1</integer>
+									<key>Privileges</key>
+									<integer>493</integer>
+									<key>Type</key>
+									<integer>3</integer>
+									<key>UID</key>
+									<integer>0</integer>
+								</dict>
+							</array>
+							<key>Expanded</key>
+							<true/>
 							<key>GID</key>
 							<integer>80</integer>
 							<key>Path</key>
@@ -117,7 +518,207 @@
 						</dict>
 						<dict>
 							<key>Children</key>
-							<array/>
+							<array>
+								<dict>
+									<key>Children</key>
+									<array>
+										<dict>
+											<key>Children</key>
+											<array>
+												<dict>
+													<key>Children</key>
+													<array>
+														<dict>
+															<key>Children</key>
+															<array>
+																<dict>
+																	<key>Children</key>
+																	<array/>
+																	<key>GID</key>
+																	<integer>0</integer>
+																	<key>Path</key>
+																	<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/System/Library/Extensions/iScroll2.kext/Contents/Info.plist</string>
+																	<key>Path Type</key>
+																	<integer>1</integer>
+																	<key>Privileges</key>
+																	<integer>420</integer>
+																	<key>Type</key>
+																	<integer>3</integer>
+																	<key>UID</key>
+																	<integer>0</integer>
+																</dict>
+																<dict>
+																	<key>Children</key>
+																	<array>
+																		<dict>
+																			<key>Children</key>
+																			<array/>
+																			<key>GID</key>
+																			<integer>0</integer>
+																			<key>Path</key>
+																			<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/System/Library/Extensions/iScroll2.kext/Contents/MacOS/iScroll2</string>
+																			<key>Path Type</key>
+																			<integer>1</integer>
+																			<key>Privileges</key>
+																			<integer>420</integer>
+																			<key>Type</key>
+																			<integer>3</integer>
+																			<key>UID</key>
+																			<integer>0</integer>
+																		</dict>
+																	</array>
+																	<key>Expanded</key>
+																	<true/>
+																	<key>GID</key>
+																	<integer>0</integer>
+																	<key>Path</key>
+																	<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/System/Library/Extensions/iScroll2.kext/Contents/MacOS</string>
+																	<key>Path Type</key>
+																	<integer>1</integer>
+																	<key>Privileges</key>
+																	<integer>493</integer>
+																	<key>Type</key>
+																	<integer>3</integer>
+																	<key>UID</key>
+																	<integer>0</integer>
+																</dict>
+																<dict>
+																	<key>Children</key>
+																	<array/>
+																	<key>GID</key>
+																	<integer>0</integer>
+																	<key>Path</key>
+																	<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/System/Library/Extensions/iScroll2.kext/Contents/pbdevelopment.plist</string>
+																	<key>Path Type</key>
+																	<integer>1</integer>
+																	<key>Privileges</key>
+																	<integer>420</integer>
+																	<key>Type</key>
+																	<integer>3</integer>
+																	<key>UID</key>
+																	<integer>0</integer>
+																</dict>
+																<dict>
+																	<key>Children</key>
+																	<array>
+																		<dict>
+																			<key>Children</key>
+																			<array>
+																				<dict>
+																					<key>Children</key>
+																					<array/>
+																					<key>GID</key>
+																					<integer>0</integer>
+																					<key>Path</key>
+																					<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/System/Library/Extensions/iScroll2.kext/Contents/Resources/English.lproj/InfoPlist.strings</string>
+																					<key>Path Type</key>
+																					<integer>1</integer>
+																					<key>Privileges</key>
+																					<integer>420</integer>
+																					<key>Type</key>
+																					<integer>3</integer>
+																					<key>UID</key>
+																					<integer>0</integer>
+																				</dict>
+																			</array>
+																			<key>Expanded</key>
+																			<true/>
+																			<key>GID</key>
+																			<integer>0</integer>
+																			<key>Path</key>
+																			<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/System/Library/Extensions/iScroll2.kext/Contents/Resources/English.lproj</string>
+																			<key>Path Type</key>
+																			<integer>1</integer>
+																			<key>Privileges</key>
+																			<integer>493</integer>
+																			<key>Type</key>
+																			<integer>3</integer>
+																			<key>UID</key>
+																			<integer>0</integer>
+																		</dict>
+																	</array>
+																	<key>Expanded</key>
+																	<true/>
+																	<key>GID</key>
+																	<integer>0</integer>
+																	<key>Path</key>
+																	<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/System/Library/Extensions/iScroll2.kext/Contents/Resources</string>
+																	<key>Path Type</key>
+																	<integer>1</integer>
+																	<key>Privileges</key>
+																	<integer>493</integer>
+																	<key>Type</key>
+																	<integer>3</integer>
+																	<key>UID</key>
+																	<integer>0</integer>
+																</dict>
+															</array>
+															<key>Expanded</key>
+															<true/>
+															<key>GID</key>
+															<integer>0</integer>
+															<key>Path</key>
+															<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/System/Library/Extensions/iScroll2.kext/Contents</string>
+															<key>Path Type</key>
+															<integer>1</integer>
+															<key>Privileges</key>
+															<integer>493</integer>
+															<key>Type</key>
+															<integer>3</integer>
+															<key>UID</key>
+															<integer>0</integer>
+														</dict>
+													</array>
+													<key>Expanded</key>
+													<true/>
+													<key>GID</key>
+													<integer>0</integer>
+													<key>Path</key>
+													<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/System/Library/Extensions/iScroll2.kext</string>
+													<key>Path Type</key>
+													<integer>1</integer>
+													<key>Privileges</key>
+													<integer>493</integer>
+													<key>Type</key>
+													<integer>3</integer>
+													<key>UID</key>
+													<integer>0</integer>
+												</dict>
+											</array>
+											<key>Expanded</key>
+											<true/>
+											<key>GID</key>
+											<integer>0</integer>
+											<key>Path</key>
+											<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/System/Library/Extensions</string>
+											<key>Path Type</key>
+											<integer>1</integer>
+											<key>Privileges</key>
+											<integer>493</integer>
+											<key>Type</key>
+											<integer>3</integer>
+											<key>UID</key>
+											<integer>0</integer>
+										</dict>
+									</array>
+									<key>Expanded</key>
+									<true/>
+									<key>GID</key>
+									<integer>0</integer>
+									<key>Path</key>
+									<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/System/Library</string>
+									<key>Path Type</key>
+									<integer>1</integer>
+									<key>Privileges</key>
+									<integer>493</integer>
+									<key>Type</key>
+									<integer>3</integer>
+									<key>UID</key>
+									<integer>0</integer>
+								</dict>
+							</array>
+							<key>Expanded</key>
+							<true/>
 							<key>GID</key>
 							<integer>0</integer>
 							<key>Path</key>
@@ -137,7 +738,7 @@
 					<key>Path</key>
 					<string>/</string>
 					<key>Path Type</key>
-					<integer>0</integer>
+					<integer>1</integer>
 					<key>Privileges</key>
 					<integer>1021</integer>
 					<key>Type</key>

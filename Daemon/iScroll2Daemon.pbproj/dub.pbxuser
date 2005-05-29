@@ -58,7 +58,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 139076167;
+			PBXPerProjectTemplateStateSaveDate = 139089956;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -235,7 +235,7 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 139076167;
+			PBXWorkspaceStateSaveDate = 139089956;
 		};
 		sourceControlManager = 850C1B9D07E26B3900BF4B54;
 		userBuildSettings = {
@@ -243,10 +243,10 @@
 	};
 	08FB7796FE84155DC02AAC07 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {711, 1960}}";
-			sepNavSelRange = "{4361, 0}";
-			sepNavVisRect = "{{0, 1531}, {711, 429}}";
-			sepNavWindowFrame = "{{75, 99}, {750, 534}}";
+			sepNavIntBoundsRect = "{{0, 0}, {711, 2324}}";
+			sepNavSelRange = "{2246, 0}";
+			sepNavVisRect = "{{0, 155}, {711, 893}}";
+			sepNavWindowFrame = "{{27, 4}, {750, 998}}";
 		};
 	};
 	08FB779FFE84155DC02AAC07 = {
@@ -256,10 +256,12 @@
 		);
 	};
 	850C1B9607E26B1A00BF4B54 = {
-		activeArgIndex = 2147483647;
+		activeArgIndex = 0;
 		activeArgIndices = (
+			YES,
 		);
 		argumentStrings = (
+			"-i",
 		);
 		configStateDict = {
 		};
@@ -277,9 +279,81 @@
 		isa = PBXExecutable;
 		libgmallocEnabled = 0;
 		name = iScroll2Daemon;
+		savedGlobals = {
+		};
 		shlibInfoDictList = (
 		);
 		shlibInfoDictList_v2 = (
+			{
+				level = 0;
+				path = "/Users/dub/Documents/Source Code/Mac/iScroll2/Daemon/build/iScroll2Daemon";
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /usr/lib/system/libmathCommon.A.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /usr/lib/libSystem.B.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /usr/lib/libicucore.A.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /usr/lib/libauto.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /usr/lib/libobjc.A.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/SystemConfiguration.framework/Versions/A/SystemConfiguration;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /usr/lib/libz.1.2.2.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/IOKit.framework/Versions/A/IOKit;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /usr/lib/libmx.A.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /Developer/Applications/Xcode.app/Contents/PlugIns/GDBMIDebugging.xcplugin/Contents/Resources/PBGDBIntrospectionSupport.A.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = "/Library/Application Support/Apple/Developer Tools/CustomDataViews/CFDataFormatters.bundle/Contents/MacOS/CFDataFormatters";
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /usr/lib/dyld;
+				whenToLoad = 0;
+			},
 		);
 		sourceDirectories = (
 		);

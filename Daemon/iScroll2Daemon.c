@@ -4,6 +4,7 @@
 #include <IOKit/hidsystem/IOHIDShared.h>
 #include <unistd.h>
 #include <syslog.h>
+#include <string.h>
 
 #include "../Driver/ioregkeys.h"
 #include "../PrefPane/preferences.h"
@@ -25,8 +26,12 @@ void ConsoleUserChangedCallBackFunction(SCDynamicStoreRef store,
     {
 		const char * name;
 		name = CFStringGetCStringPtr(username, kCFStringEncodingMacRoman);
-		if(name != NULL) syslog(1, "Console user changed to '%s'.", name);
-		else syslog(1, "Console user changed to UID %d.", uid);
+		if(name != NULL) syslog(1, "Console user %s '%s'.", 
+			(context != NULL) ? "changed to" : "is", name);
+		else syslog(1, "Console user %s UID %d.", 
+			(context != NULL) ? "changed to" : "has", uid);
+		CFPreferencesSynchronize(CFSTR(kDriverAppID), username, 
+										  kCFPreferencesAnyHost);
 		settings = CFPreferencesCopyValue(CFSTR(kCurrentParametersKey), 
 										  CFSTR(kDriverAppID), username, 
 										  kCFPreferencesAnyHost);
@@ -39,22 +44,36 @@ void ConsoleUserChangedCallBackFunction(SCDynamicStoreRef store,
 		}
 		else
 		{
-			if(name != NULL) syslog(1, "No custom settings found for user '%s'; loading defaults.\n", 
+			if(name != NULL) syslog(1, "No custom settings found for user '%s'.\n", 
 				name);
-			else syslog(1, "No custom settings found for UID %d; loading defaults.\n", uid);
-			settings = CFPreferencesCopyValue(CFSTR(kDefaultParametersKey), 
-											  CFSTR(kDriverAppID), kCFPreferencesAnyUser, 
-											  kCFPreferencesCurrentHost);
+			else syslog(1, "No custom settings found for UID %d.\n", uid);
 		}
         CFRelease(username);
     }
     else
     {
 		syslog(1, "No console user currently logged in.\n");
-		settings = CFPreferencesCopyValue(CFSTR(kDefaultParametersKey), 
-										  CFSTR(kDriverAppID), kCFPreferencesAnyUser, 
-										  kCFPreferencesCurrentHost);
     }
+	if(settings == NULL)
+	{
+		CFPreferencesSynchronize(CFSTR(kDriverAppID), 
+									kCFPreferencesAnyUser, 
+									kCFPreferencesCurrentHost);
+		settings = CFPreferencesCopyValue(CFSTR(kDefaultParametersKey), 
+											CFSTR(kDriverAppID), 
+											kCFPreferencesAnyUser, 
+											kCFPreferencesCurrentHost);
+		if(settings != NULL)
+		{
+			syslog(1, "Default settings found; %d settings loaded.\n",
+				CFDictionaryGetCount(settings));
+		}
+		else
+		{
+			syslog(1, "Default settings not found; not loading any settings.\n");
+			goto EXIT;
+		}
+	}
 	if(IOServiceGetMatchingServices(kIOMasterPortDefault, 
 									IOServiceMatching(kIOHIDSystemClass),
 									&iter) != KERN_SUCCESS) {
@@ -79,13 +98,14 @@ EXIT:
 
 int main (int argc, const char * argv[]) 
 {
-	SCDynamicStoreContext	context = {0, NULL, NULL, NULL, NULL};
+	SCDynamicStoreContext	context = {0, (void*)0xDEADBEEF, NULL, NULL, NULL};
 	SCDynamicStoreRef		session = NULL;
 	CFStringRef				consoleUserNameChangeKey = NULL;
 	CFArrayRef				notificationKeys;
     CFRunLoopSourceRef		rls = NULL;
+    CFStringRef				username;
     FILE					* pid_file;
-    daemon(0,0);
+    if(argc != 2 || strncmp(argv[1], "-i", 2) != 0) daemon(0,0);
 	syslog(1, "Daemon starting up with PID %d.\n", getpid());
 	session = SCDynamicStoreCreate(NULL, CFSTR(kProgramName), 
 		ConsoleUserChangedCallBackFunction, &context);  
@@ -94,7 +114,13 @@ int main (int argc, const char * argv[])
 		syslog(1, "Couldn't create DynamicStore session!\n");
 		return 1;
 	}
-    consoleUserNameChangeKey = SCDynamicStoreKeyCreateConsoleUser(NULL);
+	username = SCDynamicStoreCopyConsoleUser(session, NULL, NULL);
+	if(username != NULL)
+	{
+		ConsoleUserChangedCallBackFunction(session, NULL, NULL);
+		CFRelease(username);
+	}
+	consoleUserNameChangeKey = SCDynamicStoreKeyCreateConsoleUser(NULL);
     if (consoleUserNameChangeKey == NULL) 
     {
         CFRelease(session);
@@ -129,11 +155,11 @@ int main (int argc, const char * argv[])
 	{
 		syslog(1, "Couldn't write PID to " kPIDFile "!\n");
 	}
-	unlink(kPIDFile);
     CFRunLoopAddSource(CFRunLoopGetCurrent(), rls, kCFRunLoopDefaultMode);
     CFRelease(rls);
     CFRunLoopRun();
 	CFRelease(session);
+	unlink(kPIDFile);
     return 0;
 }
 

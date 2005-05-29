@@ -54,11 +54,6 @@ daemonoperms="rX"
 resourcepath="Resources"
 resourcesrcpath="Install_resources"
 
-readmepath="$resourcepath"
-readmesrcpath="../Website"
-readmename="ReadMe.html"
-readmesrcname="index.html"
-
 if [ -e pkgroot ]
 then
 	rm -R pkgroot
@@ -111,7 +106,6 @@ rm -R `find "pkgroot/$resourcepath" -name CVS`
 chmod a+x "pkgroot/$resourcepath/InstallationCheck"
 chmod a+x "pkgroot/$resourcepath/preflight"
 chmod a+x "pkgroot/$resourcepath/postflight"
-cp "$readmesrcpath/$readmesrcname" "pkgroot/$readmepath/$readmename"
 
 rm -R `find pkgroot -name CVS`
 rm -R `find pkgroot -name .DS_Store`

@@ -19,7 +19,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					242,
+					243,
 					20,
 					48,
 					43,
@@ -58,7 +58,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 138302284;
+			PBXPerProjectTemplateStateSaveDate = 139076167;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -235,13 +235,7 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 138302284;
-		};
-		perUserProjectItems = {
-			85085F16083E5361000860E7 = 85085F16083E5361000860E7;
-			85C9C05E07E4BEF2001CEF1A = 85C9C05E07E4BEF2001CEF1A;
-			85C9C05F07E4BEF2001CEF1A = 85C9C05F07E4BEF2001CEF1A;
-			85F71BDF0837D2110084417D = 85F71BDF0837D2110084417D;
+			PBXWorkspaceStateSaveDate = 139076167;
 		};
 		sourceControlManager = 850C1B9D07E26B3900BF4B54;
 		userBuildSettings = {
@@ -249,10 +243,10 @@
 	};
 	08FB7796FE84155DC02AAC07 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {584, 1875}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {440, 72}}";
-			sepNavWindowFrame = "{{15, 293}, {750, 534}}";
+			sepNavIntBoundsRect = "{{0, 0}, {711, 1960}}";
+			sepNavSelRange = "{4361, 0}";
+			sepNavVisRect = "{{0, 1531}, {711, 429}}";
+			sepNavWindowFrame = "{{75, 99}, {750, 534}}";
 		};
 	};
 	08FB779FFE84155DC02AAC07 = {
@@ -260,16 +254,6 @@
 		executables = (
 			850C1B9607E26B1A00BF4B54,
 		);
-	};
-	85085F16083E5361000860E7 = {
-		fRef = 08FB7796FE84155DC02AAC07;
-		isa = PBXTextBookmark;
-		name = "iScroll2Daemon.c: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 204;
-		vrLoc = 0;
 	};
 	850C1B9607E26B1A00BF4B54 = {
 		activeArgIndex = 2147483647;
@@ -288,10 +272,14 @@
 		enableDebugStr = 1;
 		environmentEntries = (
 		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
 		isa = PBXExecutable;
 		libgmallocEnabled = 0;
 		name = iScroll2Daemon;
 		shlibInfoDictList = (
+		);
+		shlibInfoDictList_v2 = (
 		);
 		sourceDirectories = (
 		);
@@ -307,39 +295,5 @@
 	850C1B9E07E26B3900BF4B54 = {
 		indexTemplatePath = "";
 		isa = PBXCodeSenseManager;
-		usesDefaults = 1;
-		wantsCodeCompletion = 1;
-		wantsCodeCompletionAutoSuggestions = 0;
-		wantsCodeCompletionCaseSensitivity = 1;
-		wantsCodeCompletionListAlways = 1;
-		wantsCodeCompletionOnlyMatchingItems = 1;
-		wantsCodeCompletionParametersIncluded = 1;
-		wantsCodeCompletionPlaceholdersInserted = 1;
-		wantsCodeCompletionTabCompletes = 1;
-		wantsIndex = 1;
-	};
-	85C9C05E07E4BEF2001CEF1A = {
-		isa = PBXTargetBookmark;
-		trg = 08FB779FFE84155DC02AAC07;
-	};
-	85C9C05F07E4BEF2001CEF1A = {
-		fRef = 08FB7796FE84155DC02AAC07;
-		isa = PBXTextBookmark;
-		name = "iScroll2Daemon.c: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 199;
-		vrLoc = 0;
-	};
-	85F71BDF0837D2110084417D = {
-		fRef = 08FB7796FE84155DC02AAC07;
-		isa = PBXTextBookmark;
-		name = "iScroll2Daemon.c: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 204;
-		vrLoc = 0;
 	};
 }

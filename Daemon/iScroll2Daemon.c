@@ -3,7 +3,7 @@
 #include <IOKit/IOKitLib.h>
 #include <IOKit/hidsystem/IOHIDShared.h>
 #include <unistd.h>
-#include <stdio.h>
+#include <syslog.h>
 
 #include "../Driver/ioregkeys.h"
 #include "../PrefPane/preferences.h"
@@ -14,7 +14,6 @@
 void ConsoleUserChangedCallBackFunction(SCDynamicStoreRef store, 
 										CFArrayRef changedKeys, void * context)
 {
-#pragma unused (changedKeys)
     CFStringRef			username;
     uid_t				uid;
     gid_t				gid;
@@ -26,28 +25,28 @@ void ConsoleUserChangedCallBackFunction(SCDynamicStoreRef store,
     {
 		const char * name;
 		name = CFStringGetCStringPtr(username, kCFStringEncodingMacRoman);
-		if(name) syslog(1, "Console user changed to '%s'.", name);
+		if(name != NULL) syslog(1, "Console user changed to '%s'.", name);
 		else syslog(1, "Console user changed to UID %d.", uid);
 		settings = CFPreferencesCopyValue(CFSTR(kCurrentParametersKey), 
 										  CFSTR(kDriverAppID), username, 
 										  kCFPreferencesAnyHost);
-        CFRelease(username);
-		if(!settings)
+		if(settings != NULL)
 		{
-			if(name) syslog(1, "No custom settings found for user '%s'; loading defaults.\n", 
+			if(name != NULL) syslog(1, "%d settings loaded for user '%s'.\n", 
+				CFDictionaryGetCount(settings), name);
+			else syslog(1, "%d settings loaded for UID %d.\n", 
+				CFDictionaryGetCount(settings), uid);
+		}
+		else
+		{
+			if(name != NULL) syslog(1, "No custom settings found for user '%s'; loading defaults.\n", 
 				name);
 			else syslog(1, "No custom settings found for UID %d; loading defaults.\n", uid);
 			settings = CFPreferencesCopyValue(CFSTR(kDefaultParametersKey), 
 											  CFSTR(kDriverAppID), kCFPreferencesAnyUser, 
 											  kCFPreferencesCurrentHost);
 		}
-		else
-		{
-			if(name) syslog(1, "%d settings loaded for user '%s'.\n", 
-				CFDictionaryGetCount(settings), name);
-			else syslog(1, "%d settings loaded for UID %d.\n", 
-				CFDictionaryGetCount(settings), uid);
-		}
+        CFRelease(username);
     }
     else
     {
@@ -56,21 +55,20 @@ void ConsoleUserChangedCallBackFunction(SCDynamicStoreRef store,
 										  CFSTR(kDriverAppID), kCFPreferencesAnyUser, 
 										  kCFPreferencesCurrentHost);
     }
-	IOServiceGetMatchingServices(kIOMasterPortDefault, 
-								 IOServiceMatching(kIOHIDSystemClass),
-								 &iter);
-	if (iter == 0) {
-		syslog(1, "Couldn't find HIDSystem service!\n");
+	if(IOServiceGetMatchingServices(kIOMasterPortDefault, 
+									IOServiceMatching(kIOHIDSystemClass),
+									&iter) != KERN_SUCCESS) {
+		iter = 0;
+		syslog(1, "Error locating HIDSystem service!\n");
 		goto EXIT;
 	}
-	regEntry = IOIteratorNext(iter);
-	if(regEntry == 0) {
-		syslog(1, "Couldn't find HIDSystem service!\n");
+	if((regEntry = IOIteratorNext(iter)) == 0) {
+		syslog(1, "No HIDSystem service found!\n");
 		goto EXIT;
 	}
 	if(IORegistryEntrySetCFProperty(regEntry, CFSTR(kiScroll2SettingsKey), 
 		settings) != KERN_SUCCESS) {
-		syslog(1, "Couldn't set HIDSystem properties!\n");
+		syslog(1, "Error setting HIDSystem properties!\n");
 		goto EXIT;
 	}
 EXIT:
@@ -122,12 +120,20 @@ int main (int argc, const char * argv[])
 	CFRelease(notificationKeys); 
     rls = SCDynamicStoreCreateRunLoopSource(NULL, session, (CFIndex)0);
     pid_file = fopen(kPIDFile, "w");
-    fprintf(pid_file, "%d\n", getpid());
-    fclose(pid_file);
+	if(pid_file != NULL)
+	{
+		fprintf(pid_file, "%d\n", getpid());
+		fclose(pid_file);
+	}
+	else
+	{
+		syslog(1, "Couldn't write PID to " kPIDFile "!\n");
+	}
+	unlink(kPIDFile);
     CFRunLoopAddSource(CFRunLoopGetCurrent(), rls, kCFRunLoopDefaultMode);
     CFRelease(rls);
     CFRunLoopRun();
-	unlink(kPIDFile);
+	CFRelease(session);
     return 0;
 }
 

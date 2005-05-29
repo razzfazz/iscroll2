@@ -56,6 +56,8 @@
 //084
 		08FB7793FE84155DC02AAC07 = {
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				SDKROOT = /Developer/SDKs/MacOSX10.3.9.sdk;
 			};
 			buildStyles = (
 				014CEA520018CE5811CA2923,

@@ -1,8 +1,8 @@
 // !$*UTF8*$!
 {
 	089C1669FE841209C02AAC07 = {
-		activeBuildStyle = 06AA1266FFB2107B11CA28AA;
-		activeTarget = 089C1673FE841209C02AAC07;
+		activeBuildStyle = 06AA1265FFB2107B11CA28AA;
+		activeTarget = 85C2A05C084CF052007333E1;
 		addToTargets = (
 			089C1673FE841209C02AAC07,
 		);
@@ -43,7 +43,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					242,
+					243,
 					20,
 					48,
 					43,
@@ -110,7 +110,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 138302349;
+			PBXPerProjectTemplateStateSaveDate = 139259780;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -287,23 +287,7 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 138302349;
-		};
-		perUserProjectItems = {
-			85085F6D083E53E8000860E7 = 85085F6D083E53E8000860E7;
-			85085F87083E54B5000860E7 = 85085F87083E54B5000860E7;
-			85085FF2083E5E4F000860E7 = 85085FF2083E5E4F000860E7;
-			85085FF3083E5E4F000860E7 = 85085FF3083E5E4F000860E7;
-			85085FF4083E5E4F000860E7 = 85085FF4083E5E4F000860E7;
-			85085FF5083E5E4F000860E7 = 85085FF5083E5E4F000860E7;
-			85085FF6083E5E4F000860E7 = 85085FF6083E5E4F000860E7;
-			85098BB607E23A2600AB4CD5 = 85098BB607E23A2600AB4CD5;
-			85098BCC07E23FDB00AB4CD5 = 85098BCC07E23FDB00AB4CD5;
-			851FE93B081E2A4000C92DA6 = 851FE93B081E2A4000C92DA6;
-			855530ED07E6E548008FF3AE = 855530ED07E6E548008FF3AE;
-			85A90D77082A612A001FD5A6 = 85A90D77082A612A001FD5A6;
-			85B2A3FE082A9135009265D8 = 85B2A3FE082A9135009265D8;
-			85CAAEF9081DAB6D00203449 = 85CAAEF9081DAB6D00203449;
+			PBXWorkspaceStateSaveDate = 139259780;
 		};
 		sourceControlManager = 8557FC8C07B6CBC30091B459;
 		userBuildSettings = {
@@ -322,109 +306,19 @@
 	};
 	1A224C3EFF42367911CA2CB7 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {614, 2393}}";
-			sepNavSelRange = "{3538, 0}";
-			sepNavVisRect = "{{0, 1148}, {440, 144}}";
-			sepNavWindowFrame = "{{337, 169}, {750, 534}}";
+			sepNavIntBoundsRect = "{{0, 0}, {711, 2422}}";
+			sepNavSelRange = "{5439, 0}";
+			sepNavVisRect = "{{0, 1965}, {711, 429}}";
+			sepNavWindowFrame = "{{337, 265}, {750, 534}}";
 		};
 	};
 	1A224C3FFF42367911CA2CB7 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {704, 16352}}";
-			sepNavSelRange = "{19984, 0}";
-			sepNavVisRect = "{{0, 10}, {440, 144}}";
-			sepNavWindowFrame = "{{360, 148}, {750, 534}}";
+			sepNavIntBoundsRect = "{{0, 0}, {704, 25116}}";
+			sepNavSelRange = "{5791, 25}";
+			sepNavVisRect = "{{0, 2630}, {459, 186}}";
+			sepNavWindowFrame = "{{468, 347}, {750, 534}}";
 		};
-	};
-	85085F6D083E53E8000860E7 = {
-		fRef = 85104D8F07BD612C009915A7;
-		isa = PBXTextBookmark;
-		name = "ioregkeys.h: 12";
-		rLen = 0;
-		rLoc = 209;
-		rType = 0;
-		vrLen = 209;
-		vrLoc = 0;
-	};
-	85085F87083E54B5000860E7 = {
-		fRef = 1A224C3FFF42367911CA2CB7;
-		isa = PBXTextBookmark;
-		name = "AppleADBMouse.cpp: 762";
-		rLen = 0;
-		rLoc = 19984;
-		rType = 0;
-		vrLen = 358;
-		vrLoc = 0;
-	};
-	85085FF2083E5E4F000860E7 = {
-		fRef = 85104D8F07BD612C009915A7;
-		isa = PBXTextBookmark;
-		name = "ioregkeys.h: 12";
-		rLen = 0;
-		rLoc = 209;
-		rType = 0;
-		vrLen = 209;
-		vrLoc = 0;
-	};
-	85085FF3083E5E4F000860E7 = {
-		fRef = 1A224C3FFF42367911CA2CB7;
-		isa = PBXTextBookmark;
-		name = "AppleADBMouse.cpp: 762";
-		rLen = 0;
-		rLoc = 19984;
-		rType = 0;
-		vrLen = 358;
-		vrLoc = 0;
-	};
-	85085FF4083E5E4F000860E7 = {
-		fRef = 85104D8F07BD612C009915A7;
-		isa = PBXTextBookmark;
-		name = "ioregkeys.h: 12";
-		rLen = 0;
-		rLoc = 209;
-		rType = 0;
-		vrLen = 209;
-		vrLoc = 0;
-	};
-	85085FF5083E5E4F000860E7 = {
-		fRef = 1A224C3FFF42367911CA2CB7;
-		isa = PBXTextBookmark;
-		name = "AppleADBMouse.cpp: 762";
-		rLen = 0;
-		rLoc = 19984;
-		rType = 0;
-		vrLen = 358;
-		vrLoc = 0;
-	};
-	85085FF6083E5E4F000860E7 = {
-		fRef = 1A224C3EFF42367911CA2CB7;
-		isa = PBXTextBookmark;
-		name = "AppleADBMouse.h: _enableScrollX";
-		rLen = 0;
-		rLoc = 3538;
-		rType = 0;
-		vrLen = 219;
-		vrLoc = 2758;
-	};
-	85098BB607E23A2600AB4CD5 = {
-		fRef = 1A224C3FFF42367911CA2CB7;
-		isa = PBXTextBookmark;
-		name = "AppleADBMouse.cpp: 756";
-		rLen = 0;
-		rLoc = 19886;
-		rType = 0;
-		vrLen = 422;
-		vrLoc = 19293;
-	};
-	85098BCC07E23FDB00AB4CD5 = {
-		fRef = 85104D8F07BD612C009915A7;
-		isa = PBXTextBookmark;
-		name = "ioregkeys.h: 12";
-		rLen = 0;
-		rLoc = 209;
-		rType = 0;
-		vrLen = 266;
-		vrLoc = 37;
 	};
 	85104D8F07BD612C009915A7 = {
 		uiCtxt = {
@@ -433,26 +327,6 @@
 			sepNavVisRect = "{{0, 76}, {711, 428}}";
 			sepNavWindowFrame = "{{107, 379}, {750, 534}}";
 		};
-	};
-	851FE93B081E2A4000C92DA6 = {
-		fRef = 1A224C3EFF42367911CA2CB7;
-		isa = PBXTextBookmark;
-		name = "AppleADBMouse.h: _enableScrollX";
-		rLen = 0;
-		rLoc = 3538;
-		rType = 0;
-		vrLen = 219;
-		vrLoc = 2758;
-	};
-	855530ED07E6E548008FF3AE = {
-		fRef = 089C167EFE841241C02AAC07;
-		isa = PBXTextBookmark;
-		name = "English: 5";
-		rLen = 0;
-		rLoc = 155;
-		rType = 0;
-		vrLen = 355;
-		vrLoc = 0;
 	};
 	8557FC8C07B6CBC30091B459 = {
 		fallbackIsa = XCSourceControlManager;
@@ -465,39 +339,8 @@
 	8557FC8D07B6CBC30091B459 = {
 		indexTemplatePath = "";
 		isa = PBXCodeSenseManager;
-		usesDefaults = 0;
-		wantsCodeCompletion = 1;
-		wantsCodeCompletionAutoSuggestions = 1;
-		wantsCodeCompletionCaseSensitivity = 1;
-		wantsCodeCompletionListAlways = 1;
-		wantsCodeCompletionOnlyMatchingItems = 1;
-		wantsCodeCompletionParametersIncluded = 1;
-		wantsCodeCompletionPlaceholdersInserted = 1;
-		wantsCodeCompletionTabCompletes = 1;
-		wantsIndex = 1;
 	};
-	85A90D77082A612A001FD5A6 = {
-		isa = PBXTargetBookmark;
-		trg = 089C1673FE841209C02AAC07;
-	};
-	85B2A3FE082A9135009265D8 = {
-		fRef = 089C167EFE841241C02AAC07;
-		isa = PBXTextBookmark;
-		name = "English: 5";
-		rLen = 0;
-		rLoc = 155;
-		rType = 0;
-		vrLen = 355;
-		vrLoc = 0;
-	};
-	85CAAEF9081DAB6D00203449 = {
-		fRef = 1A224C3EFF42367911CA2CB7;
-		isa = PBXTextBookmark;
-		name = "AppleADBMouse.h: 110";
-		rLen = 0;
-		rLoc = 3538;
-		rType = 0;
-		vrLen = 267;
-		vrLoc = 2710;
+	85C2A05C084CF052007333E1 = {
+		activeExec = 0;
 	};
 }

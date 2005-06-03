@@ -50,7 +50,6 @@
 #include <IOKit/IOLib.h>
 #include <IOKit/IOPlatformExpert.h>
 
-
 //Need the following to compile with GCC3 
 static inline int
 my_abs(int x)
@@ -1786,3 +1785,10 @@ IOReturn iScroll2::setParamProperties( OSDictionary * dict )
     return( err );
 }
 
+// modified dub:
+IOReturn iScroll2::setProperties(OSObject * properties)
+{
+	IOLog("iScroll2::setProperties(0x%x)\n", (int)properties);
+	return kIOReturnSuccess;
+}
+// end modifications

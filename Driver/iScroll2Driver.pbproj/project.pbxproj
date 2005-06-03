@@ -21,8 +21,9 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				OPTIMIZATION_CFLAGS = "-O0";
-				ZERO_LINK = YES;
+				ZERO_LINK = NO;
 			};
 			isa = PBXBuildStyle;
 			name = Development;
@@ -57,6 +58,8 @@
 //084
 		089C1669FE841209C02AAC07 = {
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				SDKROOT = /Developer/SDKs/MacOSX10.3.9.sdk;
 			};
 			buildStyles = (
 				06AA1265FFB2107B11CA28AA,
@@ -67,6 +70,7 @@
 			mainGroup = 089C166AFE841209C02AAC07;
 			projectDirPath = "";
 			targets = (
+				85C2A05C084CF052007333E1,
 				089C1673FE841209C02AAC07,
 			);
 		};
@@ -75,6 +79,7 @@
 				247142CAFF3F8F9811CA285C,
 				089C167CFE841241C02AAC07,
 				19C28FB6FE9D52B211CA2CBB,
+				85C2A068084CF052007333E1,
 			);
 			isa = PBXGroup;
 			name = AppleADBMouse;
@@ -321,6 +326,7 @@
 		19C28FB6FE9D52B211CA2CBB = {
 			children = (
 				0B81C263FFB7832611CA28AA,
+				85C2A069084CF052007333E1,
 			);
 			isa = PBXGroup;
 			name = Products;
@@ -412,6 +418,172 @@
 			isa = PBXBuildFile;
 			settings = {
 			};
+		};
+		85C2A05C084CF052007333E1 = {
+			buildPhases = (
+				85C2A05D084CF052007333E1,
+				85C2A05E084CF052007333E1,
+				85C2A061084CF052007333E1,
+				85C2A063084CF052007333E1,
+				85C2A065084CF052007333E1,
+				85C2A066084CF052007333E1,
+				85C2A067084CF052007333E1,
+			);
+			buildRules = (
+				85C2A06F084CF3E4007333E1,
+				85C2A06E084CF3DC007333E1,
+				85C2A06B084CF2DF007333E1,
+			);
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
+				KERNEL_MODULE = YES;
+				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = "";
+				MODULE_IOKIT = YES;
+				MODULE_NAME = name.razzfazz.driver.iScroll2;
+				MODULE_VERSION = 0.25;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = iScroll2;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
+				WRAPPER_EXTENSION = kext;
+			};
+			dependencies = (
+			);
+			isa = PBXNativeTarget;
+			name = "iScroll2 (Upgraded)";
+			productInstallPath = "$(SYSTEM_LIBRARY_DIR)/Extensions";
+			productName = AppleADBMouse;
+			productReference = 85C2A069084CF052007333E1;
+			productType = "com.apple.product-type.kernel-extension.iokit";
+		};
+		85C2A05D084CF052007333E1 = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			isa = PBXShellScriptBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "script=\"${SYSTEM_DEVELOPER_DIR}/ProjectBuilder Extras/Kernel Extension Support/KEXTPreprocess\";\nif [ -x \"$script\" ]; then\n    . \"$script\"\nfi";
+		};
+		85C2A05E084CF052007333E1 = {
+			buildActionMask = 2147483647;
+			files = (
+				85C2A05F084CF052007333E1,
+				85C2A060084CF052007333E1,
+			);
+			isa = PBXHeadersBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85C2A05F084CF052007333E1 = {
+			fileRef = 1A224C3EFF42367911CA2CB7;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		85C2A060084CF052007333E1 = {
+			fileRef = 85104D8F07BD612C009915A7;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		85C2A061084CF052007333E1 = {
+			buildActionMask = 2147483647;
+			files = (
+				85C2A062084CF052007333E1,
+			);
+			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85C2A062084CF052007333E1 = {
+			fileRef = 089C167DFE841241C02AAC07;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		85C2A063084CF052007333E1 = {
+			buildActionMask = 2147483647;
+			files = (
+				85C2A064084CF052007333E1,
+			);
+			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85C2A064084CF052007333E1 = {
+			fileRef = 1A224C3FFF42367911CA2CB7;
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+				);
+			};
+		};
+		85C2A065084CF052007333E1 = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85C2A066084CF052007333E1 = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			isa = PBXRezBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85C2A067084CF052007333E1 = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			isa = PBXShellScriptBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "script=\"${SYSTEM_DEVELOPER_DIR}/ProjectBuilder Extras/Kernel Extension Support/KEXTPostprocess\";\nif [ -x \"$script\" ]; then\n    . \"$script\"\nfi";
+		};
+		85C2A068084CF052007333E1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.xml;
+			path = Info.plist;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		85C2A069084CF052007333E1 = {
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+			isa = PBXFileReference;
+			name = iScroll2.kext;
+			path = build/iScroll2.kext;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		85C2A06B084CF2DF007333E1 = {
+			compilerSpec = com.apple.compilers.gcc.3_3;
+			fileType = sourcecode.cpp;
+			isEditable = 1;
+			isa = PBXBuildRule;
+			outputFiles = (
+			);
+		};
+		85C2A06E084CF3DC007333E1 = {
+			compilerSpec = com.apple.compilers.gcc.3_3;
+			fileType = sourcecode.c;
+			isEditable = 1;
+			isa = PBXBuildRule;
+			outputFiles = (
+			);
+		};
+		85C2A06F084CF3E4007333E1 = {
+			compilerSpec = com.apple.compilers.gcc.3_3;
+			fileType = sourcecode.asm;
+			isEditable = 1;
+			isa = PBXBuildRule;
+			outputFiles = (
+			);
 		};
 	};
 	rootObject = 089C1669FE841209C02AAC07;

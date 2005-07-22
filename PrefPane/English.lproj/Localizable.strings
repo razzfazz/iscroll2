@@ -1,0 +1,5 @@
+"VersionString" = "Version %@";
+"WarningTitleString" = "Warning:";
+"WarningTextString" = "This will leave no action mapped to a left click.\n\nIf you proceed, you will be unable to control your system with the trackpad.\n\nYou should only do this if you have an external mouse attached to your system.";
+"WarningCancelString" = "Cancel";
+"WarningProceedString" = "Proceed";

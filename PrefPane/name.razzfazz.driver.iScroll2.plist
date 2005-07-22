@@ -5,8 +5,8 @@
 <dict>
 	<key>DefaultParameters</key>
 	<dict>
-        <key>TrackpadHScroll</key>
-        <false/>
+		<key>TrackpadHScroll</key>
+		<false/>
 		<key>TrackpadHScrollThreshold</key>
 		<integer>0</integer>
 		<key>TrackpadHScrollScale</key>
@@ -38,7 +38,7 @@
 		<key>TrackpadTwoFingerClickMapTo</key>
 		<integer>1</integer>
 		<key>TrackpadScrollResolution</key>
-		<integer>6553600</integer>
+		<integer>655360</integer>
 		<key>TrackpadTapDownTime</key>
 		<integer>25</integer>
 		<key>TrackpadStickyDragTime</key>

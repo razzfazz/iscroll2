@@ -166,7 +166,4 @@ public:
 	virtual OSData * copyAccelerationTable();
 	virtual void _check_usb_mouse(IOService * service, bool added); 
 	virtual void free();
-// modified dub:
-	virtual IOReturn setProperties(OSObject * properties);
-// end modifications
 };

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>iScroll2</string>
+	<key>CFBundleGetInfoString</key>
+	<string>0.25</string>
+	<key>CFBundleIconFile</key>
+	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string>name.razzfazz.driver.iScroll2</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>iScroll2</string>
+	<key>CFBundlePackageType</key>
+	<string>KEXT</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.25</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>0.25</string>
+	<key>IOKitPersonalities</key>
+	<dict>
+		<key>iScroll2</key>
+		<dict>
+			<key>ADB Match</key>
+			<string>3-01</string>
+			<key>CFBundleIdentifier</key>
+			<string>name.razzfazz.driver.iScroll2</string>
+			<key>IOClass</key>
+			<string>iScroll2</string>
+			<key>IOProbeScore</key>
+			<integer>40000</integer>
+			<key>IOProviderClass</key>
+			<string>IOADBDevice</string>
+			<key>JitterNoClick</key>
+			<integer>0</integer>
+			<key>JitterNoMove</key>
+			<integer>0</integer>
+			<key>OutsidezoneNoAction Permanent</key>
+			<integer>0</integer>
+			<key>OutsidezoneNoAction When Pecking</key>
+			<integer>0</integer>
+			<key>OutsidezoneNoAction When Typing</key>
+			<integer>0</integer>
+			<key>PalmNoAction Permanent</key>
+			<integer>0</integer>
+			<key>PalmNoAction When Typing</key>
+			<integer>0</integer>
+			<key>Trackpad Jitter Max delta</key>
+			<integer>16</integer>
+			<key>Trackpad Jitter Milliseconds</key>
+			<integer>750</integer>
+			<key>TwofingerNoAction</key>
+			<integer>0</integer>
+			<key>W sticky input timeout</key>
+			<integer>500</integer>
+			<key>W threshold</key>
+			<integer>7</integer>
+			<key>acclAAPL</key>
+			<data>
+			AACAAEAyMDAAAgAAAAAAAQABAAAAAQAAAAEAAAAJAABxOwAAYAAA
+			BE7FABCAAAAMAAAAXwAAABbsTwCLAAAAHTsUAJSAAAAidicAlgAA
+			ACRidgCWAAAAJgAAAJYAAAAoAAAAlgAA
+			</data>
+			<key>accltpad</key>
+			<data>
+			AACwAHRwYWQABwAAAAAAAQABAAAAAQAAAAAgAAAFAAEjxgABAAAA
+			Av48AAOAAAAFVxkACwAAAAguvwAaAAAACj/xAC4AAAAAUAAABQAB
+			I8YAAQAAAALeigAEEAAABWgsAA/gAAAIHr8AImAAAAofaAA34AAA
+			AIAAAAcAASPGAAEAAAABw3gAAoAAAAKsFQAEoAAABFQCAA3AAAAG
+			EoUAG7AAAAfmiwAtEAAACkTrAEqQAAAAsAAACQABJCkAAQAAAAGz
+			fAACgAAAAl5fAAWAAAADvywADwAAAAS8NQAXoAAABh44ACewAAAH
+			XUUAOFAAAAiZogBLsAAACpEFAGawAAAA4AAACgABGFUAATAAAAGy
+			KAAC8AAAAlNpAAagAAADb0oAENAAAARqqwAfEAAABUqrAC1QAAAG
+			JVUAP0AAAAcaqwBRwAAACJqrAGYwAAAKiqsAfXAAAAEAAAALAAEY
+			VQABMAAAAbIoAAMQAAACU2kABxAAAAMvSgARgAAAA6z7AByIAAAE
+			OqsAKOAAAATKqwA4QAAABVVVAEjwAAAGOqsAXJAAAAeqqwBzEAAA
+			CjqrAItwAA==
+			</data>
+			<key>HIDScrollAccelerationTable</key>
+			<data>
+			AACAAFVTQioABwAAAAAAAQABAAAAAQAAAAAgAAAQAABxOwAATOMA
+			AyXMAAgKRgAFE1wAD26ZAAbxSgAX6V4ACVeCACMQWgALZ6EALBF7
+			AA2N1AA03ToAD36aADvQuAASWKAARl01ABUAAABO2dgAF8AAAFXK
+			7QAas+UAW2FQAB2QAABe0qoAIL75AGEgywAkLXsAYnXvACewAABj
+			Rl8AAIAAABEAAHE7AABWfwAC1KsAE4wRAARztgAhHCQABh5LAC8h
+			2AAIankAQf22AArttQBXhm4ADQHYAGs9OQAO/X8AgQRwABDLmACR
+			1FYAEmi5AJ7dUAAT5z8AqKQKABcC5wC2fZIAGi3cAMBETgAdWNAA
+			xfg6ACDfkgDK25gAJDhuAM7uZQAnoJcA0jCjAACwAAARAABxOwAA
+			YU4AAr+WABctuwAEPkMAJzfvAAXSBgA5zMIAB86CAE/s5wAKBYAA
+			ajyuAAvrnwCEwKQADZELAJ9H4QAPOMgAtYNvABD+TwDGpsQAEs1R
+			ANR4IwAV6mYA5MrHABmhVgDyoWYAHUK/APt9fAAhC4IBAWl0ACRL
+			bQEFUogAJ6AAAQgrjAAA4AAAEQAAcTsAAG13AAKNIAAbGOAAA/NG
+			AC1bMQAFiS8AREC/AAc3jABcvuEACP29AHt2UwAKlBkAnakmAAvP
+			sgC9TtQADTXJANp2KQAO+08A8oXiABEu7gEJJaIAFSUPAR9XxAAZ
+			P2gBLNEqAB0KGQE1CsYAIPPlATpxHgAkQBEBPdd2ACefVgFAwdYA
+			AFAAABEAAHE7AABLsAAC/WwADl3aAATL0AAY1MMABpm8ACQcIAAI
+			9XkAMx15AAs9bgBBZ4AADXBPAFDBoQAPrE0AYEkzABGoHQBuTUwA
+			E0/WAHfVkAAU0H4AftujABd6HQCG2F0AGoKHAI6fpQAdiekAk755
+			ACDf8gCXXFsAJDtCAJmLvQAnoDgAmnHXAAEAAAARAABxOwAAVn8A
+			AlsIAB+VOQADts4AM/mlAAUryQBNHkoABpRkAGlUVwAH1rkAiZ70
+			AAjF1gCswVsACaB2ANU5FgALANIA/nqWAA0IPAEmJUAAEAAAAUSf
+			0gAUQAABXj3MABkAAAFuuxgAHNAAAXPvwAAg4AABeG/AACQgAAF6
+			b8AAJ6AAAXwkaA==
+			</data>
+			<key>HIDPointerAccelerationType</key>
+			<string>HIDTrackpadAcceleration</string>
+			<key>HIDScrollAccelerationType</key>
+			<string>HIDMouseScrollAcceleration</string>
+			<key>HIDScrollResolution</key>
+			<integer>655360</integer>
+			<key>TrackpadHorizScroll</key>
+			<true/>
+			<key>TrackpadScroll</key>
+			<true/>
+		</dict>
+	</dict>
+	<key>OSBundleLibraries</key>
+	<dict>
+		<key>com.apple.iokit.IOADBFamily</key>
+		<string>1.0</string>
+		<key>com.apple.iokit.IOHIDSystem</key>
+		<string>1.2</string>
+		<key>com.apple.kernel.iokit</key>
+		<string>6.0</string>
+		<key>com.apple.kernel.libkern</key>
+		<string>6.0</string>
+		<key>com.apple.kernel.mach</key>
+		<string>6.0</string>
+	</dict>
+</dict>
+</plist>

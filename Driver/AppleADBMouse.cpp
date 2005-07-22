@@ -77,8 +77,24 @@ my_sgn(int x)
 #ifndef kIOHIDTrackpadScrollAccelerationType
 #define kIOHIDTrackpadScrollAccelerationType	"HIDTrackpadScrollAcceleration"
 #endif
-
-#define kDefaultScrollFixedResolution	(100 << 16)
+#ifndef kHIDScrollAccelerationTableKey
+#define kHIDScrollAccelerationTableKey			"HIDScrollAccelerationTable"
+#endif
+#ifndef kTrackpadScrollKey
+#define kTrackpadScrollKey						"TrackpadScroll"
+#endif
+#ifndef kTrackpadHorizScrollKey
+#define kTrackpadHorizScrollKey					"TrackpadHorizScroll"
+#endif
+#ifndef kHIDPointerAccelerationTypeKey
+#define kHIDPointerAccelerationTypeKey			"HIDPointerAccelerationType"
+#endif
+#ifndef kHIDScrollAccelerationTypeKey
+#define kHIDScrollAccelerationTypeKey			"HIDScrollAccelerationType"
+#endif
+#ifndef kHIDScrollResolutionKey
+#define kHIDScrollResolutionKey					"HIDScrollResolution"
+#endif
 
 // end modifications
 
@@ -384,11 +400,10 @@ bool iScroll2::start(IOService * provider)
 		{
 			_jitterdelta = 16;  // pixels;
 		}
-		setProperty(kIOHIDPointerAccelerationTypeKey, kIOHIDTrackpadAccelerationType); 
-
 // modified dub:
-		setProperty(kIOHIDScrollAccelerationTypeKey, kIOHIDTrackpadScrollAccelerationType);
-		setProperty(kIOHIDScrollResolutionKey, kDefaultScrollFixedResolution, 32);
+//		setProperty(kIOHIDPointerAccelerationTypeKey, kIOHIDTrackpadAccelerationType); 
+//		setProperty(kIOHIDScrollAccelerationTypeKey, kIOHIDTrackpadScrollAccelerationType);
+//		setProperty(kIOHIDScrollResolutionKey, kDefaultScrollFixedResolution, 32);
 // end modifications
 
 		//This is the only way to find out if we have new trackpad with W info passed in relative mode
@@ -764,7 +779,7 @@ void iScroll2::packet(UInt8 adbCommand, IOByteCount length, UInt8 * data)
 		//if(typeTrackpad)
     {
 // modified dub:
-		if(has2fingers) IOLog("%s: Two-finger tap detected.\n", getName());
+//		if(has2fingers) IOLog("%s: Two-finger tap detected.\n", getName());
 // end modifications
 		if ((_jitterclick) && (_pADBKeyboard))
 		{
@@ -931,6 +946,7 @@ void iScroll2::packet(UInt8 adbCommand, IOByteCount length, UInt8 * data)
 		}
 		if(!skipLinear)
 		{
+//			bool scrolled = false;
 			if(_enableScrollX && ((my_abs(dx) >= _scrollThreshX) 
 				&& (!_scrollDominantAxisOnly || (my_abs(dx) >= my_abs(dy)))))
 				_scrollX += (_scrollInvertX ? dx : -dx);
@@ -943,6 +959,25 @@ void iScroll2::packet(UInt8 adbCommand, IOByteCount length, UInt8 * data)
 				_scrollX = _scrollY = 0;
 				_lastScrollTimeAB = now;
 			}
+/*			if((_scrollX / _scrollScaleX) && !withhold)
+			{
+				for(int i = 1; i <= _scrollX / _scrollScaleX; i++)
+				{
+					dispatchScrollWheelEvent(0, 1, 0, _lastScrollTimeAB + (i / (_scrollX / _scrollScaleX) * (now - _lastScrollTimeAB));
+				}
+				_scrollX = 0;
+				scrolled = true;
+			}
+			if((_scrollY / _scrollScaleY)) && !withhold)
+			{
+				for(int i = 1; i <= _scrollY / _scrollScaleY; i++)
+				{
+					dispatchScrollWheelEvent(1, 0, 0, _lastScrollTimeAB + (i / (_scrollY / _scrollScaleY) * (now - _lastScrollTimeAB));
+				}
+				_scrollY = 0;
+				scrolled = true;
+			}
+			if(scrolled) _lastScrollTimeAB = now;*/
 		}
 		if(buttonState != _oldButtonState)
 		{
@@ -1479,6 +1514,8 @@ IOReturn iScroll2::setParamProperties( OSDictionary * dict )
 // modified dub:
 	OSBoolean	*datab;
 	OSDictionary*datad;
+	OSData		*data;
+	OSString	*datas;
 // end modifcations
     IOReturn	err = kIOReturnSuccess;
     UInt8       adbdata[8];
@@ -1661,6 +1698,30 @@ IOReturn iScroll2::setParamProperties( OSDictionary * dict )
 		}
 		
 // modified dub:
+		if(datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadScrollKey)))
+		{
+			setProperty(kTrackpadScrollKey, datan->unsigned32BitValue(), 32);
+		}
+		if(datan = OSDynamicCast(OSNumber, dict->getObject(kTrackpadHorizScrollKey)))
+		{
+			setProperty(kTrackpadHorizScrollKey, datan->unsigned32BitValue(), 32);
+		}
+		if(data = OSDynamicCast(OSData, dict->getObject(kHIDScrollAccelerationTableKey)))
+		{
+			setProperty(kHIDScrollAccelerationTableKey, data->getBytesNoCopy());
+		}
+		if(datas = OSDynamicCast(OSString, dict->getObject(kHIDPointerAccelerationTypeKey)))
+		{
+			setProperty(kHIDPointerAccelerationTypeKey, datas->getCStringNoCopy());
+		}
+		if(datas = OSDynamicCast(OSString, dict->getObject(kHIDScrollAccelerationTypeKey)))
+		{
+			setProperty(kHIDScrollAccelerationTypeKey, datas->getCStringNoCopy());
+		}
+		if(datan = OSDynamicCast(OSNumber, dict->getObject(kHIDScrollResolutionKey)))
+		{
+			setProperty(kHIDScrollResolutionKey, datan->unsigned32BitValue(), 32);
+		}
 		if(datad = OSDynamicCast(OSDictionary, dict->getObject(kiScroll2SettingsKey)))
 		{
 			if(datab = OSDynamicCast(OSBoolean, datad->getObject(kTrackpadHScrollKey)))
@@ -1784,11 +1845,3 @@ IOReturn iScroll2::setParamProperties( OSDictionary * dict )
     IOLog("iScroll2::setParamProperties failing here\n");
     return( err );
 }
-
-// modified dub:
-IOReturn iScroll2::setProperties(OSObject * properties)
-{
-	IOLog("iScroll2::setProperties(0x%x)\n", (int)properties);
-	return kIOReturnSuccess;
-}
-// end modifications

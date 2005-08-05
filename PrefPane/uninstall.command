@@ -35,7 +35,7 @@ do
 	fi
 done
 
-touch /System/Library/Extensions
+sudo touch /System/Library/Extensions
 
 echo "Uninstall completed. You should restart your system now."
 echo

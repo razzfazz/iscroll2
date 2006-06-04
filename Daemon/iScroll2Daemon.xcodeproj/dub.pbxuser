@@ -1,25 +1,48 @@
 // !$*UTF8*$!
 {
-	08FB7793FE84155DC02AAC07 = {
-		activeBuildStyle = 014CEA520018CE5811CA2923;
-		activeExecutable = 850C1B9607E26B1A00BF4B54;
-		activeTarget = 08FB779FFE84155DC02AAC07;
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Development;
+		activeBuildStyle = 014CEA520018CE5811CA2923 /* Development */;
+		activeExecutable = 85C9FAF208561BD0008C7F0E /* iScroll2Daemon */;
+		activeTarget = 85C9FAE408561BD0008C7F0E /* iScroll2Daemon */;
 		addToTargets = (
-			08FB779FFE84155DC02AAC07,
 		);
 		breakpoints = (
 		);
-		codeSenseManager = 850C1B9E07E26B3900BF4B54;
+		breakpointsGroup = 858B409C0A3262210037E025 /* XCBreakpointsBucket */;
+		codeSenseManager = 850C1B9E07E26B3900BF4B54 /* Code sense */;
 		executables = (
-			850C1B9607E26B1A00BF4B54,
+			85C9FAF208561BD0008C7F0E /* iScroll2Daemon */,
 		);
 		perUserDictionary = {
+			"PBXConfiguration.PBXBreakpointsDataSource.v1:1CA1AED706398EBD00589147" = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXBreakpointsDataSource_BreakpointID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					20,
+					210,
+					20,
+					110,
+					109,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXBreakpointsDataSource_ActionID,
+					PBXBreakpointsDataSource_TypeID,
+					PBXBreakpointsDataSource_BreakpointID,
+					PBXBreakpointsDataSource_UseID,
+					PBXBreakpointsDataSource_LocationID,
+					PBXBreakpointsDataSource_ConditionID,
+					PBXBreakpointsDataSource_ContinueID,
+				);
+			};
 			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
 				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					243,
+					98,
 					20,
 					48,
 					43,
@@ -42,7 +65,7 @@
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
 					210,
-					50,
+					10,
 					20,
 					50,
 					43,
@@ -58,7 +81,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 139089956;
+			PBXPerProjectTemplateStateSaveDate = 171145857;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -235,38 +258,54 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 139089956;
+			PBXWorkspaceStateSaveDate = 171145857;
 		};
-		sourceControlManager = 850C1B9D07E26B3900BF4B54;
+		sourceControlManager = 850C1B9D07E26B3900BF4B54 /* Source Control */;
 		userBuildSettings = {
 		};
 	};
-	08FB7796FE84155DC02AAC07 = {
+	08FB7796FE84155DC02AAC07 /* iScroll2Daemon.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {711, 2324}}";
-			sepNavSelRange = "{2246, 0}";
-			sepNavVisRect = "{{0, 155}, {711, 893}}";
-			sepNavWindowFrame = "{{27, 4}, {750, 998}}";
+			sepNavIntBoundsRect = "{{0, 0}, {506, 5866}}";
+			sepNavSelRange = "{10889, 0}";
+			sepNavVisRect = "{{0, 4973}, {501, 893}}";
+			sepNavWindowFrame = "{{731, 4}, {546, 998}}";
 		};
 	};
-	08FB779FFE84155DC02AAC07 = {
+	850C1B9D07E26B3900BF4B54 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+		scmType = "";
+	};
+	850C1B9E07E26B3900BF4B54 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	858B409C0A3262210037E025 /* XCBreakpointsBucket */ = {
+		isa = XCBreakpointsBucket;
+		name = "Project Breakpoints";
+		objects = (
+		);
+	};
+	85C9FAE408561BD0008C7F0E /* iScroll2Daemon */ = {
 		activeExec = 0;
 		executables = (
-			850C1B9607E26B1A00BF4B54,
+			85C9FAF208561BD0008C7F0E /* iScroll2Daemon */,
 		);
 	};
-	850C1B9607E26B1A00BF4B54 = {
-		activeArgIndex = 0;
+	85C9FAF208561BD0008C7F0E /* iScroll2Daemon */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 2147483647;
 		activeArgIndices = (
-			YES,
 		);
 		argumentStrings = (
-			"-i",
 		);
+		autoAttachOnCrash = 1;
 		configStateDict = {
 		};
-		cppStopOnCatchEnabled = 0;
-		cppStopOnThrowEnabled = 0;
 		customDataFormattersEnabled = 1;
 		debuggerPlugin = GDBDebugging;
 		disassemblyDisplayState = 0;
@@ -276,98 +315,33 @@
 		);
 		executableSystemSymbolLevel = 0;
 		executableUserSymbolLevel = 0;
-		isa = PBXExecutable;
 		libgmallocEnabled = 0;
 		name = iScroll2Daemon;
 		savedGlobals = {
+			"/Users/dub/Documents/Source Code/Mac/iScroll2/Daemon/build/Development/iScroll2Daemon" = (
+				{
+					display = 1;
+					filename = "/Users/dub/Documents/Source Code/Mac/iScroll2/Daemon/iScroll2Daemon.c";
+					name = dsRunLoopSource;
+				},
+				{
+					display = 1;
+					filename = "/Users/dub/Documents/Source Code/Mac/iScroll2/Daemon/iScroll2Daemon.c";
+					name = dsSession;
+				},
+				{
+					display = 1;
+					filename = "/Users/dub/Documents/Source Code/Mac/iScroll2/Daemon/iScroll2Daemon.c";
+					name = ioRunLoopSource;
+				},
+				{
+					display = 1;
+					filename = "/Users/dub/Documents/Source Code/Mac/iScroll2/Daemon/iScroll2Daemon.c";
+					name = ioKitNotificationPort;
+				},
+			);
 		};
-		shlibInfoDictList = (
-		);
-		shlibInfoDictList_v2 = (
-			{
-				level = 0;
-				path = "/Users/dub/Documents/Source Code/Mac/iScroll2/Daemon/build/iScroll2Daemon";
-				whenToLoad = 0;
-			},
-			{
-				level = 0;
-				path = /usr/lib/system/libmathCommon.A.dylib;
-				whenToLoad = 0;
-			},
-			{
-				level = 0;
-				path = /usr/lib/libSystem.B.dylib;
-				whenToLoad = 0;
-			},
-			{
-				level = 0;
-				path = /usr/lib/libicucore.A.dylib;
-				whenToLoad = 0;
-			},
-			{
-				level = 0;
-				path = /usr/lib/libauto.dylib;
-				whenToLoad = 0;
-			},
-			{
-				level = 0;
-				path = /usr/lib/libobjc.A.dylib;
-				whenToLoad = 0;
-			},
-			{
-				level = 0;
-				path = /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation;
-				whenToLoad = 0;
-			},
-			{
-				level = 0;
-				path = /System/Library/Frameworks/SystemConfiguration.framework/Versions/A/SystemConfiguration;
-				whenToLoad = 0;
-			},
-			{
-				level = 0;
-				path = /usr/lib/libz.1.2.2.dylib;
-				whenToLoad = 0;
-			},
-			{
-				level = 0;
-				path = /System/Library/Frameworks/IOKit.framework/Versions/A/IOKit;
-				whenToLoad = 0;
-			},
-			{
-				level = 0;
-				path = /usr/lib/libmx.A.dylib;
-				whenToLoad = 0;
-			},
-			{
-				level = 0;
-				path = /Developer/Applications/Xcode.app/Contents/PlugIns/GDBMIDebugging.xcplugin/Contents/Resources/PBGDBIntrospectionSupport.A.dylib;
-				whenToLoad = 0;
-			},
-			{
-				level = 0;
-				path = "/Library/Application Support/Apple/Developer Tools/CustomDataViews/CFDataFormatters.bundle/Contents/MacOS/CFDataFormatters";
-				whenToLoad = 0;
-			},
-			{
-				level = 0;
-				path = /usr/lib/dyld;
-				whenToLoad = 0;
-			},
-		);
 		sourceDirectories = (
 		);
-	};
-	850C1B9D07E26B3900BF4B54 = {
-		fallbackIsa = XCSourceControlManager;
-		isSCMEnabled = 0;
-		isa = PBXSourceControlManager;
-		scmConfiguration = {
-		};
-		scmType = "";
-	};
-	850C1B9E07E26B3900BF4B54 = {
-		indexTemplatePath = "";
-		isa = PBXCodeSenseManager;
 	};
 }

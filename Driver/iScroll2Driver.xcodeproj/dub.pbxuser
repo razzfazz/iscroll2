@@ -1,14 +1,14 @@
 // !$*UTF8*$!
 {
-	089C1669FE841209C02AAC07 = {
-		activeBuildStyle = 06AA1265FFB2107B11CA28AA;
-		activeTarget = 85C2A05C084CF052007333E1;
+	089C1669FE841209C02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Development;
+		activeBuildStyle = 06AA1265FFB2107B11CA28AA /* Development */;
+		activeTarget = 85C2A05C084CF052007333E1 /* iScroll2 */;
 		addToTargets = (
-			089C1673FE841209C02AAC07,
 		);
 		breakpoints = (
 		);
-		codeSenseManager = 8557FC8D07B6CBC30091B459;
+		codeSenseManager = 8557FC8D07B6CBC30091B459 /* Code sense */;
 		perUserDictionary = {
 			PBXConfiguration.PBXFileTableDataSource3.PBXErrorsWarningsDataSource = {
 				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
@@ -110,7 +110,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 139259780;
+			PBXPerProjectTemplateStateSaveDate = 171121991;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -287,60 +287,65 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 139259780;
+			PBXWorkspaceStateSaveDate = 171121991;
 		};
-		sourceControlManager = 8557FC8C07B6CBC30091B459;
+		sourceControlManager = 8557FC8C07B6CBC30091B459 /* Source Control */;
 		userBuildSettings = {
 		};
 	};
-	089C1673FE841209C02AAC07 = {
-		activeExec = 0;
-	};
-	089C167EFE841241C02AAC07 = {
+	089C167EFE841241C02AAC07 /* English */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {800, 144}}";
-			sepNavSelRange = "{155, 0}";
-			sepNavVisRect = "{{0, 0}, {440, 144}}";
-			sepNavWindowFrame = "{{61, 421}, {750, 534}}";
+			sepNavIntBoundsRect = "{{0, 0}, {830, 429}}";
+			sepNavSelRange = "{280, 0}";
+			sepNavVisRect = "{{0, 0}, {705, 429}}";
+			sepNavWindowFrame = "{{309, 142}, {750, 534}}";
 		};
 	};
-	1A224C3EFF42367911CA2CB7 = {
+	1A224C3EFF42367911CA2CB7 /* AppleADBMouse.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {711, 2422}}";
-			sepNavSelRange = "{5439, 0}";
-			sepNavVisRect = "{{0, 1965}, {711, 429}}";
-			sepNavWindowFrame = "{{337, 265}, {750, 534}}";
+			sepNavIntBoundsRect = "{{0, 0}, {705, 2380}}";
+			sepNavSelRange = "{4839, 66}";
+			sepNavVisRect = "{{0, 204}, {705, 429}}";
+			sepNavWindowFrame = "{{337, 298}, {750, 534}}";
 		};
 	};
-	1A224C3FFF42367911CA2CB7 = {
+	1A224C3FFF42367911CA2CB7 /* AppleADBMouse.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {704, 25116}}";
-			sepNavSelRange = "{5791, 25}";
-			sepNavVisRect = "{{0, 2630}, {459, 186}}";
-			sepNavWindowFrame = "{{468, 347}, {750, 534}}";
+			sepNavIntBoundsRect = "{{0, 0}, {830, 25872}}";
+			sepNavSelRange = "{52794, 4}";
+			sepNavVisRect = "{{0, 24782}, {503, 440}}";
+			sepNavWindowFrame = "{{3, 116}, {548, 545}}";
 		};
 	};
-	85104D8F07BD612C009915A7 = {
+	85104D8F07BD612C009915A7 /* ioregkeys.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {711, 504}}";
+			sepNavIntBoundsRect = "{{0, 0}, {705, 504}}";
 			sepNavSelRange = "{311, 0}";
-			sepNavVisRect = "{{0, 76}, {711, 428}}";
-			sepNavWindowFrame = "{{107, 379}, {750, 534}}";
+			sepNavVisRect = "{{0, 75}, {705, 429}}";
+			sepNavWindowFrame = "{{107, 298}, {750, 534}}";
 		};
 	};
-	8557FC8C07B6CBC30091B459 = {
+	8557FC8C07B6CBC30091B459 /* Source Control */ = {
+		isa = PBXSourceControlManager;
 		fallbackIsa = XCSourceControlManager;
 		isSCMEnabled = 0;
-		isa = PBXSourceControlManager;
 		scmConfiguration = {
 		};
 		scmType = "";
 	};
-	8557FC8D07B6CBC30091B459 = {
-		indexTemplatePath = "";
+	8557FC8D07B6CBC30091B459 /* Code sense */ = {
 		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
 	};
-	85C2A05C084CF052007333E1 = {
+	85C2A05C084CF052007333E1 /* iScroll2 */ = {
 		activeExec = 0;
+	};
+	85C2A068084CF052007333E1 /* Info.plist */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {705, 1946}}";
+			sepNavSelRange = "{809, 4}";
+			sepNavVisRect = "{{0, 1223}, {705, 723}}";
+			sepNavWindowFrame = "{{505, 4}, {750, 828}}";
+		};
 	};
 }

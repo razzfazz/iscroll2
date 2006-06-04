@@ -8,7 +8,7 @@ then
 fi
 
 echo "Checking OS version..."
-if [ "`sysctl -n kern.osrelease | cut -d "." -f 1`" \< "7" ]
+if [ "`/usr/sbin/sysctl -n kern.osrelease | cut -d "." -f 1`" \< "7" ]
 then
     echo "ERROR: Incompatible operating system version detected."
     exit 112
@@ -16,13 +16,13 @@ fi
 echo "Darwin version `sysctl -n kern.osrelease` detected."
 
 echo "Checking for other alternative trackpad drivers..."
-if kextstat | grep com.ragingmenace.driver.SideTrack > /dev/null
+if /usr/sbin/kextstat | grep com.ragingmenace.driver.SideTrack > /dev/null
 then
     echo "ERROR: SideTrack seems to be installed on your machine."
     echo "iScroll2 is not compatible with SideTrack."
     exit 113
 fi
-if kextstat | grep uk.org.outpost.driver.OutpostADBMouse > /dev/null
+if /usr/sbin/kextstat | grep uk.org.outpost.driver.OutpostADBMouse > /dev/null
 then
     echo "ERROR: FingaMIDI seems to be installed on your machine."
     echo "iScroll2 is not compatible with FingaMIDI."
@@ -31,9 +31,9 @@ fi
 echo "No other known alternative drivers detected."
 
 echo "Checking if trackpad driver is loaded..."
-if ! (kextstat | grep com.apple.driver.AppleADBMouse > /dev/null || \
-    kextstat | grep name.razzfazz.iScroll2 > /dev/null || \
-    kextstat | grep name.razzfazz.driver.iScroll2 > /dev/null)
+if ! (/usr/sbin/kextstat | grep com.apple.driver.AppleADBMouse > /dev/null || \
+    /usr/sbin/kextstat | grep name.razzfazz.iScroll2 > /dev/null || \
+    /usr/sbin/kextstat | grep name.razzfazz.driver.iScroll2 > /dev/null)
 then 
     echo "ERROR: No compatible trackpad driver loaded!"
     exit 115
@@ -41,8 +41,8 @@ fi
 echo "Apple trackpad driver is loaded."
 
 echo "Checking if trackpad supports W-Enhanced mode..."
-if ! (ioreg -n AppleADBMouseType4 | grep "W Enhanced Trackpad" > /dev/null || \
-    ioreg -n iScroll2 | grep "W Enhanced Trackpad" > /dev/null)
+if ! (/usr/sbin/ioreg -n AppleADBMouseType4 | grep "W Enhanced Trackpad" > /dev/null || \
+    /usr/sbin/ioreg -n iScroll2 | grep "W Enhanced Trackpad" > /dev/null)
 then
     echo "ERROR: Trackpad does not seem to support W-Enhanced mode."
     exit 116

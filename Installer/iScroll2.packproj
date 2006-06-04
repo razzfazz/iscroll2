@@ -584,22 +584,6 @@
 																</dict>
 																<dict>
 																	<key>Children</key>
-																	<array/>
-																	<key>GID</key>
-																	<integer>0</integer>
-																	<key>Path</key>
-																	<string>/Users/dub/Documents/Source Code/Mac/iScroll2/Installer/pkgroot/Contents/System/Library/Extensions/iScroll2.kext/Contents/pbdevelopment.plist</string>
-																	<key>Path Type</key>
-																	<integer>1</integer>
-																	<key>Privileges</key>
-																	<integer>420</integer>
-																	<key>Type</key>
-																	<integer>3</integer>
-																	<key>UID</key>
-																	<integer>0</integer>
-																</dict>
-																<dict>
-																	<key>Children</key>
 																	<array>
 																		<dict>
 																			<key>Children</key>
@@ -839,13 +823,13 @@
 						<key>IFPkgDescriptionTitle</key>
 						<string>iScroll2</string>
 						<key>IFPkgDescriptionVersion</key>
-						<string>0.25e</string>
+						<string>0.26</string>
 					</dict>
 				</dict>
 				<key>Display Information</key>
 				<dict>
 					<key>CFBundleGetInfoString</key>
-					<string>iScroll2 0.25e</string>
+					<string>iScroll2 0.26</string>
 					<key>CFBundleIconFile</key>
 					<string></string>
 					<key>CFBundleIconFile Path Type</key>
@@ -855,7 +839,7 @@
 					<key>CFBundleName</key>
 					<string>iScroll2</string>
 					<key>CFBundleShortVersionString</key>
-					<string>0.25b</string>
+					<string>0.26</string>
 				</dict>
 				<key>Options</key>
 				<dict>
@@ -885,7 +869,7 @@
 					<key>IFMajorVersion</key>
 					<integer>0</integer>
 					<key>IFMinorVersion</key>
-					<integer>25</integer>
+					<integer>26</integer>
 				</dict>
 			</dict>
 		</dict>

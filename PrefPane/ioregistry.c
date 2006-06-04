@@ -15,68 +15,77 @@
 
 CFDictionaryRef getHIDSystemParameters()
 {
-	io_iterator_t iter = 0;
-	io_registry_entry_t regEntry = 0;
-	bool success = TRUE;
-	CFMutableDictionaryRef properties = 0;
-	CFDictionaryRef parameters = 0;
+	io_iterator_t			iter = 0;
+	io_registry_entry_t		regEntry = 0;
+	bool					success = TRUE;
+	CFMutableDictionaryRef	properties = NULL;
+	CFDictionaryRef			parameters = NULL;
 	
 	IOServiceGetMatchingServices(kIOMasterPortDefault, 
-		IOServiceMatching(kIOHIDSystemClass),
-		&iter);
-	if (iter == 0) {
+								 IOServiceMatching(kIOHIDSystemClass), &iter);
+	if(iter == 0) {
 		success = FALSE;
 		goto EXIT;
 	}
+	
 	regEntry = IOIteratorNext(iter);
 	if(regEntry == 0) {
 		success = FALSE;
 		goto EXIT;
 	}
-	if((IORegistryEntryCreateCFProperties(regEntry, &properties,
-		kCFAllocatorDefault, 0) != KERN_SUCCESS) || (properties == NULL))
-	{		
+	
+	if((IORegistryEntryCreateCFProperties(regEntry, &properties, 
+										  kCFAllocatorDefault, 0) != 
+		KERN_SUCCESS) || (properties == NULL)) {		
 		success = FALSE;
 		goto EXIT;
 	}
+	
 	parameters = CFDictionaryGetValue(properties, CFSTR("HIDParameters"));
-	if(!parameters || CFGetTypeID(parameters) != CFDictionaryGetTypeID())
-	{
+	if(!parameters || CFGetTypeID(parameters) != CFDictionaryGetTypeID()) {
 		success = FALSE;
 		goto EXIT;
 	}
 	CFRetain(parameters);
+	
 EXIT:
-	if(properties) CFRelease(properties);
-	if(regEntry) IOObjectRelease(regEntry);
-	if(iter) IOObjectRelease(iter);
+	if(properties != NULL)
+		CFRelease(properties);
+	if(regEntry != 0)
+		IOObjectRelease(regEntry);
+	if(iter != 0)
+		IOObjectRelease(iter);
 	return success ? parameters : 0;
 }
 
 bool applySettingsToHIDSystem(CFDictionaryRef settings)
 {
-	io_iterator_t iter = 0;
-	io_registry_entry_t regEntry = 0;
-	bool success = TRUE;
+	io_iterator_t		iter = 0;
+	io_registry_entry_t	regEntry = 0;
+	bool				success = TRUE;
 	
 	IOServiceGetMatchingServices(kIOMasterPortDefault, 
-		IOServiceMatching(kIOHIDSystemClass),
-		&iter);
-	if (iter == 0) {
+								 IOServiceMatching(kIOHIDSystemClass), &iter);
+	if(iter == 0) {
 		success = FALSE;
 		goto EXIT;
 	}
+	
 	regEntry = IOIteratorNext(iter);
 	if(regEntry == 0) {
 		success = FALSE;
 		goto EXIT;
 	}
+	
 	if(IORegistryEntrySetCFProperties(regEntry, settings) != KERN_SUCCESS) {
 		success = FALSE;
 		goto EXIT;
 	}
+	
 EXIT:
-	if(regEntry) IOObjectRelease(regEntry);
-	if(iter) IOObjectRelease(iter);
+	if(regEntry != 0)
+		IOObjectRelease(regEntry);
+	if(iter != 0)
+		IOObjectRelease(iter);
 	return success;
 }

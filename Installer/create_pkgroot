@@ -1,7 +1,7 @@
 #!/bin/sh
 
 kextpath="Contents/System/Library/Extensions"
-kextsrcpath="../Driver/build"
+kextsrcpath="../Driver/build/Development"
 kextname="iScroll2.kext"
 kextsrcname="$kextname"
 kextowner="root:wheel"
@@ -16,7 +16,7 @@ libgperms="rwX"
 liboperms="rX"
 
 prefpath="$libpath/PreferencePanes"
-prefsrcpath="../PrefPane/build"
+prefsrcpath="../PrefPane/build/Development"
 prefname="iScroll2.prefPane"
 prefsrcname="$prefname"
 prefowner="root:admin"
@@ -43,7 +43,7 @@ startupgperms="rX"
 startupoperms="rX"
 
 daemonpath="$startuppath/$startupname"
-daemonsrcpath="../Daemon/build"
+daemonsrcpath="../Daemon/build/Development"
 daemonname="iScroll2Daemon"
 daemonsrcname="$daemonname"
 daemonowner="root:wheel"

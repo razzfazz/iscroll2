@@ -8,14 +8,14 @@ daemonpidfile="/var/run/${daemonname}.pid"
 
 StartService ()
 {
-#    ConsoleMessage "Starting iScroll2"
+    ConsoleMessage "Starting iScroll2"
     "${daemonpath}/${daemonname}"
 #    ConsoleMessage -S
 }
 
 StopService ()
 {
-#    ConsoleMessage "Stopping iScroll2"
+    ConsoleMessage "Stopping iScroll2"
     kill $(cat "${daemonpidfile}")
 #    ConsoleMessage -S
 }
@@ -23,6 +23,7 @@ StopService ()
 RestartService ()
 {
     StopService
+    sleep 2
     StartService
 }
 

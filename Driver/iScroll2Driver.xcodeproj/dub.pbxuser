@@ -2,7 +2,6 @@
 {
 	089C1669FE841209C02AAC07 /* Project object */ = {
 		activeBuildConfigurationName = Development;
-		activeBuildStyle = 06AA1265FFB2107B11CA28AA /* Development */;
 		activeTarget = 85C2A05C084CF052007333E1 /* iScroll2 */;
 		addToTargets = (
 		);
@@ -110,7 +109,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 171121991;
+			PBXPerProjectTemplateStateSaveDate = 197152319;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -287,7 +286,7 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 171121991;
+			PBXWorkspaceStateSaveDate = 197152319;
 		};
 		sourceControlManager = 8557FC8C07B6CBC30091B459 /* Source Control */;
 		userBuildSettings = {
@@ -305,7 +304,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {705, 2380}}";
 			sepNavSelRange = "{4839, 66}";
-			sepNavVisRect = "{{0, 204}, {705, 429}}";
+			sepNavVisRect = "{{0, 613}, {705, 429}}";
 			sepNavWindowFrame = "{{337, 298}, {750, 534}}";
 		};
 	};
@@ -313,7 +312,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {830, 25872}}";
 			sepNavSelRange = "{52794, 4}";
-			sepNavVisRect = "{{0, 24782}, {503, 440}}";
+			sepNavVisRect = "{{0, 0}, {503, 440}}";
 			sepNavWindowFrame = "{{3, 116}, {548, 545}}";
 		};
 	};
@@ -343,8 +342,8 @@
 	85C2A068084CF052007333E1 /* Info.plist */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {705, 1946}}";
-			sepNavSelRange = "{809, 4}";
-			sepNavVisRect = "{{0, 1223}, {705, 723}}";
+			sepNavSelRange = "{349, 0}";
+			sepNavVisRect = "{{0, 0}, {705, 723}}";
 			sepNavWindowFrame = "{{505, 4}, {750, 828}}";
 		};
 	};

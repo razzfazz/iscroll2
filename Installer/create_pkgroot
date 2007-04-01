@@ -107,5 +107,5 @@ chmod a+x "pkgroot/$resourcepath/InstallationCheck"
 chmod a+x "pkgroot/$resourcepath/preflight"
 chmod a+x "pkgroot/$resourcepath/postflight"
 
-rm -R `find pkgroot -name CVS`
-rm -R `find pkgroot -name .DS_Store`
+find pkgroot -name CVS -delete
+find pkgroot -name .DS_Store -delete

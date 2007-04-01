@@ -12,8 +12,7 @@
 #define kProgramName		"iScroll2Daemon"
 #define kPIDFile			"/var/run/" kProgramName ".pid"
 #define kDriverClassName	"iScroll2"
-#define kSleepDelay			30
-#define	LOG_DEFAULT			LOG_NOTICE
+#define kSleepDelay			10
 
 SCDynamicStoreRef		dsSession = NULL;
 SCDynamicStoreContext	dsContext = {0, NULL, NULL, NULL, NULL};
@@ -23,24 +22,44 @@ CFRunLoopSourceRef		ioRunLoopSource = NULL;
 CFStringRef				consoleUser = NULL;
 
 
+void write_log(int prio, char * fmt, ...) {
+	va_list	arg;
+	
+	va_start(arg, fmt);
+	vsyslog(prio, fmt, arg);
+	if(prio <= LOG_ERR) {
+		vfprintf(stderr, fmt, arg);
+		fprintf(stderr, "\n");
+	} else {
+		vfprintf(stdout, fmt, arg);
+		fprintf(stdout, "\n");
+	}
+	va_end(arg);
+}
+
+
 static Boolean LoadSettingsForUser(CFStringRef username) {
 	io_iterator_t		iter = 0;
 	io_registry_entry_t	regEntry = 0;
 	CFDictionaryRef		newSettings = NULL;
 	const char			* name;
 	Boolean				success = TRUE;
+
+	if(username != NULL) {
+		name = CFStringGetCStringPtr(username, kCFStringEncodingMacRoman);
+		write_log(LOG_NOTICE, "Loading settings for user '%s'.", name);
 	
-	name = CFStringGetCStringPtr(username, kCFStringEncodingMacRoman);
-	syslog(LOG_DEFAULT, "Loading settings for user '%s'.", name);
+		CFPreferencesSynchronize(CFSTR(kDriverAppID), username, 
+									kCFPreferencesAnyHost);
+		newSettings = CFPreferencesCopyValue(CFSTR(kCurrentParametersKey), 
+											CFSTR(kDriverAppID), username, 
+											kCFPreferencesAnyHost);
+		if(newSettings == NULL)
+			write_log(LOG_NOTICE, "No custom settings found.");
+	}
 	
-	CFPreferencesSynchronize(CFSTR(kDriverAppID), username, 
-							 kCFPreferencesAnyHost);
-	newSettings = CFPreferencesCopyValue(CFSTR(kCurrentParametersKey), 
-										 CFSTR(kDriverAppID), username, 
-										 kCFPreferencesAnyHost);
 	if(newSettings == NULL) {
-		syslog(LOG_DEFAULT, "No custom settings found.");
-		syslog(LOG_DEFAULT, "Loading default settings.");
+		write_log(LOG_NOTICE, "Loading default settings.");
 	
 		CFPreferencesSynchronize(CFSTR(kDriverAppID), 
 								kCFPreferencesAnyUser, 
@@ -49,46 +68,49 @@ static Boolean LoadSettingsForUser(CFStringRef username) {
 											 CFSTR(kDriverAppID), 
 											 kCFPreferencesAnyUser, 
 											 kCFPreferencesCurrentHost);
-		if(newSettings == NULL)
-			syslog(LOG_WARNING, "No default settings found.");
-	}
-	
-	if(newSettings == NULL) {
-		syslog(LOG_DEFAULT, "No settings found.");
-		success = FALSE;
-		goto EXIT;
+		if(newSettings == NULL) {
+			write_log(LOG_ERR, "No default settings found.");
+			success = FALSE;
+			goto EXIT;
+		}
 	}
 	
 	if(IOServiceGetMatchingServices(kIOMasterPortDefault, 
 									IOServiceMatching(kIOHIDSystemClass),
 									&iter) != KERN_SUCCESS) {
 		iter = 0;
-		syslog(LOG_ERR, "Error locating HIDSystem service!");
+		write_log(LOG_ERR, "Error locating HIDSystem service!");
 		success = FALSE;
 		goto EXIT;
 	}
 	
 	regEntry = IOIteratorNext(iter);
 	if(regEntry == 0) {
-		syslog(LOG_ERR, "No HIDSystem service found!");
+		write_log(LOG_ERR, "No HIDSystem service found!");
 		success = FALSE;
 		goto EXIT;
 	}
 	
 	if(IORegistryEntrySetCFProperty(regEntry, CFSTR(kiScroll2SettingsKey), 
 									newSettings) != KERN_SUCCESS) {
-		syslog(LOG_ERR, "Error setting HIDSystem properties!");
+		write_log(LOG_ERR, "Error setting HIDSystem properties!");
 		success = FALSE;
 		goto EXIT;
 	}
 	
 EXIT:
-	if(newSettings != NULL)
+	if(newSettings != NULL) {
 		CFRelease(newSettings);
-	if(regEntry != 0)
+		newSettings = NULL;
+	}
+	if(regEntry != 0) {
 		IOObjectRelease(regEntry);
-	if(iter != 0)
+		regEntry = 0;
+	}
+	if(iter != 0) {
 		IOObjectRelease(iter);
+		iter = 0;
+	}
 	return success;
 }
 
@@ -96,87 +118,59 @@ EXIT:
 static void ConsoleUserChangedCallbackFunction(SCDynamicStoreRef store, 
 											   CFArrayRef changedKeys, 
 											   void * context) {
-	const char			* name;
+	const char			* oldName;
+	const char			* newName;
     uid_t				uid;
     gid_t				gid;
+	CFStringRef			newConsoleUser;
+	
+	newConsoleUser = SCDynamicStoreCopyConsoleUser(store, &uid, &gid);
 
 	if(consoleUser != NULL)
-		CFRelease(consoleUser);
-		
-	consoleUser = SCDynamicStoreCopyConsoleUser(store, &uid, &gid);
+		oldName = CFStringGetCStringPtr(consoleUser, kCFStringEncodingMacRoman);
+	
+	if(newConsoleUser != NULL) {
+		newName = CFStringGetCStringPtr(newConsoleUser, 
+										kCFStringEncodingMacRoman);
+										
+		if(consoleUser != NULL) {
+			write_log(LOG_NOTICE, "Console user changed from '%s' to '%s'.", 
+					oldName, newName);
+		} else
+			write_log(LOG_NOTICE, "Console user '%s' logged in.", newName); 
+			
+	} else if(consoleUser != NULL)
+		write_log(LOG_NOTICE, "Console user '%s' logged out.", oldName);
 
 	if(consoleUser != NULL) {
-		name = CFStringGetCStringPtr(consoleUser, kCFStringEncodingMacRoman);
-		syslog(LOG_DEFAULT, "Console user changed to '%s'.", name);
-		
-		LoadSettingsForUser(consoleUser);
-	} else
-		syslog(LOG_DEFAULT, "No console user logged in.");
-}
-
-
-static void ServiceMatchedCallbackFunction(void * context, 
-											io_iterator_t iter) {
-	io_object_t		ioObject;
-	Boolean			anyMatched = FALSE;
-	
-	if((ioObject = IOIteratorNext(iter)) != 0) {
-		anyMatched = TRUE;
-		IOObjectRelease(ioObject);
+		CFRelease(consoleUser);
+		consoleUser = NULL;
 	}
-	
-	while((ioObject = IOIteratorNext(iter)) != 0)
-		IOObjectRelease(ioObject);
-
-	if(anyMatched == TRUE) {
-		syslog(LOG_DEFAULT, "Service '%s' matched.", kDriverClassName);
-
-		if(consoleUser != NULL)
-			LoadSettingsForUser(consoleUser);
-	}
-}
-
-
-//static void ServiceTerminatedCallbackFunction(void * context, 
-//											  io_iterator_t iter) {
-//	io_object_t	ioObject;
-//	Boolean		anyTerminated = FALSE;
-//	
-//	if((ioObject = IOIteratorNext(iter)) != NULL) {
-//		anyTermainted = TRUE;
-//		IOObjectRelease(ioObject);
-//	}
-//	
-//	while((ioObject = IOIteratorNext(iter)) != NULL)
-//		IOObjectRelease(ioObject);
-//	
-//	if(anyTerminated == TRUE)
-//		syslog(LOG_DEFAULT, "Service '" kDriverClassName "' terminated.");
-//}
-
-
-static void SignalHandlerFunction(int signo) {
-	syslog(LOG_DEFAULT, "Received signal %d.", signo);
-	CFRunLoopStop(CFRunLoopGetCurrent());
+	consoleUser = newConsoleUser;
+	LoadSettingsForUser(consoleUser);
 }
 
 
 static Boolean InitDynamicStore() {
-	Boolean				success = TRUE;
+	Boolean	success = TRUE;
+	
+	write_log(LOG_NOTICE, "Creating DynamicStore session.");
 	
 	dsSession = SCDynamicStoreCreate(NULL, CFSTR(kProgramName), 
 									 ConsoleUserChangedCallbackFunction, 
 									 &dsContext);  
     if(dsSession == NULL) {
-		syslog(LOG_ERR, "Couldn't create DynamicStore session!");
+		write_log(LOG_ERR, "Couldn't create DynamicStore session!");
 		success = FALSE;
 		goto EXIT;
 	}
 	
+	write_log(LOG_NOTICE, "Creating DynamicStore RunLoop source.");
+	
     dsRunLoopSource = SCDynamicStoreCreateRunLoopSource(NULL, dsSession, 
 														(CFIndex)0);
 	if(dsRunLoopSource == NULL) {
-		syslog(LOG_ERR, "Couldn't create Dynamic Store RunLoop source!");
+		write_log(LOG_ERR, "Couldn't create DynamicStore RunLoop source!");
 		success = FALSE;
 		goto EXIT;
 	}
@@ -185,36 +179,6 @@ static Boolean InitDynamicStore() {
 					   kCFRunLoopDefaultMode);
 	
 EXIT:
-	if(dsRunLoopSource != NULL)
-		CFRelease(dsRunLoopSource);
-	return success;
-}
-
-
-static Boolean InitIOKit() {
-	Boolean				success = TRUE;
-	
-    ioKitNotificationPort = IONotificationPortCreate(kIOMasterPortDefault);
-	
-    if(ioKitNotificationPort == NULL) {
-		syslog(LOG_ERR, "Couldn't create IOKit notification port!");
-		success = FALSE;
-		goto EXIT;
-	}
-	
-	ioRunLoopSource = IONotificationPortGetRunLoopSource(ioKitNotificationPort);
-	if(ioRunLoopSource == NULL) {
-		syslog(LOG_ERR, "Couldn't create IOKit RunLoop source!");
-		success = FALSE;
-		goto EXIT;
-	}
-	
-    CFRunLoopAddSource(CFRunLoopGetCurrent(), ioRunLoopSource, 
-					   kCFRunLoopDefaultMode);
-	
-EXIT:
-	if(ioRunLoopSource != NULL)
-		CFRelease(ioRunLoopSource);
 	return success;
 }
 
@@ -224,35 +188,129 @@ static Boolean RegisterConsoleUserChangeCallback() {
 	CFArrayRef	notificationKeys = NULL;
 	Boolean		success = TRUE;
 	
+	write_log(LOG_NOTICE, "Creating ConsoleUser key.");
+	
 	consoleUserNameChangeKey = SCDynamicStoreKeyCreateConsoleUser(NULL);
     if(consoleUserNameChangeKey == NULL) {
-		syslog(LOG_ERR, "Couldn't create ConsoleUser key!");
+		write_log(LOG_ERR, "Couldn't create ConsoleUser key!");
 		success = FALSE;
         goto EXIT;
     }
+	
+	write_log(LOG_NOTICE, "Creating notification key array.");
 	
     notificationKeys = CFArrayCreate(NULL, (void*)&consoleUserNameChangeKey, 
 									 (CFIndex)1, &kCFTypeArrayCallBacks);
     if(notificationKeys == NULL) {
-		syslog(LOG_ERR, "Couldn't create notification key array!"); 
+		write_log(LOG_ERR, "Couldn't create notification key array!"); 
 		success = FALSE;
         goto EXIT;
     }
 	
+	write_log(LOG_NOTICE, "Setting up DynamicStore notification.");
+	
 	if(SCDynamicStoreSetNotificationKeys(dsSession, notificationKeys, NULL) == 
 	   FALSE) {
-		syslog(LOG_ERR, "Couldn't set up dynamic store notification!"); 
+		write_log(LOG_ERR, "Couldn't set up DynamicStore notification!"); 
 		success = FALSE;
         goto EXIT;
 	}
 	
-	ConsoleUserChangedCallbackFunction(dsSession, NULL, &dsContext);
+EXIT:
+	if(notificationKeys != NULL) {
+		CFRelease(notificationKeys);
+		notificationKeys = NULL;
+	}
+	if(consoleUserNameChangeKey != NULL) {
+		CFRelease(consoleUserNameChangeKey);
+		consoleUserNameChangeKey = NULL;
+	}
+	return success;
+}
+
+
+static void ServiceMatchedCallbackFunction(void * context, 
+											io_iterator_t iter) {
+	io_object_t		ioObject;
+	Boolean			anyMatched = FALSE;
+    uid_t			uid;
+    gid_t			gid;
+
+	if(consoleUser != NULL) {
+		CFRelease(consoleUser);
+		consoleUser = NULL;
+	}
+	
+	while((ioObject = IOIteratorNext(iter)) != 0) {
+		anyMatched = TRUE;
+		IOObjectRelease(ioObject);
+	}
+	
+	if(anyMatched == TRUE) {
+		write_log(LOG_NOTICE, "Service '%s' matched.", kDriverClassName);
+
+		if(dsSession == NULL && 
+			(InitDynamicStore() == FALSE ||
+				RegisterConsoleUserChangeCallback() == FALSE)) {
+			kill(getpid(), SIGTERM);
+		} else {
+			consoleUser = SCDynamicStoreCopyConsoleUser(dsSession, &uid, &gid);
+			LoadSettingsForUser(consoleUser);
+		}
+		
+	} else
+		write_log(LOG_WARNING, "Service '%s' not matched!", kDriverClassName);
+}
+
+
+static void SignalHandlerFunction(int signo) {
+	write_log(LOG_NOTICE, "Received signal %d.", signo);
+	switch(signo) {
+		case SIGINT:
+		case SIGTERM:
+			CFRunLoopStop(CFRunLoopGetCurrent());
+			break;
+		case SIGHUP:
+			LoadSettingsForUser(consoleUser);
+			break;
+		case SIGINFO:
+			write_log(LOG_NOTICE, "dsSession = '%d'", dsSession);
+			write_log(LOG_NOTICE, "dsRunLoopSource = '%d'", dsRunLoopSource);
+			write_log(LOG_NOTICE, "ioKitNotificationPort = '%d'", 
+					ioKitNotificationPort);
+			write_log(LOG_NOTICE, "ioRunLoopSource = '%d'", ioRunLoopSource);
+			write_log(LOG_NOTICE, "consoleUser = '%s'", 
+				CFStringGetCStringPtr(consoleUser, kCFStringEncodingMacRoman));
+	}
+}
+
+
+static Boolean InitIOKit() {
+	Boolean	success = TRUE;
+	
+	write_log(LOG_NOTICE, "Creating IOKit notification port.");
+	
+	ioKitNotificationPort = IONotificationPortCreate(kIOMasterPortDefault);
+	
+    if(ioKitNotificationPort == NULL) {
+		write_log(LOG_ERR, "Couldn't create IOKit notification port!");
+		success = FALSE;
+		goto EXIT;
+	}
+	
+	write_log(LOG_NOTICE, "Creating IOKit RunLoop source.");
+	
+	ioRunLoopSource = IONotificationPortGetRunLoopSource(ioKitNotificationPort);
+	if(ioRunLoopSource == NULL) {
+		write_log(LOG_ERR, "Couldn't create IOKit RunLoop source!");
+		success = FALSE;
+		goto EXIT;
+	}
+	
+    CFRunLoopAddSource(CFRunLoopGetCurrent(), ioRunLoopSource, 
+					   kCFRunLoopDefaultMode);
 	
 EXIT:
-	if(notificationKeys != NULL)
-		CFRelease(notificationKeys); 
-	if(consoleUserNameChangeKey != NULL)
-		CFRelease(consoleUserNameChangeKey);
 	return success;
 }
 
@@ -262,19 +320,24 @@ static Boolean RegisterServiceMatchedCallback() {
 	CFDictionaryRef	matchDictionary = NULL;
 	Boolean			success = TRUE;
 	
+	write_log(LOG_NOTICE, "Creating matching dictionary for class '"
+			   kDriverClassName "'.");
+			   
 	matchDictionary = IOServiceMatching(kDriverClassName);
 	if(matchDictionary == NULL) {
-		syslog(LOG_ERR, "Couldn't create matching dictionary for class '"
+		write_log(LOG_ERR, "Couldn't create matching dictionary for class '"
 			   kDriverClassName "'!");
 		success = FALSE;
 		goto EXIT;
-	}				
+	}
+	
+	write_log(LOG_NOTICE, "Registering service matched notification.");
 	
 	if(IOServiceAddMatchingNotification(ioKitNotificationPort,
 										kIOMatchedNotification,	matchDictionary,
 										ServiceMatchedCallbackFunction, NULL, 
 										&iter) != kIOReturnSuccess) {
-		syslog(LOG_ERR, "Couldn't register service matched notification!");
+		write_log(LOG_ERR, "Couldn't register service matched notification!");
 		success = FALSE;
 		goto EXIT;
 	}
@@ -286,42 +349,14 @@ EXIT:
 }
 
 
-//static Boolean RegisterServiceTerminatedCallback() {
-//	io_iterator_t	iter = 0;
-//	CFDictionaryRef	matchDictionary = NULL;
-//	Boolean			success = TRUE;
-//	
-//	matchDictionary = IOServiceMatching(kDriverClassName);
-//	if(matchDictionary == NULL) {
-//		syslog(LOG_ERR, "Couldn't create matching dictionary for class '"
-//			   kDriverClassName "'!");
-//		success = FALSE;
-//		goto EXIT;
-//	}				
-//	
-//	if(IOServiceAddMatchingNotification(ioKitNotificationPort,
-//										kIOTerminatedNotification,
-//										matchDictionary,
-//										ServiceTerminatedCallbackFunction, NULL, 
-//										&iter) != kIOReturnSuccess) {
-//		syslog(LOG_ERR, "Couldn't register service terminated notification!");
-//		success = FALSE;
-//		goto EXIT;
-//	}
-//	
-//	ServiceTerminatedCallbackFunction(NULL, iter);
-//	
-//EXIT:
-//	return success;
-//}
-
-
 static void CleanupDynamicStore() {
 //	if(dsRunLoopSource != NULL)
 //		CFRunLoopRemoveSource(CFRunLoopGetCurrent(), dsRunLoopSource, 
 //							  kCFRunLoopDefaultMode);
-	if(dsSession != NULL)
+	if(dsSession != NULL) {
 		CFRelease(dsSession);
+		dsSession = NULL;
+	}
 }
 
 
@@ -342,17 +377,17 @@ int main(int argc, const char * argv[]) {
 
 	daemonize = (argc < 2) || (strncmp(argv[1], "-foreground", 2) != 0);
 	if(daemonize) {
-		syslog(LOG_DEFAULT, "Spawning daemon.");
+		write_log(LOG_NOTICE, "Spawning daemon.");
 		if(daemon(0, 0) != 0) {
-			syslog(LOG_ERR, "Unable to daemonize!");
+			write_log(LOG_ERR, "Unable to daemonize!");
 			exitval = EXIT_FAILURE;
 			goto EXIT;
 		}
 	} else
-		syslog(LOG_DEFAULT, "Running in forreground.");
+		write_log(LOG_NOTICE, "Running in foreground.");
 	
 	pid = getpid();
-	syslog(LOG_NOTICE, "PID is %d.", pid);
+	write_log(LOG_NOTICE, "PID is %d.", pid);
 	
     pid_file = fopen(kPIDFile, "w");
 	if(pid_file == NULL) {
@@ -363,42 +398,24 @@ int main(int argc, const char * argv[]) {
 	fprintf(pid_file, "%d\n", pid);
 	fclose(pid_file);
 	
-	if(daemonize && ((argc < 2) || (strncmp(argv[1], "-nosleep", 2) != 0))) {
-		syslog(LOG_DEFAULT, "Sleeping for %d seconds.", kSleepDelay);
-		sleep(kSleepDelay);
-		syslog(LOG_DEFAULT, "Waking up.");
-	}
+//	if(daemonize && ((argc < 2) || (strncmp(argv[1], "-nosleep", 2) != 0))) {
+//		write_log(LOG_NOTICE, "Sleeping for %d seconds.", kSleepDelay);
+//		sleep(kSleepDelay);
+//		write_log(LOG_NOTICE, "Waking up.");
+//	}
 		
-	if(InitDynamicStore() == FALSE) {
-		syslog(LOG_ERR, "Couldn't initialize Dynamic Store!");
-		exitval = EXIT_FAILURE;
-		goto EXIT;
-	}
-	
 	if(InitIOKit() == FALSE) {
-		syslog(LOG_ERR, "Couldn't initialize IOKit!");
-		exitval = EXIT_FAILURE;
-		goto EXIT;
-	}
-	
-	if(RegisterConsoleUserChangeCallback() == FALSE) {
-		syslog(LOG_ERR, "Couldn't register console user change callback!");
 		exitval = EXIT_FAILURE;
 		goto EXIT;
 	}
 	
 	if(RegisterServiceMatchedCallback() == FALSE) {
-		syslog(LOG_ERR, "Couldn't register service matched callback!");
 		exitval = EXIT_FAILURE;
 		goto EXIT;
 	}
 	
-//	if(RegisterServiceTerminatedCallback() == FALSE) {
-//		syslog(LOG_ERR, "Couldn't register service terminated callback!");
-//		exitval = EXIT_FAILURE;
-//		goto EXIT;
-//	}
-	
+    signal(SIGINFO, SignalHandlerFunction);
+    signal(SIGHUP, SignalHandlerFunction);
     signal(SIGTERM, SignalHandlerFunction);
 	if(!daemonize)
 		signal(SIGINT, SignalHandlerFunction);
@@ -406,13 +423,13 @@ int main(int argc, const char * argv[]) {
 	CFRunLoopRun();
 	
 EXIT:
-	syslog(LOG_DEFAULT, "Cleaning up.");
+	write_log(LOG_NOTICE, "Cleaning up.");
 	CleanupDynamicStore();
 	CleanupIOKit();
 	if(consoleUser != NULL)
 		CFRelease(consoleUser);
 	unlink(kPIDFile);
 	
-	syslog(LOG_DEFAULT, "Exiting with return code %d.", exitval);
+	write_log(LOG_NOTICE, "Exiting with return code %d.", exitval);
     return exitval;
 }

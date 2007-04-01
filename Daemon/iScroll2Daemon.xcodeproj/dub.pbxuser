@@ -2,12 +2,12 @@
 {
 	08FB7793FE84155DC02AAC07 /* Project object */ = {
 		activeBuildConfigurationName = Development;
-		activeBuildStyle = 014CEA520018CE5811CA2923 /* Development */;
 		activeExecutable = 85C9FAF208561BD0008C7F0E /* iScroll2Daemon */;
 		activeTarget = 85C9FAE408561BD0008C7F0E /* iScroll2Daemon */;
 		addToTargets = (
 		);
 		breakpoints = (
+			857261860BC040BD00E88D98 /* iScroll2Daemon.c:378 */,
 		);
 		breakpointsGroup = 858B409C0A3262210037E025 /* XCBreakpointsBucket */;
 		codeSenseManager = 850C1B9E07E26B3900BF4B54 /* Code sense */;
@@ -81,7 +81,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 171145857;
+			PBXPerProjectTemplateStateSaveDate = 197152269;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -258,7 +258,7 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 171145857;
+			PBXWorkspaceStateSaveDate = 197152269;
 		};
 		sourceControlManager = 850C1B9D07E26B3900BF4B54 /* Source Control */;
 		userBuildSettings = {
@@ -266,10 +266,10 @@
 	};
 	08FB7796FE84155DC02AAC07 /* iScroll2Daemon.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {506, 5866}}";
-			sepNavSelRange = "{10889, 0}";
-			sepNavVisRect = "{{0, 4973}, {501, 893}}";
-			sepNavWindowFrame = "{{731, 4}, {546, 998}}";
+			sepNavIntBoundsRect = "{{0, 0}, {501, 6104}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {501, 723}}";
+			sepNavWindowFrame = "{{731, 4}, {546, 828}}";
 		};
 	};
 	850C1B9D07E26B3900BF4B54 /* Source Control */ = {
@@ -284,10 +284,25 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
+	857261860BC040BD00E88D98 /* iScroll2Daemon.c:378 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		delayBeforeContinue = 0;
+		fileReference = 08FB7796FE84155DC02AAC07 /* iScroll2Daemon.c */;
+		functionName = "main()";
+		hitCount = 0;
+		lineNumber = 378;
+		modificationTime = 197148861.46328;
+		state = 1;
+	};
 	858B409C0A3262210037E025 /* XCBreakpointsBucket */ = {
 		isa = XCBreakpointsBucket;
 		name = "Project Breakpoints";
 		objects = (
+			857261860BC040BD00E88D98 /* iScroll2Daemon.c:378 */,
 		);
 	};
 	85C9FAE408561BD0008C7F0E /* iScroll2Daemon */ = {
@@ -298,10 +313,12 @@
 	};
 	85C9FAF208561BD0008C7F0E /* iScroll2Daemon */ = {
 		isa = PBXExecutable;
-		activeArgIndex = 2147483647;
+		activeArgIndex = 0;
 		activeArgIndices = (
+			YES,
 		);
 		argumentStrings = (
+			"-foreground",
 		);
 		autoAttachOnCrash = 1;
 		configStateDict = {
@@ -322,12 +339,7 @@
 				{
 					display = 1;
 					filename = "/Users/dub/Documents/Source Code/Mac/iScroll2/Daemon/iScroll2Daemon.c";
-					name = dsRunLoopSource;
-				},
-				{
-					display = 1;
-					filename = "/Users/dub/Documents/Source Code/Mac/iScroll2/Daemon/iScroll2Daemon.c";
-					name = dsSession;
+					name = ioKitNotificationPort;
 				},
 				{
 					display = 1;
@@ -337,11 +349,18 @@
 				{
 					display = 1;
 					filename = "/Users/dub/Documents/Source Code/Mac/iScroll2/Daemon/iScroll2Daemon.c";
-					name = ioKitNotificationPort;
+					name = dsSession;
+				},
+				{
+					display = 1;
+					filename = "/Users/dub/Documents/Source Code/Mac/iScroll2/Daemon/iScroll2Daemon.c";
+					name = dsRunLoopSource;
 				},
 			);
 		};
 		sourceDirectories = (
 		);
+		variableFormatDictionary = {
+		};
 	};
 }

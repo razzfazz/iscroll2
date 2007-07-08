@@ -401,8 +401,8 @@ bool iScroll2::start(IOService * provider)
 			_jitterdelta = 16;  // pixels;
 		}
 // modified dub:
-//		setProperty(kIOHIDPointerAccelerationTypeKey, kIOHIDTrackpadAccelerationType); 
-//		setProperty(kIOHIDScrollAccelerationTypeKey, kIOHIDTrackpadScrollAccelerationType);
+		setProperty(kIOHIDPointerAccelerationTypeKey, kIOHIDTrackpadAccelerationType); 
+		setProperty(kIOHIDScrollAccelerationTypeKey, kIOHIDTrackpadScrollAccelerationType);
 //		setProperty(kIOHIDScrollResolutionKey, kDefaultScrollFixedResolution, 32);
 // end modifications
 
@@ -938,7 +938,7 @@ void iScroll2::packet(UInt8 adbCommand, IOByteCount length, UInt8 * data)
 				if((_scrollRot / _scrollScaleRot) && !withhold)
 				{
 					dispatchScrollWheelEvent(_scrollRot / _scrollScaleRot, 0, 0, now);
-					_scrollRot = 0;
+					_scrollRot %= _scrollScaleRot;
 					_lastScrollTimeAB = now;
 				}
 				skipLinear = true;
@@ -956,7 +956,8 @@ void iScroll2::packet(UInt8 adbCommand, IOByteCount length, UInt8 * data)
 			if(((_scrollX / _scrollScaleX) || (_scrollY / _scrollScaleY)) && !withhold)
 			{
 				dispatchScrollWheelEvent(_scrollY / _scrollScaleY, _scrollX / _scrollScaleX, 0, now);
-				_scrollX = _scrollY = 0;
+				_scrollX %= _scrollScaleX;
+				_scrollY %= _scrollScaleY;
 				_lastScrollTimeAB = now;
 			}
 /*			if((_scrollX / _scrollScaleX) && !withhold)

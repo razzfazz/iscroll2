@@ -109,7 +109,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 197152319;
+			PBXPerProjectTemplateStateSaveDate = 205617886;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -286,7 +286,7 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 197152319;
+			PBXWorkspaceStateSaveDate = 205617886;
 		};
 		sourceControlManager = 8557FC8C07B6CBC30091B459 /* Source Control */;
 		userBuildSettings = {
@@ -295,7 +295,7 @@
 	089C167EFE841241C02AAC07 /* English */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {830, 429}}";
-			sepNavSelRange = "{280, 0}";
+			sepNavSelRange = "{151, 4}";
 			sepNavVisRect = "{{0, 0}, {705, 429}}";
 			sepNavWindowFrame = "{{309, 142}, {750, 534}}";
 		};
@@ -310,10 +310,10 @@
 	};
 	1A224C3FFF42367911CA2CB7 /* AppleADBMouse.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {830, 25872}}";
-			sepNavSelRange = "{52794, 4}";
-			sepNavVisRect = "{{0, 0}, {503, 440}}";
-			sepNavWindowFrame = "{{3, 116}, {548, 545}}";
+			sepNavIntBoundsRect = "{{0, 0}, {830, 25886}}";
+			sepNavSelRange = "{11369, 0}";
+			sepNavVisRect = "{{0, 5302}, {494, 722}}";
+			sepNavWindowFrame = "{{3, 5}, {539, 827}}";
 		};
 	};
 	85104D8F07BD612C009915A7 /* ioregkeys.h */ = {
@@ -342,7 +342,7 @@
 	85C2A068084CF052007333E1 /* Info.plist */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {705, 1946}}";
-			sepNavSelRange = "{349, 0}";
+			sepNavSelRange = "{549, 0}";
 			sepNavVisRect = "{{0, 0}, {705, 723}}";
 			sepNavWindowFrame = "{{505, 4}, {750, 828}}";
 		};

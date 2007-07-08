@@ -234,7 +234,7 @@
 				MACOSX_DEPLOYMENT_TARGET = "";
 				MODULE_IOKIT = YES;
 				MODULE_NAME = name.razzfazz.driver.iScroll2;
-				MODULE_VERSION = 0.26;
+				MODULE_VERSION = 0.28;
 				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
@@ -265,7 +265,7 @@
 				MACOSX_DEPLOYMENT_TARGET = "";
 				MODULE_IOKIT = YES;
 				MODULE_NAME = name.razzfazz.driver.iScroll2;
-				MODULE_VERSION = 0.26;
+				MODULE_VERSION = 0.28;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
@@ -293,7 +293,7 @@
 				MACOSX_DEPLOYMENT_TARGET = "";
 				MODULE_IOKIT = YES;
 				MODULE_NAME = name.razzfazz.driver.iScroll2;
-				MODULE_VERSION = 0.26;
+				MODULE_VERSION = 0.28;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";

@@ -17,6 +17,7 @@
 		08FB7796FE84155DC02AAC07 /* iScroll2Daemon.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = iScroll2Daemon.c; sourceTree = "<group>"; };
 		85C9C05607E4BEA8001CEF1A /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
 		85C9FAF108561BD0008C7F0E /* iScroll2Daemon */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "compiled.mach-o.executable"; path = iScroll2Daemon; sourceTree = BUILT_PRODUCTS_DIR; };
+		85D2D4A00CE2982200A3ACB6 /* name.razzfazz.daemon.iScroll2.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = name.razzfazz.daemon.iScroll2.plist; sourceTree = "<group>"; };
 		F57A1503024A605901FF61AD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 		F57A1506024A618501FF61AD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
@@ -48,6 +49,7 @@
 		08FB7795FE84155DC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				85D2D4A00CE2982200A3ACB6 /* name.razzfazz.daemon.iScroll2.plist */,
 				08FB7796FE84155DC02AAC07 /* iScroll2Daemon.c */,
 			);
 			name = Source;

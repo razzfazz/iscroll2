@@ -932,9 +932,9 @@ void iScroll2::packet(UInt8 adbCommand, IOByteCount length, UInt8 * data)
 			short angleSquared = _oldScrollY * dx - _oldScrollX * dy;
 			angleSquared = 100 * my_abs(angleSquared) * angleSquared / 
 				((_oldScrollX * _oldScrollX + _oldScrollY * _oldScrollY) * (dx * dx + dy * dy));
-			if(_stickyRotating || (my_abs(angleSquared) >= _scrollThreshRot))
+			_scrollRot += my_sgn(_scrollInvertRot ? -angleSquared : angleSquared) * (my_abs(dx) + my_abs(dy));
+			if(_stickyRotating || (my_abs(_scrollRot) >= _scrollThreshRot))
 			{
-				_scrollRot += my_sgn(_scrollInvertRot ? -angleSquared : angleSquared) * (my_abs(dx) + my_abs(dy));
 				if((_scrollRot / _scrollScaleRot) && !withhold)
 				{
 					dispatchScrollWheelEvent(_scrollRot / _scrollScaleRot, 0, 0, now);

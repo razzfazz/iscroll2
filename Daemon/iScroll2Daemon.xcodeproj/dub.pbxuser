@@ -5,9 +5,10 @@
 		activeExecutable = 85C9FAF208561BD0008C7F0E /* iScroll2Daemon */;
 		activeTarget = 85C9FAE408561BD0008C7F0E /* iScroll2Daemon */;
 		addToTargets = (
+			85C9FAE408561BD0008C7F0E /* iScroll2Daemon */,
 		);
 		breakpoints = (
-			857261860BC040BD00E88D98 /* iScroll2Daemon.c:378 */,
+			857261860BC040BD00E88D98 /* iScroll2Daemon.c:406 */,
 		);
 		breakpointsGroup = 858B409C0A3262210037E025 /* XCBreakpointsBucket */;
 		codeSenseManager = 850C1B9E07E26B3900BF4B54 /* Code sense */;
@@ -81,7 +82,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 205618230;
+			PBXPerProjectTemplateStateSaveDate = 216632631;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -258,7 +259,7 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 205618230;
+			PBXWorkspaceStateSaveDate = 216632631;
 		};
 		sourceControlManager = 850C1B9D07E26B3900BF4B54 /* Source Control */;
 		userBuildSettings = {
@@ -266,10 +267,10 @@
 	};
 	08FB7796FE84155DC02AAC07 /* iScroll2Daemon.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {501, 6104}}";
-			sepNavSelRange = "{10205, 0}";
-			sepNavVisRect = "{{0, 5381}, {501, 723}}";
-			sepNavWindowFrame = "{{731, 4}, {546, 828}}";
+			sepNavIntBoundsRect = "{{0, 0}, {501, 6510}}";
+			sepNavSelRange = "{449, 0}";
+			sepNavVisRect = "{{0, 0}, {501, 723}}";
+			sepNavWindowFrame = "{{755, 255}, {546, 828}}";
 		};
 	};
 	850C1B9D07E26B3900BF4B54 /* Source Control */ = {
@@ -284,7 +285,7 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	857261860BC040BD00E88D98 /* iScroll2Daemon.c:378 */ = {
+	857261860BC040BD00E88D98 /* iScroll2Daemon.c:406 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -294,7 +295,7 @@
 		fileReference = 08FB7796FE84155DC02AAC07 /* iScroll2Daemon.c */;
 		functionName = "main()";
 		hitCount = 0;
-		lineNumber = 378;
+		lineNumber = 406;
 		modificationTime = 197148861.46328;
 		state = 1;
 	};
@@ -302,7 +303,7 @@
 		isa = XCBreakpointsBucket;
 		name = "Project Breakpoints";
 		objects = (
-			857261860BC040BD00E88D98 /* iScroll2Daemon.c:378 */,
+			857261860BC040BD00E88D98 /* iScroll2Daemon.c:406 */,
 		);
 	};
 	85C9FAE408561BD0008C7F0E /* iScroll2Daemon */ = {
@@ -361,6 +362,14 @@
 		sourceDirectories = (
 		);
 		variableFormatDictionary = {
+		};
+	};
+	85D2D4A00CE2982200A3ACB6 /* name.razzfazz.daemon.iScroll2.plist */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {638, 722}}";
+			sepNavSelRange = "{562, 0}";
+			sepNavVisRect = "{{0, 0}, {500, 722}}";
+			sepNavWindowFrame = "{{15, 0}, {545, 827}}";
 		};
 	};
 }

@@ -2,8 +2,8 @@
 
 files="/System/Library/Extensions/iScroll2.kext \
 	/Library/PreferencePanes/iScroll2.prefPane \
-	/Library/Preferences/name.razzfazz.driver.iScroll2.plist \
 	/Library/StartupItems/iScroll2 \
+	/Library/LaunchAgents/name.razzfazz.daemon.iScroll2.plist \
 	/usr/local/bin/iScroll2Daemon \
 	/Library/Receipts/iScroll2.pkg"
 

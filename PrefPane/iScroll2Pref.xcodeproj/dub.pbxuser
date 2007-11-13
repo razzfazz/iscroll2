@@ -52,7 +52,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 205618226;
+			PBXPerProjectTemplateStateSaveDate = 216633170;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -229,7 +229,7 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 205618226;
+			PBXWorkspaceStateSaveDate = 216633170;
 		};
 		sourceControlManager = 8509A4C207C00A3B002A3DD9 /* Source Control */;
 		userBuildSettings = {
@@ -238,7 +238,7 @@
 	089C167EFE841241C02AAC07 /* English */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {705, 429}}";
-			sepNavSelRange = "{164, 0}";
+			sepNavSelRange = "{160, 4}";
 			sepNavVisRect = "{{0, 0}, {705, 429}}";
 			sepNavWindowFrame = "{{384, 163}, {750, 534}}";
 		};
@@ -281,9 +281,9 @@
 	};
 	853418A2081E4D4700BBA2E9 /* uninstall.command */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {711, 559}}";
-			sepNavSelRange = "{266, 0}";
-			sepNavVisRect = "{{0, 0}, {711, 428}}";
+			sepNavIntBoundsRect = "{{0, 0}, {705, 588}}";
+			sepNavSelRange = "{199, 0}";
+			sepNavVisRect = "{{0, 0}, {705, 429}}";
 			sepNavWindowFrame = "{{38, 272}, {750, 534}}";
 		};
 	};
@@ -311,13 +311,21 @@
 			sepNavWindowFrame = "{{176, 146}, {750, 534}}";
 		};
 	};
+	85D14B6B0CE1E0B7004FF82F /* name.razzfazz.driver.iScroll2.plist */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {500, 728}}";
+			sepNavSelRange = "{218, 0}";
+			sepNavVisRect = "{{0, 0}, {500, 722}}";
+			sepNavWindowFrame = "{{15, 0}, {545, 827}}";
+		};
+	};
 	8D202CE80486D31800D8A456 /* iScroll2 */ = {
 		activeExec = 0;
 	};
 	8D202CF70486D31800D8A456 /* Info.plist */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {705, 434}}";
-			sepNavSelRange = "{526, 0}";
+			sepNavSelRange = "{640, 4}";
 			sepNavVisRect = "{{0, 0}, {705, 429}}";
 			sepNavWindowFrame = "{{15, 298}, {750, 534}}";
 		};

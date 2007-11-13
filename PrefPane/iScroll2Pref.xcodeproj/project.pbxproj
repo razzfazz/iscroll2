@@ -14,6 +14,7 @@
 		85B0DDD907C7644500FD7DBC /* ioregistry.c in Sources */ = {isa = PBXBuildFile; fileRef = 85B0DDD707C7644500FD7DBC /* ioregistry.c */; };
 		85B0DDE007C7649800FD7DBC /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85B0DDDF07C7649800FD7DBC /* Carbon.framework */; };
 		85C9C02907E4B872001CEF1A /* preferences.h in Headers */ = {isa = PBXBuildFile; fileRef = 85C9C02807E4B872001CEF1A /* preferences.h */; };
+		85D14B6C0CE1E0B7004FF82F /* name.razzfazz.driver.iScroll2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85D14B6B0CE1E0B7004FF82F /* name.razzfazz.driver.iScroll2.plist */; };
 		85FA1A0007C6A8E000C16F52 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FA19FF07C6A8E000C16F52 /* IOKit.framework */; };
 		8D202CEA0486D31800D8A456 /* iScroll2_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCFA20370C41700C91783 /* iScroll2_Prefix.pch */; };
 		8D202CEB0486D31800D8A456 /* iScroll2Pref.h in Headers */ = {isa = PBXBuildFile; fileRef = F506C03C013D9D7901CA16C8 /* iScroll2Pref.h */; };
@@ -38,6 +39,7 @@
 		85B0DDD707C7644500FD7DBC /* ioregistry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioregistry.c; sourceTree = "<group>"; };
 		85B0DDDF07C7649800FD7DBC /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		85C9C02807E4B872001CEF1A /* preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = preferences.h; sourceTree = "<group>"; };
+		85D14B6B0CE1E0B7004FF82F /* name.razzfazz.driver.iScroll2.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = name.razzfazz.driver.iScroll2.plist; sourceTree = "<group>"; };
 		85FA19FF07C6A8E000C16F52 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
 		8D202CF70486D31800D8A456 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D202CF80486D31800D8A456 /* iScroll2.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iScroll2.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +89,7 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				85D14B6B0CE1E0B7004FF82F /* name.razzfazz.driver.iScroll2.plist */,
 				85085F9A083E56A0000860E7 /* Localizable.strings */,
 				853418A2081E4D4700BBA2E9 /* uninstall.command */,
 				8D202CF70486D31800D8A456 /* Info.plist */,
@@ -217,6 +220,7 @@
 				8D202CEF0486D31800D8A456 /* iScroll2Pref.nib in Resources */,
 				853418A3081E4D4700BBA2E9 /* uninstall.command in Resources */,
 				85085F9C083E56A0000860E7 /* Localizable.strings in Resources */,
+				85D14B6C0CE1E0B7004FF82F /* name.razzfazz.driver.iScroll2.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

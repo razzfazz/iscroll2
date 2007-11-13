@@ -12,7 +12,7 @@
 #define kProgramName		"iScroll2Daemon"
 #define kPIDFile			"/var/run/" kProgramName ".pid"
 #define kDriverClassName	"iScroll2"
-#define kSleepDelay			10
+//#define kSleepDelay			10
 
 SCDynamicStoreRef		dsSession = NULL;
 SCDynamicStoreContext	dsContext = {0, NULL, NULL, NULL, NULL};
@@ -147,7 +147,11 @@ static void ConsoleUserChangedCallbackFunction(SCDynamicStoreRef store,
 		consoleUser = NULL;
 	}
 	consoleUser = newConsoleUser;
-	LoadSettingsForUser(consoleUser);
+	if(uid == getuid())
+		LoadSettingsForUser(consoleUser);
+	else
+		write_log(LOG_NOTICE, "Not updating settings as this instance of "
+					kProgramName " does not handle user '%s'.", newName);
 }
 
 
@@ -247,23 +251,37 @@ static void ServiceMatchedCallbackFunction(void * context,
 	}
 	
 	if(anyMatched == TRUE) {
-		write_log(LOG_NOTICE, "Service '%s' matched.", kDriverClassName);
+		write_log(LOG_NOTICE, "Service '" kDriverClassName "' matched.");
 
 		if(dsSession == NULL && 
 			(InitDynamicStore() == FALSE ||
 				RegisterConsoleUserChangeCallback() == FALSE)) {
+			write_log(LOG_ERR, "Unable to initiate session!");
 			kill(getpid(), SIGTERM);
 		} else {
+			const char * name;
 			consoleUser = SCDynamicStoreCopyConsoleUser(dsSession, &uid, &gid);
-			LoadSettingsForUser(consoleUser);
+			name = CFStringGetCStringPtr(consoleUser, 
+											kCFStringEncodingMacRoman);
+			write_log(LOG_NOTICE, "User '%s' is currently logged in.", name);
+			if(uid == getuid())
+				LoadSettingsForUser(consoleUser);
+			else
+				write_log(LOG_NOTICE, "Not updating settings as this instance "
+							"of " kProgramName " does not handle user '%s'.", 
+							name);
 		}
 		
 	} else
-		write_log(LOG_WARNING, "Service '%s' not matched!", kDriverClassName);
+		write_log(LOG_WARNING, "Service '" kDriverClassName "' not matched!");
 }
 
 
 static void SignalHandlerFunction(int signo) {
+    uid_t		uid;
+    gid_t		gid;
+	const char	*name;
+	
 	write_log(LOG_NOTICE, "Received signal %d.", signo);
 	switch(signo) {
 		case SIGINT:
@@ -271,16 +289,25 @@ static void SignalHandlerFunction(int signo) {
 			CFRunLoopStop(CFRunLoopGetCurrent());
 			break;
 		case SIGHUP:
-			LoadSettingsForUser(consoleUser);
+			consoleUser = SCDynamicStoreCopyConsoleUser(dsSession, &uid, &gid);
+			name = CFStringGetCStringPtr(consoleUser, 
+											kCFStringEncodingMacRoman);
+			if(uid == getuid())
+				LoadSettingsForUser(consoleUser);
+			else
+				write_log(LOG_NOTICE, "Not updating settings as this instance "
+							"of " kProgramName " does not handle user '%s'.",
+							name);
 			break;
 		case SIGINFO:
+			name = CFStringGetCStringPtr(consoleUser,
+											kCFStringEncodingMacRoman);
 			write_log(LOG_NOTICE, "dsSession = '%d'", dsSession);
 			write_log(LOG_NOTICE, "dsRunLoopSource = '%d'", dsRunLoopSource);
 			write_log(LOG_NOTICE, "ioKitNotificationPort = '%d'", 
 					ioKitNotificationPort);
 			write_log(LOG_NOTICE, "ioRunLoopSource = '%d'", ioRunLoopSource);
-			write_log(LOG_NOTICE, "consoleUser = '%s'", 
-				CFStringGetCStringPtr(consoleUser, kCFStringEncodingMacRoman));
+			write_log(LOG_NOTICE, "consoleUser = '%s'", name);
 	}
 }
 
@@ -370,11 +397,12 @@ static void CleanupIOKit() {
 
 
 int main(int argc, const char * argv[]) {
-	pid_t	pid;
 	int		exitval = EXIT_SUCCESS;
 	Boolean	daemonize;
     FILE	* pid_file;
 
+	openlog(argv[0], LOG_CONS | LOG_PID, LOG_DAEMON);
+	
 	daemonize = (argc < 2) || (strncmp(argv[1], "-foreground", 2) != 0);
 	if(daemonize) {
 		write_log(LOG_NOTICE, "Spawning daemon.");
@@ -383,20 +411,19 @@ int main(int argc, const char * argv[]) {
 			exitval = EXIT_FAILURE;
 			goto EXIT;
 		}
+	}
+	
+	if(daemonize) {
+		pid_file = fopen(kPIDFile, "w");
+		if(pid_file == NULL) {
+			write_log(LOG_ERR, "Couldn't write PID to " kPIDFile "!\n");
+			exitval = EXIT_FAILURE;
+			goto EXIT;
+		}
+		fprintf(pid_file, "%d\n", getpid());
+		fclose(pid_file);	
 	} else
 		write_log(LOG_NOTICE, "Running in foreground.");
-	
-	pid = getpid();
-	write_log(LOG_NOTICE, "PID is %d.", pid);
-	
-    pid_file = fopen(kPIDFile, "w");
-	if(pid_file == NULL) {
-		syslog(1, "Couldn't write PID to " kPIDFile "!\n");
-		exitval = EXIT_FAILURE;
-		goto EXIT;
-	}
-	fprintf(pid_file, "%d\n", pid);
-	fclose(pid_file);
 	
 //	if(daemonize && ((argc < 2) || (strncmp(argv[1], "-nosleep", 2) != 0))) {
 //		write_log(LOG_NOTICE, "Sleeping for %d seconds.", kSleepDelay);
@@ -428,8 +455,10 @@ EXIT:
 	CleanupIOKit();
 	if(consoleUser != NULL)
 		CFRelease(consoleUser);
-	unlink(kPIDFile);
+	if(daemonize)
+		unlink(kPIDFile);
 	
 	write_log(LOG_NOTICE, "Exiting with return code %d.", exitval);
+	closelog();
     return exitval;
 }

@@ -1,22 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?> 
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"> 
-<plist version="1.0"> 
-<dict> 
-<key>Label</key> 
-<string>name.razzfazz.daemon.iScroll2</string> 
-<key>LimitLoadToSessionType</key> 
-<string>Aqua</string> 
-<key>MachServices</key> 
-<dict> 
-<key>name.razzfazz.daemon.iScroll2</key> 
-<true/> 
-</dict> 
-<key>ProgramArguments</key> 
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+<key>Label</key>
+<string>name.razzfazz.daemon.iScroll2</string>
+<key>LimitLoadToSessionType</key>
 <array>
-<string>/Library/PreferencePanes/iScroll2.prefPane/Contents/Resources/iScroll2Daemon</string> 
+<string>LoginWindow</string>
+<string>Aqua</string>
+</array>
+<key>MachServices</key>
+<dict>
+<key>name.razzfazz.daemon.iScroll2</key>
+<true/>
+</dict>
+<key>Program</key>
+<string>/Library/PreferencePanes/iScroll2.prefPane/Contents/Resources/iScroll2Daemon</string>
+<key>ProgramArguments</key>
+<array>
+<string>iScroll2Daemon</string>
 <string>-foreground</string>
 </array>
 <key>OnDemand</key>
 <false/>
-</dict> 
+</dict>
 </plist>

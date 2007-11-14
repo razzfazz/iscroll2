@@ -834,13 +834,13 @@
 						<key>IFPkgDescriptionTitle</key>
 						<string>iScroll2</string>
 						<key>IFPkgDescriptionVersion</key>
-						<string>0.30</string>
+						<string>0.31</string>
 					</dict>
 				</dict>
 				<key>Display Information</key>
 				<dict>
 					<key>CFBundleGetInfoString</key>
-					<string>iScroll2 0.30</string>
+					<string>iScroll2 0.31</string>
 					<key>CFBundleIconFile</key>
 					<string></string>
 					<key>CFBundleIconFile Path Type</key>
@@ -850,7 +850,7 @@
 					<key>CFBundleName</key>
 					<string>iScroll2</string>
 					<key>CFBundleShortVersionString</key>
-					<string>0.30</string>
+					<string>0.31</string>
 				</dict>
 				<key>Options</key>
 				<dict>
@@ -878,7 +878,7 @@
 					<key>IFMajorVersion</key>
 					<integer>0</integer>
 					<key>IFMinorVersion</key>
-					<integer>29</integer>
+					<integer>31</integer>
 				</dict>
 			</dict>
 		</dict>

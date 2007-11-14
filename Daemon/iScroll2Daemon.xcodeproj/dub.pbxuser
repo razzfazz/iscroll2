@@ -82,7 +82,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 216753281;
+			PBXPerProjectTemplateStateSaveDate = 216762292;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -259,7 +259,7 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 216753281;
+			PBXWorkspaceStateSaveDate = 216762292;
 		};
 		sourceControlManager = 850C1B9D07E26B3900BF4B54 /* Source Control */;
 		userBuildSettings = {
@@ -268,8 +268,8 @@
 	08FB7796FE84155DC02AAC07 /* iScroll2Daemon.c */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {501, 6552}}";
-			sepNavSelRange = "{8387, 0}";
-			sepNavVisRect = "{{0, 3868}, {501, 723}}";
+			sepNavSelRange = "{305, 12}";
+			sepNavVisRect = "{{0, 0}, {501, 723}}";
 			sepNavWindowFrame = "{{733, 4}, {546, 828}}";
 		};
 	};

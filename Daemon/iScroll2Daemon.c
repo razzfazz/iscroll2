@@ -10,7 +10,7 @@
 #include "../PrefPane/preferences.h"
 
 #define kProgramName		"iScroll2Daemon"
-#define kProgramVersion		"0.31"
+#define kProgramVersion		"0.32"
 #define kPIDFile			"/var/run/" kProgramName ".pid"
 #define kDriverClassName	"iScroll2"
 
@@ -148,8 +148,8 @@ static void ConsoleUserChangedCallbackFunction(SCDynamicStoreRef store,
 	}
 	consoleUser = newConsoleUser;
 	if(uid == getuid())
-		LoadSettingsForUser(consoleUser);
-	else
+		LoadSettingsForUser(newConsoleUser);
+	else if(newConsoleUser != NULL)
 		write_log(LOG_NOTICE, "Not updating settings as this instance of %s "
 								"does not handle user '%s'.", 
 								kProgramName, newName);
@@ -278,7 +278,7 @@ static void ServiceMatchedCallbackFunction(void * context,
 							kProgramName, name);
 		}
 	} else
-		write_log(LOG_WARNING, "Service '" kDriverClassName "' not matched!");
+		write_log(LOG_WARNING, "Service '%s' not matched!", kDriverClassName);
 }
 
 
@@ -414,7 +414,7 @@ int main(int argc, const char * argv[]) {
 
 	openlog(argv[0], LOG_CONS | LOG_PID, LOG_DAEMON);
 	
-	write_log(LOG_NOTICE, "Starting %s %s." kProgramName, kProgramVersion);
+	write_log(LOG_NOTICE, "Starting %s %s.", kProgramName, kProgramVersion);
 	daemonize = (argc < 2) || (strncmp(argv[1], "-foreground", 2) != 0);
 	if(daemonize) {
 		write_log(LOG_NOTICE, "Spawning daemon.");

@@ -10,9 +10,9 @@
 #include "../PrefPane/preferences.h"
 
 #define kProgramName		"iScroll2Daemon"
+#define kProgramVersion		"0.31"
 #define kPIDFile			"/var/run/" kProgramName ".pid"
 #define kDriverClassName	"iScroll2"
-//#define kSleepDelay			10
 
 SCDynamicStoreRef		dsSession = NULL;
 SCDynamicStoreContext	dsContext = {0, NULL, NULL, NULL, NULL};
@@ -412,6 +412,7 @@ int main(int argc, const char * argv[]) {
 
 	openlog(argv[0], LOG_CONS | LOG_PID, LOG_DAEMON);
 	
+	write_log(LOG_NOTICE, "Starting " kProgramName kProgramVersion ".");
 	daemonize = (argc < 2) || (strncmp(argv[1], "-foreground", 2) != 0);
 	if(daemonize) {
 		write_log(LOG_NOTICE, "Spawning daemon.");
@@ -420,9 +421,6 @@ int main(int argc, const char * argv[]) {
 			exitval = EXIT_FAILURE;
 			goto EXIT;
 		}
-	}
-	
-	if(daemonize) {
 		pid_file = fopen(kPIDFile, "w");
 		if(pid_file == NULL) {
 			write_log(LOG_ERR, "Couldn't write PID to " kPIDFile "!\n");
@@ -432,14 +430,8 @@ int main(int argc, const char * argv[]) {
 		fprintf(pid_file, "%d\n", getpid());
 		fclose(pid_file);	
 	} else
-		write_log(LOG_NOTICE, "Running in foreground.");
+		write_log(LOG_NOTICE, "Running in foreground mode.");
 	
-//	if(daemonize && ((argc < 2) || (strncmp(argv[1], "-nosleep", 2) != 0))) {
-//		write_log(LOG_NOTICE, "Sleeping for %d seconds.", kSleepDelay);
-//		sleep(kSleepDelay);
-//		write_log(LOG_NOTICE, "Waking up.");
-//	}
-		
 	if(InitIOKit() == FALSE) {
 		exitval = EXIT_FAILURE;
 		goto EXIT;

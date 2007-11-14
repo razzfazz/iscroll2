@@ -8,7 +8,7 @@
 			85C9FAE408561BD0008C7F0E /* iScroll2Daemon */,
 		);
 		breakpoints = (
-			857261860BC040BD00E88D98 /* iScroll2Daemon.c:415 */,
+			857261860BC040BD00E88D98 /* iScroll2Daemon.c:416 */,
 		);
 		breakpointsGroup = 858B409C0A3262210037E025 /* XCBreakpointsBucket */;
 		codeSenseManager = 850C1B9E07E26B3900BF4B54 /* Code sense */;
@@ -82,7 +82,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 216751669;
+			PBXPerProjectTemplateStateSaveDate = 216752798;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -259,7 +259,7 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 216751669;
+			PBXWorkspaceStateSaveDate = 216752798;
 		};
 		sourceControlManager = 850C1B9D07E26B3900BF4B54 /* Source Control */;
 		userBuildSettings = {
@@ -267,9 +267,9 @@
 	};
 	08FB7796FE84155DC02AAC07 /* iScroll2Daemon.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {501, 6636}}";
-			sepNavSelRange = "{1249, 13}";
-			sepNavVisRect = "{{0, 379}, {501, 723}}";
+			sepNavIntBoundsRect = "{{0, 0}, {501, 6524}}";
+			sepNavSelRange = "{455, 0}";
+			sepNavVisRect = "{{0, 0}, {501, 723}}";
 			sepNavWindowFrame = "{{733, 4}, {546, 828}}";
 		};
 	};
@@ -285,7 +285,7 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	857261860BC040BD00E88D98 /* iScroll2Daemon.c:415 */ = {
+	857261860BC040BD00E88D98 /* iScroll2Daemon.c:416 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -295,7 +295,7 @@
 		fileReference = 08FB7796FE84155DC02AAC07 /* iScroll2Daemon.c */;
 		functionName = "main()";
 		hitCount = 0;
-		lineNumber = 415;
+		lineNumber = 416;
 		modificationTime = 197148861.46328;
 		state = 1;
 	};
@@ -303,7 +303,7 @@
 		isa = XCBreakpointsBucket;
 		name = "Project Breakpoints";
 		objects = (
-			857261860BC040BD00E88D98 /* iScroll2Daemon.c:415 */,
+			857261860BC040BD00E88D98 /* iScroll2Daemon.c:416 */,
 		);
 	};
 	85C9FAE408561BD0008C7F0E /* iScroll2Daemon */ = {

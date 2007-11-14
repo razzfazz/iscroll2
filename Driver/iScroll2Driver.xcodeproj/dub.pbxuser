@@ -109,7 +109,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 216633163;
+			PBXPerProjectTemplateStateSaveDate = 216763331;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -286,11 +286,7 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 216633163;
-		};
-		perUserProjectItems = {
-			859EF57D0CE22B7B00AC4885 /* PBXTextBookmark */ = 859EF57D0CE22B7B00AC4885 /* PBXTextBookmark */;
-			85DE40020CE98F92004A117F /* PBXTextBookmark */ = 85DE40020CE98F92004A117F /* PBXTextBookmark */;
+			PBXWorkspaceStateSaveDate = 216763331;
 		};
 		sourceControlManager = 8557FC8C07B6CBC30091B459 /* Source Control */;
 		userBuildSettings = {
@@ -317,7 +313,7 @@
 			sepNavIntBoundsRect = "{{0, 0}, {830, 25886}}";
 			sepNavSelRange = "{11301, 0}";
 			sepNavVisRect = "{{0, 5348}, {494, 722}}";
-			sepNavWindowFrame = "{{816, 351}, {539, 827}}";
+			sepNavWindowFrame = "{{438, 5}, {539, 827}}";
 		};
 	};
 	85104D8F07BD612C009915A7 /* ioregkeys.h */ = {
@@ -342,16 +338,6 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	859EF57D0CE22B7B00AC4885 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1A224C3FFF42367911CA2CB7 /* AppleADBMouse.cpp */;
-		name = "AppleADBMouse.cpp: 405";
-		rLen = 0;
-		rLoc = 11301;
-		rType = 0;
-		vrLen = 1659;
-		vrLoc = 10613;
-	};
 	85C2A05C084CF052007333E1 /* iScroll2 */ = {
 		activeExec = 0;
 	};
@@ -362,15 +348,5 @@
 			sepNavVisRect = "{{0, 0}, {705, 723}}";
 			sepNavWindowFrame = "{{505, 4}, {750, 828}}";
 		};
-	};
-	85DE40020CE98F92004A117F /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1A224C3FFF42367911CA2CB7 /* AppleADBMouse.cpp */;
-		name = "AppleADBMouse.cpp: 405";
-		rLen = 0;
-		rLoc = 11301;
-		rType = 0;
-		vrLen = 1659;
-		vrLoc = 10613;
 	};
 }

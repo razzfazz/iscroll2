@@ -23,5 +23,7 @@
 </array>
 <key>OnDemand</key>
 <false/>
+<key>KeepAlive</key>
+<true/>
 </dict>
 </plist>

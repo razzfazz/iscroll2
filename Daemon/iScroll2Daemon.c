@@ -261,17 +261,21 @@ static void ServiceMatchedCallbackFunction(void * context,
 		} else {
 			const char * name;
 			consoleUser = SCDynamicStoreCopyConsoleUser(dsSession, &uid, &gid);
-			name = CFStringGetCStringPtr(consoleUser, 
-											kCFStringEncodingMacRoman);
-			write_log(LOG_NOTICE, "User '%s' is currently logged in.", name);
+			if(consoleUser != NULL) {
+				name = CFStringGetCStringPtr(consoleUser, 
+												kCFStringEncodingMacRoman);
+				write_log(LOG_NOTICE, "User '%s' is logged in.", name);
+			} else
+				write_log(LOG_NOTICE, "No user is logged in.");
+
 			if(uid == getuid())
 				LoadSettingsForUser(consoleUser);
-			else
-				write_log(LOG_NOTICE, "Not updating settings as this instance "
-							"of " kProgramName " does not handle user '%s'.", 
+			else if(consoleUser != NULL)
+				write_log(LOG_NOTICE,
+							"Not updating settings as this instance of "
+							kProgramName " does not handle user '%s'.", 
 							name);
 		}
-		
 	} else
 		write_log(LOG_WARNING, "Service '" kDriverClassName "' not matched!");
 }
@@ -290,24 +294,29 @@ static void SignalHandlerFunction(int signo) {
 			break;
 		case SIGHUP:
 			consoleUser = SCDynamicStoreCopyConsoleUser(dsSession, &uid, &gid);
-			name = CFStringGetCStringPtr(consoleUser, 
-											kCFStringEncodingMacRoman);
+			if (consoleUser != NULL)
+				name = CFStringGetCStringPtr(consoleUser, 
+												kCFStringEncodingMacRoman);
 			if(uid == getuid())
 				LoadSettingsForUser(consoleUser);
-			else
+			else if(consoleUser != NULL)
 				write_log(LOG_NOTICE, "Not updating settings as this instance "
 							"of " kProgramName " does not handle user '%s'.",
 							name);
 			break;
 		case SIGINFO:
-			name = CFStringGetCStringPtr(consoleUser,
-											kCFStringEncodingMacRoman);
+			if(consoleUser != NULL)
+				name = CFStringGetCStringPtr(consoleUser,
+												kCFStringEncodingMacRoman);
 			write_log(LOG_NOTICE, "dsSession = '%d'", dsSession);
 			write_log(LOG_NOTICE, "dsRunLoopSource = '%d'", dsRunLoopSource);
 			write_log(LOG_NOTICE, "ioKitNotificationPort = '%d'", 
 					ioKitNotificationPort);
 			write_log(LOG_NOTICE, "ioRunLoopSource = '%d'", ioRunLoopSource);
-			write_log(LOG_NOTICE, "consoleUser = '%s'", name);
+			if(consoleUser != NULL)
+				write_log(LOG_NOTICE, "consoleUser = '%s'", name);
+			else
+				write_log(LOG_NOTICE, "consoleUser = NULL");
 	}
 }
 

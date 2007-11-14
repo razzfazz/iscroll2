@@ -150,8 +150,9 @@ static void ConsoleUserChangedCallbackFunction(SCDynamicStoreRef store,
 	if(uid == getuid())
 		LoadSettingsForUser(consoleUser);
 	else
-		write_log(LOG_NOTICE, "Not updating settings as this instance of "
-					kProgramName " does not handle user '%s'.", newName);
+		write_log(LOG_NOTICE, "Not updating settings as this instance of %s "
+								"does not handle user '%s'.", 
+								kProgramName, newName);
 }
 
 
@@ -272,9 +273,9 @@ static void ServiceMatchedCallbackFunction(void * context,
 				LoadSettingsForUser(consoleUser);
 			else if(consoleUser != NULL)
 				write_log(LOG_NOTICE,
-							"Not updating settings as this instance of "
-							kProgramName " does not handle user '%s'.", 
-							name);
+							"Not updating settings as this instance of %s does "
+							"not handle user '%s'.", 
+							kProgramName, name);
 		}
 	} else
 		write_log(LOG_WARNING, "Service '" kDriverClassName "' not matched!");
@@ -301,10 +302,11 @@ static void SignalHandlerFunction(int signo) {
 				LoadSettingsForUser(consoleUser);
 			else if(consoleUser != NULL)
 				write_log(LOG_NOTICE, "Not updating settings as this instance "
-							"of " kProgramName " does not handle user '%s'.",
-							name);
+							"of %s does not handle user '%s'.",
+							kProgramName, name);
 			break;
 		case SIGINFO:
+			write_log(LOG_NOTICE, "%s %s", kProgramName, kProgramVersion);
 			if(consoleUser != NULL)
 				name = CFStringGetCStringPtr(consoleUser,
 												kCFStringEncodingMacRoman);
@@ -412,7 +414,7 @@ int main(int argc, const char * argv[]) {
 
 	openlog(argv[0], LOG_CONS | LOG_PID, LOG_DAEMON);
 	
-	write_log(LOG_NOTICE, "Starting " kProgramName kProgramVersion ".");
+	write_log(LOG_NOTICE, "Starting %s %s." kProgramName, kProgramVersion);
 	daemonize = (argc < 2) || (strncmp(argv[1], "-foreground", 2) != 0);
 	if(daemonize) {
 		write_log(LOG_NOTICE, "Spawning daemon.");
